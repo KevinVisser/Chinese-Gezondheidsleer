@@ -1,0 +1,22 @@
+{
+  "name": "chinese-gezondheidsleer",
+  "version": "0.0.1",
+  "description": "Programma voor de Chinese gezondheidsleer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinVisser/Chinese-Gezondheidsleer.git"
+  },
+  "author": "Sander Beijaard & Kevin Visser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinVisser/Chinese-Gezondheidsleer/issues"
+  },
+  "homepage": "https://github.com/KevinVisser/Chinese-Gezondheidsleer#readme",
+  "devDependencies": {
+    "electron": "^7.1.2"
+  }
+}
