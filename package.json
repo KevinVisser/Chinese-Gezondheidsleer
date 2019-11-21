@@ -4,7 +4,8 @@
   "description": "Programma voor de Chinese gezondheidsleer",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "rebuild": "electron-rebuild -f -w better-sqlite3"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/KevinVisser/Chinese-Gezondheidsleer#readme",
   "devDependencies": {
-    "electron": "^7.1.2"
+    "electron": "^7.1.2",
+    "electron-rebuild": "^1.8.8"
+  },
+  "dependencies": {
+    "better-sqlite3": "^5.4.3"
   }
 }

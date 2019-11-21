@@ -1,4 +1,14 @@
-const { app, BrowserWindow } = require('electron')
+// Modules to control application life and create native browser window
+const {
+    app,
+    BrowserWindow
+  } = require('electron')
+  const path = require('path')
+  
+  const db = require('better-sqlite3')('./resources/app.db');
+  
+  const stmt = db.prepare('SELECT Nederlands FROM Kruiden');
+  console.log(stmt.all());
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -9,8 +19,11 @@ function createWindow () {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    show: false,
+    backgroundColor: '#FFF',
+    frame: false,
     webPreferences: {
-      nodeIntegration: true
+      preload: path.join(__dirname, 'preload.js')
     }
   })
 
@@ -18,7 +31,7 @@ function createWindow () {
   win.loadFile('index.html')
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
