@@ -22,6 +22,10 @@
     "electron-rebuild": "^1.8.8"
   },
   "dependencies": {
+    "angular": "^1.7.9",
+    "angular-animate": "^1.7.9",
+    "angular-aria": "^1.7.9",
+    "angular-material": "^1.1.20",
     "better-sqlite3": "^5.4.3"
   }
 }

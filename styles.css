@@ -42,7 +42,7 @@ p {
 
 /* Styling of window frame and titlebar */
 body {
-    border: 1px solid #1A2933;
+    /* border: 1px solid #1A2933; */
     overflow-y: hidden;
 }
 
@@ -69,9 +69,7 @@ body {
     padding: 4px;
 }
 
-#titlebar #drag-region {
-    width: 100%;
-    height: 100%;
+#drag-region {
     -webkit-app-region: drag;
     -webkit-user-select: none;
 }
@@ -80,10 +78,10 @@ body {
     color: #FFF;
 }
 
-#titlebar #drag-region {
+/* #titlebar #drag-region {
     display: grid;
     grid-template-columns: auto 138px;
-}
+} */
 
 #window-title {
     grid-column: 1;
@@ -121,7 +119,7 @@ body {
 }
 
 #window-controls .button {
-    grid-row: 1 / span 1;
+    /* grid-row: 1 / span 1; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,12 +190,11 @@ body {
     top: 0;
     /* Stay at the top */
     left: 0;
-    margin-top: 32px;
     background-color: #111;
     /* Black */
     overflow-x: hidden;
+    float: left;
     /* Disable horizontal scroll */
-    padding-top: 20px;
 }
 
 /* The navigation menu links */
@@ -217,8 +214,10 @@ body {
 /* Style page content */
 .main-content {
     margin-left: 160px;
+    background-color:#1A2933;
     /* Same as the width of the sidebar */
     padding: 0px 10px;
+    height: 100%;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
@@ -231,3 +230,40 @@ body {
         font-size: 18px;
     }
 }
+
+.logo {
+    width: 160px;
+    height: auto;
+}
+
+md-content .ext-content {
+  padding: 50px;
+  margin: 20px;
+  background-color: #FFF2E0;
+}
+
+.appTitle {
+    user-select: none;
+    margin: auto;
+    height: 100%;
+    width: auto;
+}
+
+.black {
+    color: black;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table thead {
+    display: block;
+}
+
+table tbody {
+    height: 200px;
+    display: block;
+    overflow-y: scroll;
+}
+
