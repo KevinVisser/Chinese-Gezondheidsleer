@@ -89,16 +89,56 @@ ChineseGezondheidsleer.controller('RightCtrl', function ($scope, $timeout, $mdSi
 
 ChineseGezondheidsleer.controller('testController', function ($scope, $timeout, $mdSidenav, $log) {
     let stmt;
+    $scope.kruidenModel = new KruidenModel();
 
-    $scope.kruiden = loadKruiden();
-    $scope.patentFormules = loadPatentFormules();
-    $scope.kruidenFormules = loadKruidenFormules();
-    $scope.syndromen = loadSyndromen();
+    $scope.kruidenModel.GetRelevantData();
 
-    $scope.currentItem = "Kruiden"
+    $scope.kruiden = [];
+    $scope.patentFormules = [];
+    $scope.kruidenFormules = [];
+    $scope.syndromen = [];
+
+    $scope.values = [];
 
     $scope.ChangeNav = function ChangeNav(nav) {
         $scope.currentItem = nav;
+
+        switch ($scope.currentItem) {
+            case "Kruiden":
+                $scope.kruiden = $scope.kruidenModel.GetRelevantData();
+                $scope.patentFormules = [];
+                $scope.kruidenFormules = [];
+                $scope.syndromen = [];
+                console.log($scope.values);
+                break;
+            case "PatentFormules":
+                $scope.patentFormules = $scope.kruidenModel.PatentFormules();
+                $scope.kruiden = [];
+                $scope.kruidenFormules = [];
+                $scope.syndromen = [];
+                console.log($scope.values);
+                break;
+            case "KruidenFormules":
+                $scope.kruidenFormules = $scope.kruidenModel.KruidenFormules();
+                $scope.patentFormules = [];
+                $scope.kruiden = [];
+                $scope.syndromen = [];
+                console.log($scope.values);
+                break;
+            case "Syndroom":
+                $scope.syndromen = $scope.kruidenModel.Syndroom();
+                $scope.patentFormules = [];
+                $scope.kruidenFormules = [];
+                $scope.kruiden = [];
+                console.log($scope.values);
+                break;
+        }
+
+        // if ($scope.currentItem === "Kruiden") {
+        //     values = $scope.kruidenModel.GetRelevantData();
+        //     console.log(values);
+        // } else if ()
+
     }
 
     function loadKruiden() {

@@ -15,29 +15,31 @@
 
 <body ng-app="ChineseGezondheidsleer">
     <!-- Toolbar -->
-    <md-toolbar>
-        <div>
-            <h2 class="appTitle">Chinese Gezondheidsleer</h2>
+    <header id="titlebar">
+        <div id="drag-region">
+            <div id="window-title">
+                <h2>Chinese Gezondheidsleer</h2>
+            </div>
+            <div id="window-controls">
+                <div class="button" id="min-button">
+                    <span>&#xE921;</span>
+                </div>
+                <div class="button" id="max-button">
+                    <span>&#xE922;</span>
+                </div>
+                <div class="button" id="restore-button">
+                    <span>&#xE923;</span>
+                </div>
+                <div class="button" id="close-button">
+                    <span>&#xE8BB;</span>
+                </div>
+            </div>
         </div>
-        <div id="window-controls">
-            <div class="button" id="min-button">
-                <span>&#xE921;</span>
-            </div>
-            <div class="button" id="max-button">
-                <span>&#xE922;</span>
-            </div>
-            <div class="button" id="restore-button">
-                <span>&#xE923;</span>
-            </div>
-            <div class="button" id="close-button">
-                <span>&#xE8BB;</span>
-            </div>
-        </div>
-    </md-toolbar>
+    </header>
 
 
     <!-- Main Content -->
-    <div ng-controller="testController" layout="column" style="height:100%;" ng-cloak>
+    <div ng-controller="testController" layout="column" style="height:100%; margin-top: 32px;" ng-cloak>
 
         <!-- Side nav -->
         <section layout="row" flex>
@@ -58,7 +60,7 @@
 
             <md-content flex>
 
-                <div layout-align="top center">
+                <div layout-align="top center" style="margin-bottom: 50px;">
                     <!-- Table for Kruiden -->
                     <table class="black" ng-show="currentItem=='Kruiden'">
                         <tr>
@@ -66,7 +68,7 @@
                             <th>Latijnse Naam</th>
                             <th>Actie</th>
                         </tr>
-                        <tr ng-repeat="kruid in kruiden | limitTo: 20">
+                        <tr ng-repeat="kruid in kruiden">
                             <td>{{kruid.Nederlands}}</td>
                             <td>{{kruid.Latijns}}</td>
                         </tr>
@@ -89,28 +91,20 @@
                     <!-- KruidenFormule Table -->
                     <table ng-cloak class="black" ng-show="currentItem=='KruidenFormules'">
                         <tr>
-                            <th>Nederlands</th>
-                            <th>Engels</th>
-                            <th>Pinjin</th>
+                            <th>Naam</th>
                         </tr>
                         <tr ng-repeat="kruidenformule in kruidenFormules">
-                            <td>{{kruidenformule.Nederlands}}</td>
-                            <td>{{kruidenformule.Engels}}</td>
-                            <td>{{kruidenformule.Pinjin}}</td>
+                            <td>{{kruidenformule.Naam}}</td>
                         </tr>
                     </table>
 
                     <!-- Syndroom Table -->
                     <table ng-cloak class="black" ng-show="currentItem=='Syndroom'">
                         <tr>
-                            <th>Nederlands</th>
-                            <th>Engels</th>
-                            <th>Pinjin</th>
+                            <th>Syndroom</th>
                         </tr>
-                        <tr ng-repeat="s in syndroom">
-                            <td>{{s.Nederlands}}</td>
-                            <td>{{s.Engels}}</td>
-                            <td>{{s.Pinjin}}</td>
+                        <tr ng-repeat="s in syndromen">
+                            <td>{{s.Syndroom}}</td>
                         </tr>
                     </table>
                 </div>
@@ -159,6 +153,8 @@
     </md-content> -->
 
     <script src="renderer.js"></script>
+    <script src="app/models/Models.js"></script>
+    <script src="app/models/KruidenModel.js"></script>
     <script src="app/app.js"></script>
 </body>
 

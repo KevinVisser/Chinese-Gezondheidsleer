@@ -42,7 +42,7 @@ p {
 
 /* Styling of window frame and titlebar */
 body {
-    /* border: 1px solid #1A2933; */
+    border-top: 1px solid #1A2933;
     overflow-y: hidden;
 }
 
@@ -78,10 +78,10 @@ body {
     color: #FFF;
 }
 
-/* #titlebar #drag-region {
+#titlebar #drag-region {
     display: grid;
     grid-template-columns: auto 138px;
-} */
+}
 
 #window-title {
     grid-column: 1;
@@ -193,7 +193,7 @@ body {
     background-color: #111;
     /* Black */
     overflow-x: hidden;
-    float: left;
+    /* float: left; */
     /* Disable horizontal scroll */
 }
 
@@ -261,9 +261,9 @@ table thead {
     display: block;
 }
 
-table tbody {
+/* table tbody {
     height: 200px;
     display: block;
     overflow-y: scroll;
-}
+} */
 

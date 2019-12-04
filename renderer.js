@@ -13,29 +13,9 @@ const db = remote.getGlobal("database");
 
 document.onreadystatechange = () => {
     if (document.readyState == "complete") {
-        // HandleWindowControls();
+        HandleWindowControls();
     }
 };
-
-// function getKruidenData() {
-//     const kruidenData = db.prepare("SELECT * FROM Kruiden");
-//     console.log(kruidenData.all());
-// }
-
-// function getPatentformuleData() {
-//     const patentFormules = db.prepare("SELECT * FROM PatentFormules");
-//     console.log(patentFormules.all());
-// }
-
-// function getSyndroomData() {
-//     const syndroomData = db.prepare("SELECT * FROM Syndromen");
-//     console.log(syndroomData.all());
-// }
-
-// function getSymptoomData() {
-//     const symptoomData = db.prepare("SELECT * FROM Symptomen");
-//     console.log(symptoomData.all());
-// }
 
 function HandleWindowControls() {
     let win = remote.getCurrentWindow();
