@@ -1,23 +1,14 @@
 class KruidenModel {
     constructor() { }
 
-    GetRelevantData() {
-        let stmt = db.prepare("SELECT Nederlands, Latijns, Familie FROM Kruiden");
+    GetAllData() {
+        let stmt = db.prepare("SELECT * FROM Kruiden");
         return stmt.all();
     }
 
-    PatentFormules() {
-        let stmt = db.prepare("SELECT Nederlands, Engels, Pinjin FROM PatentFormules");
-        return stmt.all();
-    }
-
-    KruidenFormules() {
-        let stmt = db.prepare("SELECT Naam FROM Symptomen");
-        return stmt.all();
-    }
-
-    Syndroom() {
-        let stmt = db.prepare("SELECT Syndroom FROM Syndromen");
-        return stmt.all();
+    GetSpecificKruid(id) {
+        console.log(id);
+        let stmt = db.prepare("SELECT * FROM Kruiden WHERE Id=?").get(id)
+        return stmt;
     }
 }

@@ -3,17 +3,22 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
+    <title>Chinese Gezondheidsleer</title>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-animate/angular-animate.js"></script>
-    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
-    <script src="node_modules/angular-material/angular-material.min.js"></script>
+
+    <!-- Angular and all seperate modules -->
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script src="./node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="./node_modules/angular-material/angular-material.min.js"></script>
+    <script src="./node_modules/angular-route/angular-route.min.js"></script>
 </head>
 
 <body ng-app="ChineseGezondheidsleer">
+
     <!-- Toolbar -->
     <header id="titlebar">
         <div id="drag-region">
@@ -37,124 +42,61 @@
         </div>
     </header>
 
-
     <!-- Main Content -->
-    <div ng-controller="testController" layout="column" style="height:100%; margin-top: 32px;" ng-cloak>
+    <div ng-controller="MainController as main" layout="column" style="height:100%; margin-top: 32px;" ng-cloak>
 
-        <!-- Side nav -->
         <section layout="row" flex>
+
+            <!-- Side nav -->
             <md-sidenav class="sidenav" md-component-id="left" md-is-locked-open="true" md-whiteframe="5">
                 <header>
                     <h1 class="nav-title">Chinese gezondheidsleer</h1>
                     <img class="logo" src="assets/img/icon.jpg" />
                 </header>
                 <div>
-                    <md-button class="md-primary" ng-click="ChangeNav('Kruiden')">Kruiden
-                    </md-button>
-                    <md-button class="md-primary" ng-click="ChangeNav('PatentFormules')">
-                        PatentFormule</md-button>
-                    <md-button class="md-primary" ng-click="ChangeNav('KruidenFormules')">KruidenFormule</md-button>
-                    <md-button class="md-primary" ng-click="ChangeNav('Syndroom')">Syndroom</md-button>
+                    <a href="#!Kruiden">
+                        <md-button class="md-primary" style="width: 100%; margin: 0;">
+                            Kruiden
+                        </md-button>
+                    </a>
+                    <a href="#!PatentFormules">
+                        <md-button class="md-primary" style="width: 100%; margin: 0;">
+                            PatentFormule
+                        </md-button>
+                    </a>
+                    <a href="#!KruidenFormules">
+                        <md-button class="md-primary" style="width: 100%; margin: 0;">
+                            KruidenFormules
+                        </md-button>
+                    </a>
+                    <a href="#!Syndromen">
+                        <md-button class="md-primary" style="width: 100%; margin: 0;">
+                            Syndromen
+                        </md-button>
+                    </a>
                 </div>
             </md-sidenav>
 
+            <!-- Content on screen -->
             <md-content flex>
-
-                <div layout-align="top center" style="margin-bottom: 50px;">
-                    <!-- Table for Kruiden -->
-                    <table class="black" ng-show="currentItem=='Kruiden'">
-                        <tr>
-                            <th>Nederlandse Naam</th>
-                            <th>Latijnse Naam</th>
-                            <th>Actie</th>
-                        </tr>
-                        <tr ng-repeat="kruid in kruiden">
-                            <td>{{kruid.Nederlands}}</td>
-                            <td>{{kruid.Latijns}}</td>
-                        </tr>
-                    </table>
-
-                    <!-- Table for Patentformules -->
-                    <table ng-cloak class="black" ng-show="currentItem=='PatentFormules'">
-                        <tr>
-                            <th>Nederlands</th>
-                            <th>Engels</th>
-                            <th>Pinjin</th>
-                        </tr>
-                        <tr ng-repeat="patentformule in patentFormules">
-                            <td>{{patentformule.Nederlands}}</td>
-                            <td>{{patentformule.Engels}}</td>
-                            <td>{{patentformule.Pinjin}}</td>
-                        </tr>
-                    </table>
-
-                    <!-- KruidenFormule Table -->
-                    <table ng-cloak class="black" ng-show="currentItem=='KruidenFormules'">
-                        <tr>
-                            <th>Naam</th>
-                        </tr>
-                        <tr ng-repeat="kruidenformule in kruidenFormules">
-                            <td>{{kruidenformule.Naam}}</td>
-                        </tr>
-                    </table>
-
-                    <!-- Syndroom Table -->
-                    <table ng-cloak class="black" ng-show="currentItem=='Syndroom'">
-                        <tr>
-                            <th>Syndroom</th>
-                        </tr>
-                        <tr ng-repeat="s in syndromen">
-                            <td>{{s.Syndroom}}</td>
-                        </tr>
-                    </table>
+                <div class="view-animate-container">
+                    <div ng-view class="view-animate">
+                    </div>
                 </div>
-
                 <div flex></div>
-
             </md-content>
+
         </section>
 
     </div>
 
 
 
-    <!-- <md-sidenav md-is-locked-open="true" class="sidenav" ng-controller="AppCtrl">
-        <header>
-            <h1 class="nav-title">Chinese gezondheidsleer</h1>
-            <img class="logo" src="assets/img/icon.jpg" />
-        </header>
-
-        <div>
-            <md-button class="md-primary" style="margin-left: 10px;" ng-click="loadData('kruiden')">Kruiden</md-button>
-            <a href=" #">
-                <md-button class="md-primary">PatentFormule</md-button>
-            </a>
-            <a href="#">
-                <md-button class="md-primary">Syndroom</md-button>
-            </a>
-            <a href="#">
-                <md-button class="md-primary">Symptoom</md-button>
-            </a>
-        </div>
-    </md-sidenav>
-
-    <md-content id="content" class="main-content" ng-controller="KruidenController">
-        <table class="white">
-            <tr>
-                <th>Nederlandse Naam</th>
-                <th>Latijnse Naam</th>
-                <th>Actie</th>
-            </tr>
-            <tr ng-repeat="kruid in kruiden">
-                <td>{{kruid.Nederlands}}</td>
-                <td>{{kruid.Latijns}}</td>
-            </tr>
-        </table>
-    </md-content> -->
-
     <script src="renderer.js"></script>
-    <script src="app/models/Models.js"></script>
     <script src="app/models/KruidenModel.js"></script>
+    <script src="app/models/PatentFormulesModel.js"></script>
+    <script src="app/models/KruidenFormulesModel.js"></script>
+    <script src="app/models/SyndromenModel.js"></script>
     <script src="app/app.js"></script>
 </body>
 

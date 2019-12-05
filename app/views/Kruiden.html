@@ -1,0 +1,14 @@
+<div>
+    <button></button>
+    <table>
+        <tr>
+            <th>Nederlandse Naam</th>
+            <th>Latijnse Naam</th>
+            <th>Actie</th>
+        </tr>
+        <tr ng-repeat="kruid in kruiden" ng-click="GoToView(kruid.Id)">
+            <td>{{kruid.Nederlands}}</td>
+            <td>{{kruid.Latijns}}</td>
+        </tr>
+    </table>
+</div>

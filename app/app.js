@@ -1,164 +1,183 @@
-var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', ['ngMaterial'])
+var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', ['ngMaterial', 'ngRoute'])
 
-ChineseGezondheidsleer.controller('KruidenController', ['$scope', function ($scope) {
+// Set up routing in the app
+ChineseGezondheidsleer.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    console.log($routeProvider, $locationProvider);
+    $routeProvider
+        .when('/Kruiden', {
+            templateUrl: './app/views/Kruiden.html',
+            controller: 'KruidenController',
+        })
+        .when('/PatentFormules', {
+            templateUrl: './app/views/PatentFormules.html',
+            controller: 'PatentFormulesController',
+        })
+        .when('/KruidenFormules', {
+            templateUrl: './app/views/KruidenFormules.html',
+            controller: 'KruidenFormulesController',
+        })
+        .when('/Syndromen', {
+            templateUrl: './app/views/Syndromen.html',
+            controller: 'SyndromenController',
+        })
+        .when('/Kruiden/:KruidId', {
+            templateUrl: './app/views/KruidenView.html',
+            controller: 'KruidenViewController',
+        })
+        .when('/PatentFormules/:PatentFormuleId', {
+            templateUrl: './app/views/PatentFormulesView.html',
+            controller: 'PatentFormulesViewController',
+        })
+        .when('/KruidenFormules/:KruidenFormuleId', {
+            templateUrl: './app/views/KruidenFormulesView.html',
+            controller: 'KruidenFormulesViewController',
+        })
+        .when('/Syndromen/:SyndroomId', {
+            templateUrl: './app/views/SyndromenView.html',
+            controller: 'SyndromenViewController',
+        })
+}])
 
-    function getKruiden() {
-        const kruidenData = db.prepare("SELECT Nederlands, Latijns FROM Kruiden");
-        // console.log(kruiden[0].Latijns);
+//Controller Declarations
+ChineseGezondheidsleer.controller('MainController', MainController)
 
-        return kruiden;
+ChineseGezondheidsleer.controller('KruidenController', KruidenController)
+ChineseGezondheidsleer.controller('PatentFormulesController', PatentFormulesController)
+ChineseGezondheidsleer.controller('KruidenFormulesController', KruidenFormulesController)
+ChineseGezondheidsleer.controller('SyndromenController', SyndromenController)
+
+ChineseGezondheidsleer.controller('KruidenViewController', KruidenViewController)
+ChineseGezondheidsleer.controller('PatentFormulesViewController', PatentFormulesViewController)
+ChineseGezondheidsleer.controller('KruidenFormulesViewController', KruidenFormulesViewController)
+ChineseGezondheidsleer.controller('SyndromenViewController', SyndromenViewController)
+
+//Controller Implementations
+function MainController($route, $routeParams, $location) {
+    this.$route = $route;
+    this.$location = $location;
+    this.$routeParams = $routeParams;
+
+    console.log($route, $location, $routeParams);
+}
+
+function KruidenController($routeParams, $scope, $location) {
+    this.kruidenModel = new KruidenModel();
+    this.params = $routeParams;
+
+    $scope.kruiden = this.kruidenModel.GetAllData();
+
+    $scope.GoToView = function GoToView(id) {
+        $location.path('/Kruiden/' + id)
     }
-    // console.log(kruiden);
-    // console.log(KruidenModel.GetAllData());
+}
 
-    //console.log(kruiden);
+function PatentFormulesController($routeParams, $scope, $location) {
+    this.PatentFormulesModel = new PatentFormulesModel();
 
-    $scope.message = "Hello, World"
-}]);
+    $scope.patentFormules = this.PatentFormulesModel.GetRelevantData();
 
-ChineseGezondheidsleer.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    //$scope.toggleLeft = buildDelayedToggler('left');
-    //$scope.toggleRight = buildToggler('right');
-    // $scope.isOpenRight = function () {
-    //     return $mdSidenav('right').isOpen();
-    // };
-
-    /**
-     * Supplies a function that will continue to operate until the
-     * time is up.
-     */
-    function debounce(func, wait, context) {
-        var timer;
-
-        return function debounced() {
-            var context = $scope,
-                args = Array.prototype.slice.call(arguments);
-            $timeout.cancel(timer);
-            timer = $timeout(function () {
-                timer = undefined;
-                func.apply(context, args);
-            }, wait || 10);
-        };
+    $scope.GoToView = function GoToView(id) {
+        $location.path('/PatentFormules/' + id)
     }
+}
 
-    /**
-     * Build handler to open/close a SideNav; when animation finishes
-     * report completion in console
-     */
-    function buildDelayedToggler(navID) {
-        return debounce(function () {
-            // Component lookup should always be available since we are not using `ng-if`
-            $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-        }, 200);
+function KruidenFormulesController($routeParams, $scope, $location) {
+    this.KruidenFormulesModel = new KruidenFormulesModel();
+
+    $scope.kruidenFormules = this.KruidenFormulesModel.GetRelevantData();
+
+    $scope.GoToView = function GoToView(id) {
+        $location.path('/KruidenFormules/' + id)
     }
+}
 
-    function buildToggler(navID) {
-        return function () {
-            // Component lookup should always be available since we are not using `ng-if`
-            $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-        };
+function SyndromenController($routeParams, $scope, $location) {
+    this.SyndromenModel = new SyndromenModel();
+
+    $scope.syndromen = this.SyndromenModel.GetRelevantData();
+
+    $scope.GoToView = function GoToView(id) {
+        $location.path('/Syndromen/' + id)
     }
-})
-ChineseGezondheidsleer.controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function () {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav('left').close()
-            .then(function () {
-                $log.debug("close LEFT is done");
-            });
+}
 
-    };
-})
-ChineseGezondheidsleer.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function () {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav('right').close()
-            .then(function () {
-                $log.debug("close RIGHT is done");
-            });
-    };
-});
+function KruidenViewController($routeParams, $scope) {
+    this.KruidenModel = new KruidenModel();
 
-ChineseGezondheidsleer.controller('testController', function ($scope, $timeout, $mdSidenav, $log) {
-    let stmt;
-    $scope.kruidenModel = new KruidenModel();
+    console.log($routeParams);
+    $scope.message = "Hello, World";
+    $scope.id = $routeParams.KruidId;
 
-    $scope.kruidenModel.GetRelevantData();
+    $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.KruidId);
 
-    $scope.kruiden = [];
-    $scope.patentFormules = [];
-    $scope.kruidenFormules = [];
-    $scope.syndromen = [];
+    console.log($scope.kruid);
+}
 
-    $scope.values = [];
+function PatentFormulesViewController($routeParams, $scope) {
+    console.log($routeParams);
+    $scope.message = "Hello, World";
+    $scope.id = $routeParams.PatentFormuleId;
+}
 
-    $scope.ChangeNav = function ChangeNav(nav) {
-        $scope.currentItem = nav;
+function KruidenFormulesViewController($routeParams, $scope) {
+    console.log($routeParams);
+    $scope.message = "Hello, World";
+    $scope.id = $routeParams.KruidenFormuleId;
+}
 
-        switch ($scope.currentItem) {
-            case "Kruiden":
-                $scope.kruiden = $scope.kruidenModel.GetRelevantData();
-                $scope.patentFormules = [];
-                $scope.kruidenFormules = [];
-                $scope.syndromen = [];
-                console.log($scope.values);
-                break;
-            case "PatentFormules":
-                $scope.patentFormules = $scope.kruidenModel.PatentFormules();
-                $scope.kruiden = [];
-                $scope.kruidenFormules = [];
-                $scope.syndromen = [];
-                console.log($scope.values);
-                break;
-            case "KruidenFormules":
-                $scope.kruidenFormules = $scope.kruidenModel.KruidenFormules();
-                $scope.patentFormules = [];
-                $scope.kruiden = [];
-                $scope.syndromen = [];
-                console.log($scope.values);
-                break;
-            case "Syndroom":
-                $scope.syndromen = $scope.kruidenModel.Syndroom();
-                $scope.patentFormules = [];
-                $scope.kruidenFormules = [];
-                $scope.kruiden = [];
-                console.log($scope.values);
-                break;
-        }
+function SyndromenViewController($routeParams, $scope) {
 
-        // if ($scope.currentItem === "Kruiden") {
-        //     values = $scope.kruidenModel.GetRelevantData();
-        //     console.log(values);
-        // } else if ()
 
-    }
+    console.log($routeParams);
+    $scope.message = "Hello, World";
+    $scope.id = $routeParams.SyndroomId;
 
-    function loadKruiden() {
-        stmt = db.prepare("SELECT Nederlands, Latijns, Familie FROM Kruiden");
-        return stmt.all();
-    }
+}
 
-    function loadPatentFormules() {
-        stmt = db.prepare("SELECT Nederlands, Engels, Pinjin FROM PatentFormules");
-        return stmt.all();
-    }
+// ChineseGezondheidsleer.controller('testController', function ($scope, $timeout, $mdSidenav, $log) {
+//     $scope.kruidenModel = new KruidenModel();
 
-    function loadKruidenFormules() {
-        stmt = db.prepare("SELECT Naam FROM KruidenFormules");
-        kruidenFormules = stmt.all();
-    }
+//     $scope.kruidenModel.GetRelevantData();
 
-    function loadSyndromen() {
-        stmt = db.prepare("SELECT Syndroom FROM Syndromen");
-        syndromen = stmt.all();
-    }
+//     $scope.kruiden = [];
+//     $scope.patentFormules = [];
+//     $scope.kruidenFormules = [];
+//     $scope.syndromen = [];
 
-}); 
+//     $scope.values = [];
+
+//     $scope.ChangeNav = function ChangeNav(nav) {
+//         $scope.currentItem = nav;
+
+//         switch ($scope.currentItem) {
+//             case "Kruiden":
+//                 $scope.kruiden = $scope.kruidenModel.GetRelevantData();
+//                 $scope.patentFormules = [];
+//                 $scope.kruidenFormules = [];
+//                 $scope.syndromen = [];
+//                 console.log($scope.values);
+//                 break;
+//             case "PatentFormules":
+//                 $scope.patentFormules = $scope.kruidenModel.PatentFormules();
+//                 $scope.kruiden = [];
+//                 $scope.kruidenFormules = [];
+//                 $scope.syndromen = [];
+//                 console.log($scope.values);
+//                 break;
+//             case "KruidenFormules":
+//                 $scope.kruidenFormules = $scope.kruidenModel.KruidenFormules();
+//                 $scope.patentFormules = [];
+//                 $scope.kruiden = [];
+//                 $scope.syndromen = [];
+//                 console.log($scope.values);
+//                 break;
+//             case "Syndroom":
+//                 $scope.syndromen = $scope.kruidenModel.Syndroom();
+//                 $scope.patentFormules = [];
+//                 $scope.kruidenFormules = [];
+//                 $scope.kruiden = [];
+//                 console.log($scope.values);
+//                 break;
+//         }
+//     }
+// }); 

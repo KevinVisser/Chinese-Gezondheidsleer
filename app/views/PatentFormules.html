@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>Nederlands</th>
+        <th>Engels</th>
+        <th>Pinjin</th>
+    </tr>
+    <tr ng-repeat="patentformule in patentFormules" ng-click="GoToView(patentformule.Id)">
+        <td>{{patentformule.Nederlands}}</td>
+        <td>{{patentformule.Engels}}</td>
+        <td>{{patentformule.Pinjin}}</td>
+    </tr>
+</table>
