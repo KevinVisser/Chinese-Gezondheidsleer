@@ -13,7 +13,7 @@ const db = remote.getGlobal("database");
 
 document.onreadystatechange = () => {
     if (document.readyState == "complete") {
-        HandleWindowControls();
+        // HandleWindowControls();
     }
 };
 

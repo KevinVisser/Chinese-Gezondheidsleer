@@ -1,14 +1,16 @@
 <div>
-    <button></button>
+    <input ng-model="search" autofocus placeholder="Zoek op kruidnaam(nederlands of latijns)"
+        ng-keyup="searchKruid(search)"></input>
     <table>
         <tr>
             <th>Nederlandse Naam</th>
             <th>Latijnse Naam</th>
-            <th>Actie</th>
+            <th>Thermische Waarde</th>
         </tr>
-        <tr ng-repeat="kruid in kruiden" ng-click="GoToView(kruid.Id)">
+        <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
             <td>{{kruid.Nederlands}}</td>
             <td>{{kruid.Latijns}}</td>
+            <td>{{kruid.ThermischeWaarde}}</td>
         </tr>
     </table>
 </div>

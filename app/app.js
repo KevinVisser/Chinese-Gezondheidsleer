@@ -2,7 +2,6 @@ var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', ['ngMateri
 
 // Set up routing in the app
 ChineseGezondheidsleer.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-    console.log($routeProvider, $locationProvider);
     $routeProvider
         .when('/Kruiden', {
             templateUrl: './app/views/Kruiden.html',
@@ -38,6 +37,7 @@ ChineseGezondheidsleer.config(['$routeProvider', '$locationProvider', function (
         })
 }])
 
+
 //Controller Declarations
 ChineseGezondheidsleer.controller('MainController', MainController)
 
@@ -61,13 +61,24 @@ function MainController($route, $routeParams, $location) {
 }
 
 function KruidenController($routeParams, $scope, $location) {
-    this.kruidenModel = new KruidenModel();
+    $scope.kruidenModel = new KruidenModel();
     this.params = $routeParams;
 
-    $scope.kruiden = this.kruidenModel.GetAllData();
+    // $scope.kruiden = this.kruidenModel.GetAllData();
 
-    $scope.GoToView = function GoToView(id) {
+    console.log($scope.kruiden);
+
+    $scope.GoToView = function (id) {
         $location.path('/Kruiden/' + id)
+    }
+
+    $scope.searchKruid = function (search) {
+        console.log(search);
+        // if (search.length > 2)
+        $scope.kruiden = $scope.kruidenModel.SearchKruiden(search);
+        if (search.length <= 2) {
+            $scope.kruiden = [];
+        }
     }
 }
 
@@ -76,7 +87,7 @@ function PatentFormulesController($routeParams, $scope, $location) {
 
     $scope.patentFormules = this.PatentFormulesModel.GetRelevantData();
 
-    $scope.GoToView = function GoToView(id) {
+    $scope.GoToView = function (id) {
         $location.path('/PatentFormules/' + id)
     }
 }
@@ -86,7 +97,7 @@ function KruidenFormulesController($routeParams, $scope, $location) {
 
     $scope.kruidenFormules = this.KruidenFormulesModel.GetRelevantData();
 
-    $scope.GoToView = function GoToView(id) {
+    $scope.GoToView = function (id) {
         $location.path('/KruidenFormules/' + id)
     }
 }
@@ -96,12 +107,12 @@ function SyndromenController($routeParams, $scope, $location) {
 
     $scope.syndromen = this.SyndromenModel.GetRelevantData();
 
-    $scope.GoToView = function GoToView(id) {
+    $scope.GoToView = function (id) {
         $location.path('/Syndromen/' + id)
     }
 }
 
-function KruidenViewController($routeParams, $scope) {
+function KruidenViewController($routeParams, $scope, $location) {
     this.KruidenModel = new KruidenModel();
 
     console.log($routeParams);
@@ -110,7 +121,11 @@ function KruidenViewController($routeParams, $scope) {
 
     $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.KruidId);
 
-    console.log($scope.kruid);
+
+    $scope.GoToView = function () {
+        console.log("Hello");
+        $location.path('/Kruiden')
+    }
 }
 
 function PatentFormulesViewController($routeParams, $scope) {
@@ -126,12 +141,9 @@ function KruidenFormulesViewController($routeParams, $scope) {
 }
 
 function SyndromenViewController($routeParams, $scope) {
-
-
     console.log($routeParams);
     $scope.message = "Hello, World";
     $scope.id = $routeParams.SyndroomId;
-
 }
 
 // ChineseGezondheidsleer.controller('testController', function ($scope, $timeout, $mdSidenav, $log) {
