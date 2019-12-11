@@ -2,7 +2,7 @@ class KruidenModel {
     constructor() { }
 
     GetAllData() {
-        let stmt = db.prepare("SELECT Id, Nederlands, Latijns FROM Kruiden");
+        let stmt = db.prepare("SELECT Id, Nederlands, Latijns, ThermischeWaarde FROM Kruiden");
         console.log("Hello, World");
         return stmt.all();
     }

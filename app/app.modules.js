@@ -10,7 +10,8 @@ var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', [
     'KruidenViewController',
     'PatentFormulesViewController',
     'KruidenFormulesViewController',
-    'SyndromenViewController'
+    'SyndromenViewController',
+    'AddDataController'
 ]);
 
 // // ChineseGezondheidsleer.controller('KruidenController', KruidenController)
