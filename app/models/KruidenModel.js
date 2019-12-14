@@ -2,13 +2,11 @@ class KruidenModel {
     constructor() { }
 
     GetAllData() {
-        let stmt = db.prepare("SELECT Id, Nederlands, Latijns FROM Kruiden");
-        console.log("Hello, World");
+        let stmt = db.prepare("SELECT Id, Nederlands, Latijns, ThermischeWaarde FROM Kruiden");
         return stmt.all();
     }
 
     GetSpecificKruid(id) {
-        console.log(id);
         let stmt = db.prepare("SELECT * FROM Kruiden WHERE Id=?").get(id)
         return stmt;
     }
