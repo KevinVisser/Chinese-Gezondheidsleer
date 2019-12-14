@@ -2,8 +2,17 @@ var app = angular.module('AddDataController', ['ngRoute', 'myAppRouter'])
 
 app.controller('AddDataController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
     $scope.addDataModel = new AddDataModel();
+    $scope.kruidenModel = new KruidenModel();
+    $scope.patentFormuleModel = new PatentFormulesModel();
+    $scope.kruidenFormuleModel = new KruidenFormulesModel();
+    $scope.syndroomModel = new SyndromenModel();
+
+
+    $scope.kruiden = $scope.kruidenModel.GetAllData();
+
     this.params = $routeParams;
     $scope.currentForm = "";
+
 
     $scope.templates = [
         { name: 'Kruid', url: './app/views/adminViews/AddKruid.html' },
