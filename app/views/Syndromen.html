@@ -1,8 +1,22 @@
+<input ng-model="syndroom" ng-model-options=" {debounce: 50}" autofocus
+        placeholder="Zoek op syndroomnaam"></input>
+<input ng-model="tong" ng-model-options=" {debounce: 50}" autofocus
+        placeholder="Zoek op tong"></input>
+<input ng-model="pols" ng-model-options=" {debounce: 50}" autofocus
+        placeholder="Zoek op pols"></input>
+<input ng-model="symptoom" ng-model-options=" {debounce: 50}" autofocus
+        placeholder="Zoek op symptoom"></input>
 <table>
     <tr>
         <th>Syndroom</th>
+        <th>Tong</th>
+        <th>Pols</th>
+        <th>Symptoom</th>
     </tr>
-    <tr ng-repeat="s in syndromen" ng-click="GoToView(s.Id)">
+    <tr ng-repeat="s in syndromen | filter:syndroom | filter:tong | filter:pols | filter:symptoom" ng-click="GoToView(s.Id)">
         <td>{{s.Syndroom}}</td>
+        <td>{{s.Tong}}</td>
+        <td>{{s.Pols}}</td>
+        <td>{{ShowSyndromen(s)}}</td>
     </tr>
 </table>

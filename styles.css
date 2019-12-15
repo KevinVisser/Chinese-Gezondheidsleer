@@ -37,7 +37,7 @@ h1 {
 
 p {
     margin-top: 10px;
-    color: rgba(255, 255, 255, 0.4);
+    /* color: rgba(255, 255, 255, 0.4); */
 }
 
 /* Styling of window frame and titlebar */
@@ -261,9 +261,38 @@ table thead {
     display: block;
 }
 
-/* table tbody {
-    height: 200px;
-    display: block;
-    overflow-y: scroll;
-} */
+.inhoudsstoffen, .aantekeningen, 
+.werking, .contraIndicatie {
+    border: 1px solid black;
+    height: 300px;
+    width: 300px;
+    display: inline-block;
+    float: left;
+    padding: 5px;
+}
 
+.inhoudsstoffen, .werking {
+    margin-left: 30px;
+    margin-right: 100px;
+}
+
+md-tabs {
+    height: 800px; 
+}
+
+.eigenschappen {
+    border: 1px solid black;
+    padding: 5px;
+    height: 300px;
+}
+
+.gebruikteDelen, .tong, .pols {
+    margin-left: 30px;
+    padding-top: 10px;
+}
+
+.actie, .gebruik {
+    border: 1px solid black;
+    padding: 5px;
+    margin-bottom: 30px;
+}
