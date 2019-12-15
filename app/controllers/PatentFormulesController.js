@@ -9,13 +9,15 @@ app.controller('PatentFormulesController', ['$routeParams', '$scope', '$location
         for (let i = 0; i < patentformules.length; i++) {
             patentformules[i].symptomen = $scope.PatentFormulesModel.GetSymptoomData(patentformules[i].Id);
         }
+        console.log(patentformules);
     };
-
+    
     $scope.ShowSyndromen = function(patentformules) {
         var string = "";
         patentformules.symptomen.forEach(element => {
             string = string.concat(element.Naam + ", ");
         });
+        console.log("patentFormules");
         string = string.substr(0, string.length - 2);
         return string;
     }

@@ -16,6 +16,7 @@ app.controller('SyndromenController', ['$routeParams', '$scope', '$location', fu
         syndromen.symptomen.forEach(element => {
             string = string.concat(element.Naam + ", ");
         });
+        console.log("syndromen");
         string = string.substr(0, string.length - 2);
         return string;
     }

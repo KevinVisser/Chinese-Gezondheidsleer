@@ -17,6 +17,7 @@ app.controller('KruidenFormulesController', ['$routeParams', '$scope', '$locatio
         kruidenformule.kruidnaam.forEach(element => {
             string = string.concat(element.Nederlands + ", ");
         });
+        console.log("kruidenformules");
         string = string.substr(0, string.length - 2);
         return string;
     }

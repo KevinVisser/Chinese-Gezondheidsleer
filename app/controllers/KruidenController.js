@@ -5,7 +5,7 @@ app.controller('KruidenController', ['$routeParams', '$scope', '$location', func
     this.params = $routeParams;
 
     $scope.kruiden = $scope.kruidenModel.GetAllData();
-
+    console.log("kruiden");
     $scope.GoToView = function (id) {
         $location.path('/Kruiden/' + id)
     }
