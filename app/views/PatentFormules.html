@@ -1,12 +1,18 @@
+<input ng-model="naam" ng-model-options=" {debounce: 50}" autofocus
+        placeholder="Zoek op patentnaam(nederlands, latijns of pinjin)"></input>
+<input ng-model="symptoom" ng-model-options=" {debounce: 50}" 
+        placeholder="Zoek op symptoom"></input>
 <table>
     <tr>
         <th>Nederlands</th>
         <th>Engels</th>
         <th>Pinjin</th>
+        <th>Symptoom</th>
     </tr>
-    <tr ng-repeat="patentformule in patentFormules" ng-click="GoToView(patentformule.Id)">
+    <tr ng-repeat="patentformule in patentFormules | filter:naam | filter:symptoom" ng-click="GoToView(patentformule.Id)">
         <td>{{patentformule.Nederlands}}</td>
         <td>{{patentformule.Engels}}</td>
         <td>{{patentformule.Pinjin}}</td>
+        <td>{{ShowSyndromen(patentformule)}}</td>
     </tr>
 </table>

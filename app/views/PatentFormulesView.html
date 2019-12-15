@@ -1,3 +1,52 @@
-<h1>{{message}}</h1>
-
-<h2>Mijn ID: {{id}}</h2>
+<div class="inputData">
+    <input type="text" placeholder="Zoek op patentformule(nederlands of latijns)" ng-click="GoToView(PatentFormules)">
+</div>
+<div class="basicData">
+    <h1>{{patentformules.Nederlands}}, {{patentformules.Engels}}, {{patentformules.Pinjin}}</h1>
+</div>
+<div class="tabs">
+    <md-tabs class="md-primary" md-center-tabs>
+        <md-tab label="Algemeen">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="inhoudsstoffen">
+                        <h3>Inhoudsstoffen</h3>
+                        <p>{{patentformules.Inhoudsstoffen}}</p>
+                    </div>
+                    <div class="aantekeningen">
+                        <h3>Aantekeningen</h3>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Werking">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="werking">
+                        <h3>Werking</h3>
+                        <p>{{patentformules.Werking}}</p>
+                    </div>
+                    <div class="contraIndicatie">
+                        <h3>Contra indicatie</h3>
+                        <p>{{patentformules.ContraIndicaties}}</p>
+                    </div>
+                    <div class="tong">
+                        <p><b>Tong: </b>{{patentformules.Tong}}</p>
+                    </div>
+                    <div class="pols">
+                        <p><b>Pols: </b>{{patentformules.Pols}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Symptoom">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="symptomen">
+                        <p>{{ShowSyndromen(patentformules)}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

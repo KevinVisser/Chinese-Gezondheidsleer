@@ -1,6 +1,71 @@
-<input type="text" placeholder="Zoek op kruidnaam(nederlands of latijns)" ng-click="GoToView(Kruiden)"
-    style="background-color: black; margin-top: 50px;">
-
-<h1>{{message}}</h1>
-
-<h2>Mijn ID: {{id}}</h2>
+<div class="inputData">
+    <input type="text" placeholder="Zoek op kruidnaam(nederlands of latijns)" ng-click="GoToView(Kruiden)">
+</div>
+<div class="basicData">
+    <h1>{{kruid.Nederlands}}, {{kruid.Latijns}}, {{kruid.Familie}}</h1>
+</div>
+<div class="tabs">
+    <md-tabs class="md-primary" md-center-tabs>
+        <md-tab label="Algemeen">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="inhoudsstoffen">
+                        <h3>Inhoudsstoffen</h3>
+                        <p>{{kruid.Inhoudsstoffen}}</p>
+                    </div>
+                    <div class="aantekeningen">
+                        <h3>Aantekeningen</h3>
+                    </div>
+                    <div class="gebruikteDelen">
+                        <p><b>GebruikteDelen: </b>{{kruid.GebruikteDelen}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Eigenschappen">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="eigenschappen">
+                        <h3>Eigenschappen</h3>
+                        <p>{{kruid.Eigenschappen}}</p>
+                    </div>
+                    <div class="smaak">
+                        <p><b>Smaak: </b>{{kruid.Smaak}}</p>
+                    </div>
+                    <div class="dosering">
+                        <p><b>Dosering: </b>{{kruid.Dosering}}</p>
+                    </div>
+                    <div class="thermischeWerking">
+                        <p><b>ThermischeWerking: </b>{{kruid.ThermischeWerking}}</p>
+                    </div>
+                    <div class="orgaan">
+                        <p><b>Orgaan: </b>{{kruid.Orgaan}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Toepassingen">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="toepassingen">
+                        <p>{{kruid.Toepassing}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Actie en Gebruik">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="actie">
+                        <h3>Actie</h3>
+                        <p>{{kruid.Actie}}</p>
+                    </div>
+                    <div class="gebruik">
+                        <h3>Gebruik</h3>
+                        <p>{{kruid.Gebruik}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

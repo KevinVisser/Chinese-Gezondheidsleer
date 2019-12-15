@@ -1,6 +1,6 @@
 <div>
-    <input ng-model="search" autofocus placeholder="Zoek op kruidnaam(nederlands of latijns)"
-        ng-keyup="searchKruid(search)"></input>
+    <input ng-model="search" ng-model-options=" {debounce: 50}" autofocus
+        placeholder="Zoek op kruidnaam(nederlands of latijns)"></input>
     <table>
         <tr>
             <th>Nederlandse Naam</th>
