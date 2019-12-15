@@ -1,0 +1,9 @@
+<div>
+    <h1>Voeg een kruidenformule toe</h1>
+    <input type="text" ng-model="search" ng-model-options=" {debounce: 50}" list="kruiden"
+        placeholder="Selecteer een optie">
+    <datalist id="kruiden" ng-model="selectedKruid" ng-model="kruid">
+        <option ng-repeat="kruid in kruiden | filter:search | limitTo:5" value="{{kruid.Nederlands}}"></option>
+    </datalist>
+    <button>Sla deze kruidenformule op</button>
+</div>

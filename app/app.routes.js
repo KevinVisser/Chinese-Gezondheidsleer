@@ -2,6 +2,10 @@ var app = angular.module('myAppRouter', ['ngRoute'])
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
+        .when('/Admin', {
+            templateUrl: './app/views/adminViews/AddData.html',
+            controller: 'AddDataController',
+        })
         .when('/Kruiden', {
             templateUrl: './app/views/Kruiden.html',
             controller: 'KruidenController',

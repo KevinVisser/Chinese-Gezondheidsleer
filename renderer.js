@@ -10,10 +10,12 @@ const db = remote.getGlobal("database");
 // const db2 = require("better-sqlite3")("./resources/app.db");
 //const stmt = db.prepare("SELECT id, Nederlands FROM Kruiden");
 
-
+// Deze functie werkt nog niet naar behoren 
+// --> 
+// als je te vaak minimize/maximize dan worden er teveel eventlisteners toegevoegd
 document.onreadystatechange = () => {
     if (document.readyState == "complete") {
-        // HandleWindowControls();
+        HandleWindowControls();
     }
 };
 
