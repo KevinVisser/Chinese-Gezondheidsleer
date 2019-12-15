@@ -1,4 +1,4 @@
-var app = angular.module('AddDataController', ['ngRoute', 'myAppRouter'])
+var app = angular.module('AddDataController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
 app.controller('AddDataController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
     $scope.addDataModel = new AddDataModel();
@@ -9,11 +9,12 @@ app.controller('AddDataController', ['$routeParams', '$scope', '$location', func
 
 
     $scope.kruiden = $scope.kruidenModel.GetAllData();
+    $scope.selectedKruiden = [];
 
     this.params = $routeParams;
     $scope.currentForm = "";
 
-
+    // Alle html code voor alle forms
     $scope.templates = [
         { name: 'Kruid', url: './app/views/adminViews/AddKruid.html' },
         { name: 'Patentformule', url: './app/views/adminViews/AddPatentFormule.html' },
@@ -50,8 +51,66 @@ app.controller('AddDataController', ['$routeParams', '$scope', '$location', func
         "Orgaan": ""
     }
 
+    $scope.patentformule = {
+        "Nederlands": "",
+        "Engels": "",
+        "Pinjin": "",
+        "Werking": "",
+        "Tong": "",
+        "Pols": "",
+        "ContraIndicaties": ""
+    }
+
+    $scope.kruidenformule = {
+        "Naam": "",
+        "Werking": "",
+        "ContraIndicatie": ""
+    }
+
+    $scope.syndroom = {
+
+    }
+
+    $scope.searchTextChange = function (kruid) {
+        // console.log(kruid);
+        // $scope.selectedKruiden.push(kruid);
+    }
+    $scope.selectedItemChange = function (kruid) {
+        // console.log(kruid.Nederlands);
+        if (kruid.Nederlands != "") {
+            $scope.selectedKruiden.push(kruid);
+        }
+        // console.log($scope.selectedKruiden);
+    }
+
     $scope.updateKruid = function (kruid) {
+        console.log("good");
         $scope.addDataModel.InsertIntoKruiden(kruid)
         $scope.kruid = null;
+    }
+
+    $scope.querySearch = function (query) {
+        var results = query ? $scope.kruiden.filter(createFilterFor(query)) : $scope.kruiden,
+            deferred;
+        if (self.simulateQuery) {
+            deferred = $q.defer();
+            $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
+            return deferred.promise;
+        } else {
+            return results;
+        }
+    };
+
+    function createFilterFor(query) {
+        var lowercaseQuery = query.toLowerCase();
+
+        // console.log(lowercaseQuery);
+
+        return function filterFn(kruiden) {
+            // console.log(kruiden.Nederlands);
+            // console.log(kruiden.Nederlands.indexOf(lowercaseQuery));
+            return (kruiden.Nederlands.toLowerCase().indexOf(lowercaseQuery) === 0);
+        };
+
     }
 }]);

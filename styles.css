@@ -24,8 +24,8 @@ body {
 
 body {
     font-family: "Segoe UI", sans-serif;
-    background: #1A2933;
-    color: #FFF;
+    /* background: #1A2933; */
+    /* color: #FFF; */
     overflow-x: hidden;
 }
 
@@ -48,9 +48,9 @@ body {
 
 #titlebar {
     display: block;
-    position: fixed;
+    /* position: fixed;
     height: 32px;
-    width: calc(100% - 2px);
+    width: calc(100% - 2px); */
 }
 
 .maximized #titlebar {
@@ -75,7 +75,7 @@ body {
 }
 
 #titlebar {
-    color: #FFF;
+    background-color: #1A2933;
 }
 
 #titlebar #drag-region {
@@ -97,10 +97,11 @@ body {
     margin-left: 12px;
 }
 
-#window-title span {
+#window-title h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.5;
+    color: white;
 }
 
 #window-controls {
@@ -125,6 +126,7 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
+    color: white
 }
 
 #window-controls .button {
@@ -187,7 +189,7 @@ body {
     /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1;
     /* Stay on top */
-    top: 0;
+    /* top: 0; */
     /* Stay at the top */
     left: 0;
     background-color: #111;
@@ -239,7 +241,7 @@ body {
 md-content .ext-content {
   padding: 50px;
   margin: 20px;
-  background-color: #FFF2E0;
+  /* background-color: #FFF2E0; */
 }
 
 .appTitle {

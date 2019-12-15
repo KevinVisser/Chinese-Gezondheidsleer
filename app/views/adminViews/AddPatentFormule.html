@@ -1,3 +1,30 @@
 <div>
-    <h1>Hello, Patentformule</h1>
+    <h1>Voeg een Patentformule toe</h1>
+
+    <div>
+        <label>Naam: <input type="text" ng-model="kruidenformule.Nederlands" autofocus /></label><br>
+        <label>Engels: <input type="text" ng-model="kruid.Latijns" /></label><br>
+        <label>Pinjin: <input type="text" ng-model="kruid.Familie" /></label><br>
+        <label>Werking: <input type="text" ng-model="kruid.Inhoudsstoffen" /></label><br>
+        <label>Tong: <input type="text" ng-model="kruid.Toepassing" /></label><br>
+        <label>Pols: <input type="text" ng-model="kruid.Eigenschappen" /></label><br>
+        <label>Contra Indicaties: <input type="text" ng-model="kruid.Actie" /></label><br>
+    </div>
+
+    <br>
+    <!-- Kruiden Toevoegen -->
+    <div>
+        <input type="text" ng-model="search" ng-model-options=" {debounce: 50}" list="kruiden"
+            placeholder="Selecteer een optie">
+        <datalist id="kruiden" ng-model="selectedKruid" ng-model="kruid">
+            <option ng-repeat="kruid in kruiden | filter:search | limitTo:5" value="{{kruid.Nederlands}}"></option>
+        </datalist>
+    </div>
+
+    <!-- Syndromen Toevoegen -->
+    <div>
+
+    </div>
+    <br>
+    <button style="float: right;">Sla deze kruidenformule op</button>
 </div>
