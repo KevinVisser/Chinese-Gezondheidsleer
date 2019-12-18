@@ -11,7 +11,17 @@
                 <div class="tabBody">
                     <div class="inhoudsstoffen">
                         <h3>Inhoudsstoffen</h3>
-                        <p>{{patentformules.Inhoudsstoffen}}</p>
+                        <table>
+                            <tr>
+                                <th>Kruid</th>
+                                <th>Verhouding</th>
+                            </tr>
+                            <tr ng-repeat="chinesekruiden in chineseKruiden">
+                                <td>{{chinesekruiden.Pinjin}}</td>
+                                <td>{{chinesekruiden.Verhouding}}</td>
+                            </tr>
+                        </table>
+                        <!-- <p>{{patentformules.Inhoudsstoffen}}</p> -->
                     </div>
                     <div class="aantekeningen">
                         <h3>Aantekeningen</h3>
@@ -42,8 +52,8 @@
         <md-tab label="Symptoom">
             <md-content class="md-padding">
                 <div class="tabBody">
-                    <div class="symptomen">
-                        <p>{{ShowSyndromen(patentformules)}}</p>
+                    <div class="symptomen" style="white-space: pre-line;">
+                        <p>{{patentformules.ConcatSymptomen}}</p>
                     </div>
                 </div>
             </md-content>

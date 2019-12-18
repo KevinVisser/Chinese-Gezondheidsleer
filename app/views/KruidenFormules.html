@@ -1,9 +1,8 @@
 <input ng-model="kruidenformule.Naam" ng-model-options=" {debounce: 50}" autofocus
-        placeholder="Zoek op kruidformule"></input>
-        <input ng-model="kruidenformule.symptomen.Naam" ng-model-options=" {debounce: 50}"
-        placeholder="Zoek op symptoom"></input>
-        <input ng-model="kruidenformule.kruidnaam" ng-model-options=" {debounce: 50}"
-        placeholder="Zoek op kruid"></input>
+    placeholder="Zoek op kruidformule"></input>
+<input ng-model="kruidenformule.symptomen.Naam" ng-model-options=" {debounce: 50}"
+    placeholder="Zoek op symptoom"></input>
+<input ng-model="kruidenformule.kruidnaam" ng-model-options=" {debounce: 50}" placeholder="Zoek op kruid"></input>
 <table>
     <tr>
         <th>Kruidformule Naam</th>
@@ -11,10 +10,11 @@
         <th>Kruidnaam Latijns</th>
         <th>Symptomen</th>
     </tr>
-    <tr ng-repeat="kruidenformule in kruidenFormules | filter:{Naam:kruidenformule.Naam, symptomen: kruidenformule.symptomen.Naam, kruidnaam: kruidenformule.kruidnaam}" ng-click="GoToView(kruidenformule.Id)">
+    <tr ng-repeat="kruidenformule in kruidenFormules | filter:{Naam:kruidenformule.Naam, symptomen: kruidenformule.symptomen.Naam, kruidnaam: kruidenformule.kruidnaam}"
+        ng-click="GoToView(kruidenformule.Id)">
         <td>{{kruidenformule.Naam}}</td>
-        <td>{{ShowKruidenNederlands(kruidenformule)}}</td>
-        <td>{{ShowKruidenLatijns(kruidenformule)}}</td>
-        <td>{{ShowSymptomen(kruidenformule)}}</td>
+        <td>{{kruidenformule.Nederlands}}</td>
+        <td>{{kruidenformule.Latijns}}</td>
+        <td>{{kruidenformule.Symptomen}}</td>
     </tr>
 </table>
