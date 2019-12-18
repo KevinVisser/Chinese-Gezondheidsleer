@@ -10,11 +10,6 @@ class SyndromenModel {
         return stmt.all();
     }
 
-    // GetRelevantData() {
-    //     let stmt = db.prepare("SELECT Id, Syndroom, Tong, Pols FROM Syndromen");
-    //     return stmt.all();
-    // }
-
     GetSymptoomData(id) {
         let stmt = db.prepare("SELECT Symptomen.Id, Symptomen.Naam FROM Symptomen " +
             "INNER JOIN SyndromenEnSymptomen ON Symptomen.Id=SyndromenEnSymptomen.SymptoomId " +
