@@ -1,7 +1,20 @@
-<input ng-model="naam" ng-model-options=" {debounce: 50}" autofocus
-        placeholder="Zoek op patentnaam(nederlands, latijns of pinjin)"></input>
-<input ng-model="symptoom" ng-model-options=" {debounce: 50}" 
-        placeholder="Zoek op symptoom"></input>
+<!-- <div class="virtualRepeatDeferredLoading">
+    <md-content>
+
+        <input ng-model="naam" ng-model-options=" {debounce: 50}" autofocus
+            placeholder="Zoek op patentnaam(nederlands, latijns of pinjin)"></input>
+        <input ng-model="symptoom" ng-model-options=" {debounce: 50}" placeholder="Zoek op symptoom"></input>
+
+        <md-virtual-repeat-container id="vertical-container">
+            <div md-virtual-repeat="patentformule in patentFormules" class="repeated-item" flex=""
+                ng-click="GoToView(kruid.Id)">
+                {{patentformule.Nederlands}} {{patentformule.Engels}} {{patentformule.Pinjin}}
+                {{patentformule.symptomen}}
+            </div>
+        </md-virtual-repeat-container>
+    </md-content>
+</div> -->
+<!-- Virtual repeat angularjs material -->
 <table>
     <tr>
         <th>Nederlands</th>
@@ -9,10 +22,11 @@
         <th>Pinjin</th>
         <th>Symptoom</th>
     </tr>
-    <tr ng-repeat="patentformule in patentFormules | filter:naam | filter:symptoom" ng-click="GoToView(patentformule.Id)">
+    <tr ng-repeat="patentformule in patentFormules | filter:naam | filter:symptoom | limitTo:35"
+        ng-click="GoToView(patentformule.Id)">
         <td>{{patentformule.Nederlands}}</td>
         <td>{{patentformule.Engels}}</td>
         <td>{{patentformule.Pinjin}}</td>
-        <td>{{ShowSyndromen(patentformule)}}</td>
+        <td>{{patentformule.ConcatSymptomen}}</td>
     </tr>
 </table>

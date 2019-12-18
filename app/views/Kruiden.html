@@ -1,16 +1,31 @@
-<div>
+<div class="virtualRepeatDeferredLoading">
+
+    <!-- <md-content layout="column"> -->
     <input ng-model="search" ng-model-options=" {debounce: 50}" autofocus
         placeholder="Zoek op kruidnaam(nederlands of latijns)"></input>
-    <table>
-        <tr>
-            <th>Nederlandse Naam</th>
-            <th>Latijnse Naam</th>
-            <th>Thermische Waarde</th>
-        </tr>
-        <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
-            <td>{{kruid.Nederlands}}</td>
-            <td>{{kruid.Latijns}}</td>
-            <td>{{kruid.ThermischeWaarde}}</td>
-        </tr>
-    </table>
+
+    <md-virtual-repeat-container id="vertical-container">
+        <table>
+            <tr>
+                <th>Nederlandse Naam</th>
+                <th>Latijnse Naam</th>
+                <th>Thermische Waarde</th>
+            </tr>
+            <tr md-virtual-repeat="kruid in kruiden | filter:search" class="repeated-item" flex=""
+                ng-click="GoToView(kruid.Id)">
+                <td style="width: 200px;">{{kruid.Nederlands}}</td>
+                <td style="width: 200px;">{{kruid.Latijns}}</td>
+                <td style="width: 200px;">{{kruid.ThermischeWaarde}}</td>
+            </tr>
+        </table>
+        <!-- {{kruid.Nederlands}} -->
+    </md-virtual-repeat-container>
+    <!-- </md-content> -->
+
+
+    <!-- <md-virtual-repeat-container id="vertical-container">
+        <div md-virtual-repeat="kruid in kruiden" class="repeated-item" md-on-demand="" flex>
+            {{kruid}}
+        </div>
+    </md-virtual-repeat-container> -->
 </div>
