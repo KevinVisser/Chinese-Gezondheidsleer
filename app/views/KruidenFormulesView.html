@@ -1,3 +1,38 @@
-<h1>{{message}}</h1>
-
-<h2>Mijn ID: {{id}}</h2>
+<div class="inputData">
+    <input type="text" placeholder="Zoek op kruidnaam(nederlands of latijns)" ng-click="GoToView(Kruiden)">
+</div>
+<div class="basicData">
+    <h1>{{kruidenFormules.Naam}}</h1>
+</div>
+<div class="tabBody">
+    <div class="row">
+        <div class="syndroom" style="white-space: pre-line;">
+            <h3>Syndroom / Indicaties</h3>
+            <p>{{kruidenFormules.Syndroom}}</p>
+        </div>
+        <div class="aantekeningen">
+            <h3>Aantekeningen</h3>
+        </div>
+    </div>    
+    <div class="ingrediënten">
+        <p><b>Ingrediënten:</b></p>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th>Verhouding</th>
+            </tr>
+            <tr ng-repeat="kruiden in kruiden">
+                <td>{{kruiden.Nederlands}}</td>
+                <td>{{kruiden.Verhouding}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="right">
+        <span class="contraIndicatieKFV">
+            <p><b>Contra Indicatie: </b>{{kruidenFormules.ContraIndicatie}}</p>
+        </span>
+        <span class="werkingKFV">
+            <p><b>Werking: </b>{{kruidenFormules.Werking}}</p>
+        </span>
+    </div>
+</div>

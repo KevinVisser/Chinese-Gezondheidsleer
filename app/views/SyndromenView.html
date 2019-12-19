@@ -1,3 +1,62 @@
-<h1>{{message}}</h1>
-
-<h2>Mijn ID: {{id}}</h2>
+<div class="inputData">
+    <input type="text" placeholder="Zoek op kruidnaam(nederlands of latijns)" ng-click="GoToView(Kruiden)">
+</div>
+<div class="basicData">
+    <h1>{{syndromen.Naam}}</h1>
+</div>
+<div class="tabs">
+    <md-tabs class="md-primary" md-center-tabs>
+        <md-tab label="Algemeen">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="hoofdsymptoom">
+                        <h3>Hoofdsymptoom</h3>
+                        <p>{{syndromen.Hoofdsymptoom}}</p>
+                    </div>
+                    <div class="symptoom">
+                        <h3>Symptomen</h3>
+                        <ul>
+                            <li class="list-unstyled" ng-repeat="symptoom in symptomen">{{symptoom.Naam}}</li>
+                        </ul>
+                    </div>
+                    <div class="tong">
+                        <p><b>Tong: </b>{{syndromen.Tong}}</p>
+                    </div>
+                    <div class="pols">
+                        <p><b>Pols: </b>{{syndromen.Pols}}</p>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Acties">
+            <md-content class="md-padding">
+                <div class="tabBody">
+                    <div class="actieS">
+                        <h3>Actie</h3>
+                        <p>{{syndromen.Actie}}</p>
+                    </div>
+                    <div class="aantekeningen">
+                        <h3>Aantekeningen</h3>
+                    </div>
+                    <div class="acupunctuurpunten">
+                        <h3>Acupunctuurpunten</h3>
+                        <p>{{syndromen.Acupunctuurpunten}}</p>
+                    </div>
+                    <div class="Formule">
+                        <h3>Formule</h3>
+                        <table>
+                            <tr>
+                                <th>Patentformule (Pinjin)</th>
+                                <th>Kruidenformule(Westers)</th>
+                            </tr>
+                            <tr ng-repeat="formule in formules">
+                                <td ng-click="GoToViewPF(formule.patentId)">{{formule.Pinjin}}</td>
+                                <td ng-click="GoToViewKF(formule.kruidId)">{{formule.Naam}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

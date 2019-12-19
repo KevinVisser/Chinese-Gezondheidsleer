@@ -20,7 +20,8 @@ class PatentFormulesModel {
     GetSpecificData(id) {
         let array = [];
 
-        let patentformuleData = db.prepare("SELECT PatentFormules.Nederlands, PatentFormules.Engels, PatentFormules.Pinjin, group_concat(Symptomen.Naam, '\n') AS Symptomen " +
+        let patentformuleData = db.prepare("SELECT PatentFormules.Nederlands, PatentFormules.Engels, PatentFormules.Pinjin, PatentFormules.Werking, " +
+            "PatentFormules.Tong, PatentFormules.Pols, PatentFormules.ContraIndicaties, group_concat(Symptomen.Naam, '\n') AS Symptomen " +
             "FROM PatentFormules " +
             "LEFT JOIN PatentFormulesEnSymptomen ON PatentFormules.Id = PatentFormulesEnSymptomen.PatentFormuleId " +
             "LEFT JOIN Symptomen ON Symptomen.Id = PatentFormulesEnSymptomen.SymptoomId " +

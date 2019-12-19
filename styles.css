@@ -264,16 +264,17 @@ table thead {
 }
 
 .inhoudsstoffen, .aantekeningen, 
-.werking, .contraIndicatie {
+.werking, .contraIndicatie,
+.syndroom, .actieS {
     border: 1px solid black;
-    height: 300px;
     width: 300px;
     display: inline-block;
     float: left;
     padding: 5px;
 }
 
-.inhoudsstoffen, .werking {
+.inhoudsstoffen, .werking,
+.syndroom {
     margin-left: 30px;
     margin-right: 100px;
 }
@@ -297,4 +298,24 @@ md-tabs {
     border: 1px solid black;
     padding: 5px;
     margin-bottom: 30px;
+}
+
+.ingrediënten {
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.right {
+    margin-right: 30px;
+    display: inline;
+    float: right;
+}
+
+.syndroom h3 {
+    margin-top: -25px;
+    margin-bottom: -10px;
+}
+
+.symptoom, .hoofdsymptoom {
+    margin-left: 30px;
 }
