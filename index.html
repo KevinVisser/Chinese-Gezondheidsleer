@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- materialize -->
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+    <script src="./node_modules/materialize-css/dist/js/materialize.min.js"></script>
 
     <!-- Angular and all seperate modules -->
     <script src="./node_modules/angular/angular.js"></script>
@@ -26,17 +27,14 @@
     <nav id="titlebar" class="navbar">
         <div id="drag-region">
             <div id="window-title">
-                <h2>Chinese Gezondheidsleer</h2>
+                <p class="windows-title">Chinese Gezondheidsleer</p>
             </div>
             <div id="window-controls">
                 <div class="button" id="min-button">
                     <span>&#xE921;</span>
                 </div>
-                <div class="button" id="max-button">
+                <div class="dummy">
                     <span>&#xE922;</span>
-                </div>
-                <div class="button" id="restore-button">
-                    <span>&#xE923;</span>
                 </div>
                 <div class="button" id="close-button">
                     <span>&#xE8BB;</span>
@@ -51,37 +49,16 @@
         <section layout="row" flex>
 
             <!-- Side nav -->
-            <md-sidenav class="sidenav" md-component-id="left" md-is-locked-open="true" md-whiteframe="5">
+            <md-sidenav class="sidebarnav" md-component-id="left" md-is-locked-open="true">
                 <header>
-                    <h1 class="nav-title">Chinese gezondheidsleer</h1>
-                    <img class="logo" src="assets/img/icon.jpg" />
+                    <img class="logo" src="assets/img/icon.png" />
                 </header>
                 <div>
-                    <a href="#!Kruiden">
-                        <!-- <md-button class="md-primary" style="width: 100%; margin: 0;"> -->
-                        Kruiden
-                        <!-- </md-button> -->
-                    </a>
-                    <a href="#!PatentFormules">
-                        <!-- <md-button class="md-primary" style="width: 100%; margin: 0;"> -->
-                        PatentFormule
-                        <!-- </md-button> -->
-                    </a>
-                    <a href="#!KruidenFormules">
-                        <!-- <md-button class="md-primary" style="width: 100%; margin: 0;"> -->
-                        KruidenFormules
-                        <!-- </md-button> -->
-                    </a>
-                    <a href="#!Syndromen">
-                        <!-- <md-button class="md-primary" style="width: 100%; margin: 0;"> -->
-                        Syndromen
-                        <!-- </md-button> -->
-                    </a>
-                    <a href="#!Admin">
-                        <md-button class="md-primary" style="width: 100%; margin: 0;">
-                            Admin
-                        </md-button>
-                    </a>
+                    <a href="#!Kruiden">Kruiden</a>
+                    <a href="#!PatentFormules">PatentFormule</a>
+                    <a href="#!KruidenFormules">KruidenFormules</a>
+                    <a href="#!Syndromen">Syndromen</a>
+                    <a href="#!Admin">Admin</a>
                 </div>
             </md-sidenav>
 

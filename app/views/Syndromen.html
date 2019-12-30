@@ -1,4 +1,7 @@
-<input ng-model="syndroom" ng-model-options=" {debounce: 50}" autofocus placeholder="Zoek op syndroomnaam"></input>
+<div class="input-field">
+    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
+    <label for="inputField">Zoek op syndroom, tong, pols of symptoom</label>
+</div>
 <table>
     <tr>
         <th>Syndroom</th>
@@ -6,10 +9,18 @@
         <th>Pols</th>
        <th>Symptoom</th>
     </tr>
-    <tr ng-repeat="s in syndromen | filter:syndroom" ng-click="GoToView(s.Id)">
+    <tr ng-repeat="s in syndromen | filter:search" ng-click="GoToView(s.Id)">
         <td>{{s.Naam}}</td>
         <td>{{s.Tong}}</td>
         <td>{{s.Pols}}</td>
         <td>{{s.Symptoom}}</td>
     </tr>
 </table>
+
+    1
+    10
+    11
+    12
+    13
+    100
+    

@@ -26,32 +26,9 @@ function HandleWindowControls() {
         console.log("min-button");
         win.minimize();
     });
-
-    document.getElementById("max-button").addEventListener("click", () => {
-        console.log("min-button");
-        win.maximize();
-    });
-
-    document.getElementById("restore-button").addEventListener("click", () => {
-        console.log("min-button");
-        win.unmaximize();
-    });
-
+    
     document.getElementById("close-button").addEventListener("click", () => {
         console.log("min-button");
         win.close();
     });
-
-    ToggleMaxRestoreButtons();
-
-    win.on("maximize", ToggleMaxRestoreButtons);
-    win.on("unmaximize", ToggleMaxRestoreButtons);
-
-    function ToggleMaxRestoreButtons() {
-        if (win.isMaximized()) {
-            document.body.classList.add("maximized");
-        } else {
-            document.body.classList.remove("maximized");
-        }
-    }
 }

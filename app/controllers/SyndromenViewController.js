@@ -8,7 +8,7 @@ app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location'
     $scope.formules  = $scope.SyndromenModel.GetFormules($routeParams.SyndroomId);    
 
     $scope.GoToView = function (id) {
-        $location.path('/Syndromen/' + id)
+        $location.path('/Syndromen');
     }
 
     $scope.GoToViewPF = function (id) {
