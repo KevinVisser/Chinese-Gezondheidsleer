@@ -1,3 +1,71 @@
-<h1>{{message}}</h1>
-
-<h2>Mijn ID: {{id}}</h2>
+<div class="input-field">
+    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(Kruiden)"></input>
+    <label for="inputField">Zoek op syndroom, tong, pols of symptoom</label>
+</div>
+<div class="basicData">
+    <p><b>Syndroom: </b>{{syndromen.Naam}}</p>
+</div>
+<md-tabs class="md-primary" md-center-tabs>
+    <md-tab label="Algemeen">
+        <md-content class="md-padding">
+            <div class="tabBody">
+                <div class="row">
+                    <div class="hoofdsymptoom col s6 border">
+                        <h4>Hoofdsymptoom</h4>
+                        <p>{{syndromen.Hoofdsymptoom}}</p>
+                    </div>
+                    <div class="col s1"></div>
+                    <div class="symptoom col s5 border">
+                        <h4>Symptomen</h4>
+                        <ul>
+                            <li ng-repeat="symptoom in symptomen">{{symptoom.Naam}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>Tong</th>
+                        <td>{{syndromen.Tong}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pols</th>
+                        <td>{{syndromen.Pols}}</td>
+                    </tr>
+                </table>
+            </div>
+        </md-content>
+    </md-tab>
+    <md-tab label="Acties">
+        <md-content class="md-padding">
+            <div class="tabBody">
+                <div class="row">
+                    <div class="actie col s5 border">
+                        <h4>Actie</h4>
+                        <p>{{syndromen.Actie}}</p>
+                        <div class="acupunctuurpunten">
+                            <h4>Acupunctuurpunten</h4>
+                            <p>{{syndromen.Acupunctuurpunten}}</p>
+                        </div>
+                    </div>
+                    <div class="col s1"></div>
+                    <div class="aantekeningen col s6 border">
+                        <h4>Aantekeningen</h4>
+                    </div>
+                </div>
+                <div class="Formule">
+                    <h4>Formule</h4>
+                    <table>
+                        <tr>
+                            <th>Patentformule (Pinjin)</th>
+                            <th>Kruidenformule(Westers)</th>
+                        </tr>
+                        <tr ng-repeat="formule in formules">
+                            <td ng-click="GoToViewPF(formule.patentId)">{{formule.Pinjin}}</td>
+                            <td ng-click="GoToViewKF(formule.kruidId)">{{formule.Naam}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </md-content>
+    </md-tab>
+</md-tabs>

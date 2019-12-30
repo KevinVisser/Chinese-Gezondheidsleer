@@ -4,6 +4,4 @@ app.controller('MainController', ['$route', '$routeParams', '$location', functio
     this.$route = $route;
     this.$location = $location;
     this.$routeParams = $routeParams;
-
-    console.log($route, $location, $routeParams);
 }]);

@@ -1,11 +1,4 @@
 /* Basic styling */
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-}
-
 html {
     box-sizing: border-box;
 }
@@ -24,20 +17,7 @@ body {
 
 body {
     font-family: "Segoe UI", sans-serif;
-    /* background: #1A2933; */
-    /* color: #FFF; */
     overflow-x: hidden;
-}
-
-h1 {
-    margin: 0 0 10px 0;
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-p {
-    margin-top: 10px;
-    /* color: rgba(255, 255, 255, 0.4); */
 }
 
 /* Styling of window frame and titlebar */
@@ -48,34 +28,12 @@ body {
 
 #titlebar {
     display: block;
-    /* position: fixed;
-    height: 32px;
-    width: calc(100% - 2px); */
-}
-
-.maximized #titlebar {
-    width: 100%;
-    padding: 0;
-}
-
-#main {
-    height: calc(100% - 32px);
-    margin-top: 32px;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-#titlebar {
-    padding: 4px;
+    background-color: #1A2933;
 }
 
 #drag-region {
     -webkit-app-region: drag;
     -webkit-user-select: none;
-}
-
-#titlebar {
-    background-color: #1A2933;
 }
 
 #titlebar #drag-region {
@@ -93,15 +51,15 @@ body {
     font-size: 12px;
 }
 
-.maximized #window-title {
-    margin-left: 12px;
+.windows-title {
+    overflow: hidden;
+    font-size: 30px;
+    margin-top: 0px;
+    color: white;
 }
 
-#window-title h2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.5;
-    color: white;
+.maximized #window-title {
+    margin-left: 12px;
 }
 
 #window-controls {
@@ -119,11 +77,9 @@ body {
     -webkit-app-region: no-drag;
 }
 
-#window-controls .button {
-    /* grid-row: 1 / span 1; */
+#window-controls .button, .dummy {
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100%;
     color: white
@@ -142,6 +98,10 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
+.dummy {
+    color: #818181;
+}
+
 #close-button:hover {
     background: #E81123 !important;
 }
@@ -155,61 +115,43 @@ body {
     grid-column: 1;
 }
 
-#max-button,
-#restore-button {
-    grid-column: 2;
-}
-
 #close-button {
     grid-column: 3;
-}
-
-#restore-button {
-    display: none !important;
-}
-
-.maximized #restore-button {
-    display: flex !important;
-}
-
-.maximized #max-button {
-    display: none;
 }
 
 ::-webkit-scrollbar {
     display: none;
 }
 
-.sidenav {
+.sidebarnav {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
-    width: 160px;
+    width: 170px;
     /* Set the width of the sidebar */
     position: fixed;
     /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1;
-    /* Stay on top */
-    /* top: 0; */
-    /* Stay at the top */
     left: 0;
-    background-color: #111;
-    /* Black */
+    background-color: #1A2933;
     overflow-x: hidden;
-    /* float: left; */
-    /* Disable horizontal scroll */
+}
+
+.logo {
+    width: 170px;
+    height: auto;
 }
 
 /* The navigation menu links */
-.sidenav a {
+.sidebarnav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #818181;
     display: block;
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
+.sidebarnav a:hover {
     color: #f1f1f1;
 }
 
@@ -220,22 +162,6 @@ body {
     /* Same as the width of the sidebar */
     padding: 0px 10px;
     height: 100%;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-
-    .sidenav a {
-        font-size: 18px;
-    }
-}
-
-.logo {
-    width: 160px;
-    height: auto;
 }
 
 md-content .ext-content {
@@ -251,74 +177,64 @@ md-content .ext-content {
     width: auto;
 }
 
-.black {
-    color: black;
-}
-
-table, th, td {
-    border: 1px solid black;
-}
-
-table thead {
-    display: block;
-}
-
-.inhoudsstoffen, .aantekeningen, 
-.werking, .contraIndicatie {
-    border: 1px solid black;
-    height: 300px;
-    width: 300px;
-    display: inline-block;
-    float: left;
-    padding: 5px;
-}
-
-.inhoudsstoffen, .werking {
-    margin-left: 30px;
-    margin-right: 100px;
-}
-
 md-tabs {
-    height: 800px; 
+    height: 600px; 
 }
 
-.eigenschappen {
+.input-field {
+    margin-bottom: 0rem !important;
+}
+
+.border {
     border: 1px solid black;
-    padding: 5px;
-    height: 300px;
 }
 
-.gebruikteDelen, .tong, .pols {
-    margin-left: 30px;
-    padding-top: 10px;
+.make-scroll {
+    overflow-y: scroll;
+    overflow-y: auto;
 }
 
-.actie, .gebruik {
-    border: 1px solid black;
-    padding: 5px;
-    margin-bottom: 30px;
-}
-
-.virtualRepeatDeferredLoading #vertical-container{
+.toepassingen {
     height: 500px;
-    width: 100%;
 }
 
-.virtualRepeatdemoDeferredLoading .repeated-item {
-    border-bottom: 1px solid #ddd;
-    box-sizing: border-box;
-    height: 40px;
-    padding-top: 10px;
+.keep-styling {
+    white-space: pre-line;
 }
-  
-.virtualRepeatdemoDeferredLoading md-content {
-    margin: 16px;
+
+.keep-styling h4 {
+    margin-top: -20px !important;
 }
-  
-.virtualRepeatdemoDeferredLoading md-virtual-repeat-container {
-    border: solid 1px grey;
+
+/*inputfield + label color*/
+.input-field input[type=text]:focus + label {
+    color: #4169E1 !important;
 }
-  
-.virtualRepeatdemoDeferredLoading .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
-    padding-left: 16px;
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px #4169E1 solid  !important;
+    box-shadow: 0 1px 0 0 #4169E1 !important;
+}
+
+.input-field {
+    margin-left: 5px;
+}
+/********/
+
+.tabBody h4 {
+    margin-top: 0px;
+}
+.ingrediënten td {
+    padding: 0px !important;
+}
+
+.basicData p{
+    font-size: 20px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 5px;
+}
+
+.aantekeningen {
+    height: 300px;
 }

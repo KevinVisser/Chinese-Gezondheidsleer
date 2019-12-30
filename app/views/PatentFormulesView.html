@@ -1,16 +1,19 @@
-<div class="inputData">
-    <input type="text" placeholder="Zoek op patentformule(nederlands of latijns)" ng-click="GoToView(PatentFormules)">
+<div class="input-field">
+    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(PatentFormules)"></input>
+    <label for="inputField">Zoek op patentnaam(nederlands,engels of pinijn) of op symptoom</label>
 </div>
 <div class="basicData">
-    <h1>{{patentformules.Nederlands}}, {{patentformules.Engels}}, {{patentformules.Pinjin}}</h1>
+    <p><b>Nederlands: </b>{{patentformules.Nederlands}}</p>
+    <p><b>Engels: </b>{{patentformules.Engels}}</p>
+    <p><b>Pinjin: </b>{{patentformules.Pinjin}}</p>
 </div>
-<div class="tabs">
-    <md-tabs class="md-primary" md-center-tabs>
-        <md-tab label="Algemeen">
-            <md-content class="md-padding">
-                <div class="tabBody">
-                    <div class="inhoudsstoffen">
-                        <h3>Inhoudsstoffen</h3>
+<md-tabs class="md-primary" md-center-tabs>
+    <md-tab label="Algemeen">
+        <md-content class="md-padding">
+            <div class="tabBody">
+                <div class="row">
+                    <div class="inhoudsstoffen col s6">
+                        <h4>Inhoudsstoffen</h3>
                         <table>
                             <tr>
                                 <th>Kruid</th>
@@ -21,42 +24,49 @@
                                 <td>{{chinesekruiden.Verhouding}}</td>
                             </tr>
                         </table>
-                        <!-- <p>{{patentformules.Inhoudsstoffen}}</p> -->
                     </div>
-                    <div class="aantekeningen">
-                        <h3>Aantekeningen</h3>
+                    <div class="col s1"></div>
+                    <div class="aantekeningen col s5 border">
+                        <h4>Aantekeningen</h4>
                     </div>
                 </div>
-            </md-content>
-        </md-tab>
-        <md-tab label="Werking">
-            <md-content class="md-padding">
-                <div class="tabBody">
-                    <div class="werking">
-                        <h3>Werking</h3>
+            </div>
+        </md-content>
+    </md-tab>
+    <md-tab label="Werking">
+        <md-content class="md-padding">
+            <div class="tabBody">
+                <div class="row">
+                    <div class="werking col s6 border">
+                        <h4>Werking</h4>
                         <p>{{patentformules.Werking}}</p>
                     </div>
-                    <div class="contraIndicatie">
-                        <h3>Contra indicatie</h3>
+                    <div class="col s1"></div>
+                    <div class="contraIndicatie col s5 border">
+                        <h4>Contra indicatie</h4>
                         <p>{{patentformules.ContraIndicaties}}</p>
                     </div>
-                    <div class="tong">
-                        <p><b>Tong: </b>{{patentformules.Tong}}</p>
-                    </div>
-                    <div class="pols">
-                        <p><b>Pols: </b>{{patentformules.Pols}}</p>
-                    </div>
                 </div>
-            </md-content>
-        </md-tab>
-        <md-tab label="Symptoom">
-            <md-content class="md-padding">
-                <div class="tabBody">
-                    <div class="symptomen" style="white-space: pre-line;">
-                        <p>{{patentformules.ConcatSymptomen}}</p>
-                    </div>
+                <table>
+                    <tr>
+                        <th>Tong</th>
+                        <td>{{patentformules.Tong}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pols</th>
+                        <td>{{patentformules.Pols}}</td>
+                    </tr>
+                </table>
+            </div>
+        </md-content>
+    </md-tab>
+    <md-tab label="Symptoom">
+        <md-content class="md-padding">
+            <div class="tabBody">
+                <div class="symptomen keep-styling" style="margin-top: -25px;">
+                    <p>{{patentformules.Symptomen}}</p>
                 </div>
-            </md-content>
-        </md-tab>
-    </md-tabs>
-</div>
+            </div>
+        </md-content>
+    </md-tab>
+</md-tabs>

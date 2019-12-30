@@ -18,14 +18,13 @@ function createWindow() {
         show: false,
         backgroundColor: "#FFF",
         frame: false,
-        // resizable: false,
-        icon: path.join(__dirname, "./assets/img/icon.jpg"),
+        resizable: false,
+        icon: path.join(dirname, "./assets/img/icon.jpg"),
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, "preload.js")
         }
     });
-
     // and load the index.html of the app.
     mainWindow.loadFile("index.html");
 
