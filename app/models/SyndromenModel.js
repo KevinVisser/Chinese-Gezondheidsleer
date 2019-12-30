@@ -2,7 +2,7 @@ class SyndromenModel {
     constructor() { }
 
     GetRelevantData() {
-        let stmt = db.prepare("SELECT Syndromen.Id, Syndromen.Naam, Syndromen.Tong, Syndromen.Pols, group_concat(Symptomen.Naam, ', ') AS Symptoom " +
+        let stmt = db.prepare("SELECT Syndromen.Id, Syndromen.Syndroom AS Naam, Syndromen.Tong, Syndromen.Pols, group_concat(Symptomen.Naam, ', ') AS Symptoom " +
             "FROM SyndromenEnSymptomen " +
             "INNER JOIN Syndromen ON SyndromenEnSymptomen.SyndroomId=Syndromen.Id " +
             "INNER JOIN Symptomen ON SyndromenEnSymptomen.SymptoomId=Symptomen.Id " +
@@ -11,7 +11,7 @@ class SyndromenModel {
     }
 
     GetSpecificData(id) {
-        let stmt = db.prepare("SELECT Naam, Hoofdsymptoom, Tong, Pols, Actie, Acupunctuurpunten FROM Syndromen WHERE Id = ?").get(id);
+        let stmt = db.prepare("SELECT Syndroom AS Naam, Hoofdsymptoom, Tong, Pols, Actie, Acupunctuurpunten FROM Syndromen WHERE Id = ?").get(id);
         return stmt;
     }
 
