@@ -38,4 +38,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             templateUrl: './app/views/SyndromenView.html',
             controller: 'SyndromenViewController',
         })
+        .when('/Kruiden/Edit/:KruidId', {
+            //Krijgt een edit pagina met een variabele edit=true,
+        })
 }])

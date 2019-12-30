@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const fs = require("fs");
 const db = require("better-sqlite3")("./resources/app.db");
 
 global.database = db;
@@ -28,7 +29,7 @@ function createWindow() {
     mainWindow.loadFile("index.html");
 
     // Open the DevTools.
-     mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     //mainWindow.webContents.send("sendDB", db);
 
