@@ -29,11 +29,13 @@ body {
 #titlebar {
     display: block;
     background-color: #1A2933;
+    height: 50px;
 }
 
 #drag-region {
     -webkit-app-region: drag;
     -webkit-user-select: none;
+    height: 50px;
 }
 
 #titlebar #drag-region {
@@ -54,7 +56,6 @@ body {
 .windows-title {
     overflow: hidden;
     font-size: 30px;
-    margin-top: 0px;
     color: white;
 }
 
@@ -71,6 +72,7 @@ body {
     height: 100%;
     font-family: "Segoe MDL2 Assets";
     font-size: 10px;
+    line-height: 50px;
 }
 
 #window-controls {
@@ -81,7 +83,7 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 50px;
     color: white
 }
 
@@ -219,10 +221,19 @@ md-tabs {
 .input-field {
     margin-left: 5px;
 }
+
+.inputFixedPos {
+    position: fixed !important;
+    top: 50px;
+    left: 170px;
+    right: 0;
+    background-color: white;
+}
 /********/
 
 .tabBody h4 {
     margin-top: 0px;
+    -webkit-user-select: none;
 }
 .ingrediënten td {
     padding: 0px !important;
@@ -237,4 +248,17 @@ md-tabs {
 
 .aantekeningen {
     height: 300px;
+}
+
+.tablePos {
+    margin-top: 60px;
+}
+
+.inputFix {
+    position: fixed;
+    top: 50px;
+    left: 170px;
+    right: 0px;
+    background-color: white;
+    height: 30px;
 }
