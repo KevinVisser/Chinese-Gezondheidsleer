@@ -1,20 +1,95 @@
-<div>
-    <form class="css-form">
-        <label>Nederlands: <input type="text" ng-model="kruid.Nederlands" autofocus /></label><br>
-        <label>Latijns: <input type="text" ng-model="kruid.Latijns" /></label><br>
-        <label>Familie: <input type="text" ng-model="kruid.Familie" /></label><br>
-        <label>Inhoudsstoffen: <input type="text" ng-model="kruid.Inhoudsstoffen" /></label><br>
-        <label>Toepassing: <input type="text" ng-model="kruid.Toepassing" /></label><br>
-        <label>Eigenschappen: <input type="text" ng-model="kruid.Eigenschappen" /></label><br>
-        <label>Actie: <input type="text" ng-model="kruid.Actie" /></label><br>
-        <label>Gebruik: <input type="text" ng-model="kruid.Gebruik" /></label><br>
-        <label>Let Op: <input type="text" ng-model="kruid.LetOp" /></label><br>
-        <label>Smaak: <input type="text" ng-model="kruid.Smaak" /></label><br>
-        <label>Dosering: <input type="text" ng-model="kruid.Dosering" /></label><br>
-        <label>Thermische Waarde: <input type="text" ng-model="kruid.ThermischeWaarde" /></label><br>
-        <label>Gebruikte Delen: <input type="text" ng-model="kruid.GebruikteDelen" /></label><br>
-        <label>Orgaan: <input type="text" ng-model="kruid.Orgaan" /></label><br>
+<div ng-controller="AddKruidController" class="md-inline-form md-whiteframe-z1" style="width: 80%; margin: auto;"
+    ng-cloak>
+    <h1 class=" text-center">Voeg een Kruid toe</h1>
+    <md-content layout-padding="">
 
-        <input type="submit" value="Save" ng-click="updateKruid(kruid)">
-    </form>
+        <form name="kruidForm" class="css-form" novalidate ng-submit="updateKruid(kruid, kruidForm)">
+            <div layout="row">
+                <md-input-container>
+                    <label>Nederlands</label>
+                    <input type="text" ng-model="kruid.Nederlands" autofocus required kruid-Directive
+                        name="nederlands" />
+                    <div ng-messages="kruidForm.nederlands.$error">
+                        <div ng-message="required">required.</div>
+                        <div ng-message="Nederlands">Kruidnaam bestaat al!</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Latijns</label>
+                    <input type="text" ng-model="kruid.Latijns" required kruid-Directive name="latijns" />
+                    <div ng-messages="kruidForm.latijns.$error">
+                        <div ng-message="required">required.</div>
+                        <div ng-message="Latijns">Kruidnaam bestaat al!</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block">
+                    <label>Familie</label>
+                    <input type="text" ng-model="kruid.Familie" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Inhoudsstoffen</label>
+                    <input type="text" ng-model="kruid.Inhoudsstoffen" />
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block">
+                    <label>Toepassing</label>
+                    <input type="text" ng-model="kruid.Toepassing" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Eigenschappen</label>
+                    <input type="text" ng-model="kruid.Eigenschappen" />
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block">
+                    <label>Actie</label>
+                    <input type="text" ng-model="kruid.Actie" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Gebruik</label>
+                    <input type="text" ng-model="kruid.Gebruik" />
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block">
+                    <label>Let Op</label>
+                    <input type="text" ng-model="kruid.LetOp" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Smaak</label>
+                    <input type="text" ng-model="kruid.Smaak" />
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block">
+                    <label>Dosering</label>
+                    <input type="text" ng-model="kruid.Dosering" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Thermische Waarde</label>
+                    <input type="text" ng-model="kruid.ThermischeWaarde" />
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-block">
+                    <label>Gebruikte Delen</label>
+                    <input type="text" ng-model="kruid.GebruikteDelen" />
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Orgaan</label>
+                    <input type="text" ng-model="kruid.Orgaan" />
+                </md-input-container>
+            </div>
+
+
+
+
+
+
+            <input type="submit" value="Save">
+        </form>
+    </md-content>
 </div>

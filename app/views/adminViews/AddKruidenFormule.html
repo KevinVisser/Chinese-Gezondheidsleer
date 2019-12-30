@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="AddKruidenFormuleController">
     <h1 class="text-center">Voeg een kruidenformule toe</h1>
     <form ng-submit="$event.preventDefault()">
         <div class=" form-group">
@@ -9,7 +9,7 @@
         <!-- Kruiden Toevoegen -->
         <div class="form-group row">
             <div class="col-5">
-                <h1>Kruid Toevoegen</h1>
+                <h1>Kruidenformule Toevoegen</h1>
                 <div>
                     <md-autocomplete md-selected-item="selectedKruid" ng-disabled="isDisabled" md-no-cache="noCache"
                         md-search-text-change="searchTextChange(searchKruid)" md-search-text="searchKruid"
@@ -59,14 +59,14 @@
                         <th>Symptoom</th>
                     </tr>
                     <tr ng-repeat="s in selectedSymptomen">
-                        <td>{{s}} <a class="btn btn-primary" ng-click="test()">Delete</a></td>
+                        <td>{{s.Naam}} <a class="btn btn-primary" ng-click="test()">Delete</a></td>
                     </tr>
                 </table>
             </div>
         </div>
         <br>
-        <button class="col align-self-end btn btn-primary" ng-click="updateKruidenFormule(kruidenformule)">Sla deze
-            kruidenformule
-            op</button>
+        <button class="col align-self-end btn btn-primary" ng-click="updateKruidenFormule(kruidenformule)">
+            Sla deze kruidenformule op
+        </button>
     </form>
 </div>

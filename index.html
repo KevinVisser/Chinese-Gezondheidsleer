@@ -18,35 +18,36 @@
     <script src="./node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="./node_modules/angular-material/angular-material.min.js"></script>
     <script src="./node_modules/angular-route/angular-route.min.js"></script>
+    <script src="./node_modules/angular-messages/angular-messages.min.js"></script>
 </head>
 
 <body ng-app="ChineseGezondheidsleer">
 
-    <!-- Toolbar -->
-    <nav id="titlebar" class="navbar">
-        <div id="drag-region">
-            <div id="window-title">
-                <h2>Chinese Gezondheidsleer</h2>
-            </div>
-            <div id="window-controls">
-                <div class="button" id="min-button">
-                    <span>&#xE921;</span>
-                </div>
-                <div class="button" id="max-button">
-                    <span>&#xE922;</span>
-                </div>
-                <div class="button" id="restore-button">
-                    <span>&#xE923;</span>
-                </div>
-                <div class="button" id="close-button">
-                    <span>&#xE8BB;</span>
-                </div>
-            </div>
-        </div>
-    </nav>
 
     <!-- Main Content -->
     <div ng-controller="MainController as main" layout="column" style="height:100%;" ng-cloak>
+        <!-- Toolbar -->
+        <nav id="titlebar" class="navbar">
+            <div id="drag-region">
+                <div id="window-title">
+                    <h2>Chinese Gezondheidsleer</h2>
+                </div>
+                <div id="window-controls">
+                    <div class="button" id="min-button">
+                        <span>&#xE921;</span>
+                    </div>
+                    <div class="button" id="max-button">
+                        <span>&#xE922;</span>
+                    </div>
+                    <div class="button" id="restore-button">
+                        <span>&#xE923;</span>
+                    </div>
+                    <div class="button" id="close-button">
+                        <span>&#xE8BB;</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
         <section layout="row" flex>
 
@@ -78,19 +79,19 @@
                         <!-- </md-button> -->
                     </a>
                     <a href="#!Admin">
-                        <md-button class="md-primary" style="width: 100%; margin: 0;">
-                            Admin
-                        </md-button>
+                        <!-- <md-button class="md-primary" style="width: 100%; margin: 0;"> -->
+                        Admin
+                        <!-- </md-button> -->
                     </a>
                 </div>
             </md-sidenav>
 
             <!-- Content on screen -->
-            <md-content flex>
-                <div class="view-animate-container">
-                    <div ng-view class="view-animate">
+            <md-content flex ng-view>
+                <!-- <div flex class="view-animate-container">
+                    <div class="view-animate">
                     </div>
-                </div>
+                </div> -->
                 <div flex></div>
             </md-content>
 
@@ -101,14 +102,21 @@
 
 
     <script src="renderer.js"></script>
+
+    <!-- Routes & Main -->
+    <script src="app/app.modules.js"></script>
+    <script src="app/app.routes.js"></script>
+
+    <!-- Models -->
     <script src="app/models/AddDataModel.js"></script>
     <script src="app/models/KruidenModel.js"></script>
     <script src="app/models/PatentFormulesModel.js"></script>
     <script src="app/models/KruidenFormulesModel.js"></script>
     <script src="app/models/SyndromenModel.js"></script>
     <script src="app/models/SymptomenModel.js"></script>
-    <script src="app/app.modules.js"></script>
-    <script src="app/app.routes.js"></script>
+    <script src="app/models/ChineseKruidenModel.js"></script>
+
+    <!-- Controllers -->
     <script src="app/controllers/MainController.js"></script>
     <script src="app/controllers/KruidenController.js"></script>
     <script src="app/controllers/KruidenFormulesController.js"></script>
@@ -118,7 +126,17 @@
     <script src="app/controllers/PatentFormulesViewController.js"></script>
     <script src="app/controllers/SyndromenController.js"></script>
     <script src="app/controllers/SyndromenViewController.js"></script>
-    <script src="app/controllers/AddDataController.js"></script>
+
+    <!-- Admin Controllers -->
+    <script src="app/controllers/adminControllers/AddDataController.js"></script>
+    <script src="app/controllers/adminControllers/AddKruidController.js"></script>
+    <script src="app/controllers/adminControllers/AddKruidenFormuleController.js"></script>
+    <script src="app/controllers/adminControllers/AddPatentFormuleController.js"></script>
+    <script src="app/controllers/adminControllers/AddSyndromenController.js"></script>
+    <script src="app/controllers/adminControllers/AddChineesKruidController.js"></script>
+    <script src="app/controllers/adminControllers/AddSymptoomController.js"></script>
+
+    <!-- Custom Directives -->
 </body>
 
 </html>

@@ -1,3 +1,79 @@
-<div>
-    <h1>Hello, syndroom</h1>
+<div class="container-fluid" ng-controller="AddSyndromenController">
+    <h1 class="text-center">Voeg een syndroom toe</h1>
+    <form ng-submit="$event.preventDefault()">
+        <div class=" form-group">
+            <label>Naam: <input type="text" ng-model="kruidenformule.Naam" autofocus /></label><br>
+            <label>Werking: <input type="text" ng-model="kruidenformule.Werking" /></label><br>
+            <label>Contra Indicaties: <input type="text" ng-model="kruidenformule.ContraIndicatie" /></label><br>
+        </div>
+        <!-- Kruiden Toevoegen -->
+        <div class="form-group row">
+            <div class="col-5">
+                <h1>Kruidenformule Toevoegen</h1>
+                <div>
+                    <md-autocomplete md-selected-item="selectedKruidenFormule" ng-disabled="isDisabled"
+                        md-no-cache="noCache" md-search-text-change="searchTextChange(searchKruidenFormule)"
+                        md-search-text="searchKruidenFormule"
+                        md-selected-item-change="selectedItemChangeKruidenFormule(kruidenFormule)"
+                        md-items="kruidenFormule in querySearch(searchKruidenFormule, 'kruidenformule')"
+                        md-item-text="kruidenFormule.Naam" md-min-length="0" placeholder="Selecteer een optie">
+                        <md-item-template>
+                            <span md-highlight-text="searchKruidenFormule" md-highlight-flags="^i">
+                                {{kruidenFormule.Naam}}
+                            </span>
+                        </md-item-template>
+                        <md-not-found>
+                            Geen kruidenformule gevonden met de naam: "{{searchKruidenFormule}}".
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+
+                <!-- Maak hier een tabel met de aangevinkte symptomen -->
+                <table>
+                    <tr>
+                        <th>Kruid</th>
+                    </tr>
+                    <tr ng-repeat="k in selectedKruidenFormules">
+                        <td>{{k.Naam}} <a class="btn btn-primary" ng-click="test()">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-2"></div>
+
+            <!-- Patentformule Toevoegen -->
+            <div class="col-5">
+                <h1>Patentformule Toevoegen</h1>
+                <md-autocomplete md-selected-item="selectedPatentFormule" ng-disabled="isDisabled" md-no-cache="noCache"
+                    md-search-text-change="searchTextChange(searchPatentFormule)" md-search-text="searchPatentFormule"
+                    md-selected-item-change="selectedItemChangePatentFormule(patentformule)"
+                    md-items="patentformule in querySearch(searchPatentFormule, 'patentformule')"
+                    md-item-text="patentformule.Pinjin" md-min-length="0" placeholder="Selecteer een optie"
+                    ng-model-options=" {debounce: 200}">
+                    <md-item-template>
+                        <span md-highlight-text="searchPatentFormule" md-highlight-flags="^i">
+                            {{patentformule.Pinjin}}
+                        </span>
+                    </md-item-template>
+                    <md-not-found>
+                        Geen kruiden gevonden met de naam: "{{searchSymptoom}}".
+                    </md-not-found>
+                </md-autocomplete>
+
+                <!-- Maak hier een tabel met de aangevinkte symptomen -->
+                <table>
+                    <tr>
+                        <th>Symptoom</th>
+                    </tr>
+                    <tr ng-repeat="s in selectedPatentFormules">
+                        <td>{{s.Pinjin}} <a class="btn btn-primary" ng-click="test()">Delete</a></td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <button class="col align-self-end btn btn-primary" ng-click="updateSyndroom(syndroom)">
+            Sla dit syndroom op
+        </button>
+    </form>
 </div>

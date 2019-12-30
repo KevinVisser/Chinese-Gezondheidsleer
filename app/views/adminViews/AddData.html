@@ -1,8 +1,34 @@
-<button class="md-primary" ng-click="toggleForm('Kruid')">Add Kruid</button>
-<button class="md-primary" ng-click="toggleForm('Patentformule')">Add Patentformule</button>
-<button class="md-primary" ng-click="toggleForm('Kruidenformule')">Add Kruidenformule</button>
-<button class="md-primary" ng-click="toggleForm('Syndroom')">Add Syndroom</button>
-
-<div>
-    <div ng-include='returnChosenForm()'></div>
-</div>
+<md-content ng-cloak flex>
+    <md-tabs class="md-primary" md-center-tabs md-border-bottom>
+        <md-tab label="Kruid" ng-click="toggleForm('Kruid')">
+            <md-content flex>
+                <div ng-include='returnChosenForm()'></div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Patentformule" ng-click="toggleForm('Patentformule')">
+            <md-content>
+                <div ng-include='returnChosenForm()'></div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Kruidenformule" ng-click="toggleForm('Kruidenformule')">
+            <md-content>
+                <div ng-include='returnChosenForm()'></div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Syndroom" ng-click="toggleForm('Syndroom')">
+            <md-content>
+                <div ng-include='returnChosenForm()'></div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Chinees Kruid" ng-click="toggleForm('Chinees Kruid')">
+            <md-content>
+                <div ng-include='returnChosenForm()'></div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Symptoom" ng-click="toggleForm('Symptoom')">
+            <md-content>
+                <div ng-include='returnChosenForm()'></div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</md-content>

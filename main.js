@@ -12,11 +12,13 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1000,
+        height: 800,
         show: false,
         backgroundColor: "#FFF",
         frame: false,
+        // resizable: false,
+        icon: path.join(__dirname, "./assets/img/icon.jpg"),
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, "preload.js")
@@ -27,7 +29,7 @@ function createWindow() {
     mainWindow.loadFile("index.html");
 
     // Open the DevTools.
-     mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     //mainWindow.webContents.send("sendDB", db);
 
