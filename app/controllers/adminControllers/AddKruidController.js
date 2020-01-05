@@ -14,7 +14,7 @@ app.controller('AddKruidController', ['$routeParams', '$scope', '$location', fun
         "LetOp": "",
         "Smaak": "",
         "Dosering": "",
-        "ThermischeWaarde": "Hallo",
+        "ThermischeWerking": "",
         "GebruikteDelen": "",
         "Orgaan": ""
     }

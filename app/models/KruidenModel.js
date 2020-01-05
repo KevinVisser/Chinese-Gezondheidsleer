@@ -2,7 +2,7 @@ class KruidenModel {
     constructor() { }
 
     GetAllData() {
-        let stmt = db.prepare("SELECT Id, Nederlands, Latijns, ThermischeWaarde FROM Kruiden");
+        let stmt = db.prepare("SELECT Id, Nederlands, Latijns, ThermischeWerking FROM Kruiden");
         return stmt.all();
     }
 
@@ -12,7 +12,7 @@ class KruidenModel {
     }
 
     SearchKruiden(search) {
-        let stmt = db.prepare("SELECT Id, Nederlands, Latijns, ThermischeWaarde FROM Kruiden WHERE Nederlands LIKE ('%' || ? || '%') OR Latijns LIKE ('%' || ? || '%') OR Id LIKE ('%' || ? || '%') OR ThermischeWaarde LIKE ('%' || ? || '%')")
+        let stmt = db.prepare("SELECT Id, Nederlands, Latijns, ThermischeWerking FROM Kruiden WHERE Nederlands LIKE ('%' || ? || '%') OR Latijns LIKE ('%' || ? || '%') OR Id LIKE ('%' || ? || '%') OR ThermischeWerking LIKE ('%' || ? || '%')")
         return stmt.all(search, search, search, search);
     }
 

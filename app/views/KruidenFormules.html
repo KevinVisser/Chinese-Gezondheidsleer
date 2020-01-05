@@ -1,19 +1,18 @@
 <div class="input-field">
     <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
     <label for="inputField">Zoek op kruidenformule, kruidnaam(nederlands of latijns) of op symptoom</label>
+    <table>
+        <tr>
+            <th>Kruidformule Naam</th>
+            <th>Kruidnaam Nederlands</th>
+            <th>Kruidnaam Latijns</th>
+            <th>Symptomen</th>
+        </tr>
+        <tr ng-repeat="kruidenformule in kruidenFormules | filter:search" ng-click="GoToView(kruidenformule.Id)">
+            <td>{{kruidenformule.Naam}}</td>
+            <td>{{kruidenformule.Nederlands}}</td>
+            <td>{{kruidenformule.Latijns}}</td>
+            <td>{{kruidenformule.Symptomen}}</td>
+        </tr>
+    </table>
 </div>
-<table>
-    <tr>
-        <th>Kruidformule Naam</th>
-        <th>Kruidnaam Nederlands</th>
-        <th>Kruidnaam Latijns</th>
-        <th>Symptomen</th>
-    </tr>
-    <tr ng-repeat="kruidenformule in kruidenFormules | filter:search"
-        ng-click="GoToView(kruidenformule.Id)">
-        <td>{{kruidenformule.Naam}}</td>
-        <td>{{kruidenformule.Nederlands}}</td>
-        <td>{{kruidenformule.Latijns}}</td>
-        <td>{{kruidenformule.Symptomen}}</td>
-    </tr>
-</table>

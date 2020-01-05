@@ -1,86 +1,93 @@
-<div class="input-field">
-    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(Kruiden)"></input>
-    <label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
+<div>
+    <div>
+        <md-input-container class="md-block" style="margin: 0px;">
+            <label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
+            <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}"
+                ng-click="GoToView(Kruiden)"></input>
+        </md-input-container>
+    </div>
+    <div class="basicData">
+        <p><b>Nederlands: </b>{{kruid.Nederlands}}</p>
+        <p><b>Latijns: </b>{{kruid.Latijns}}</p>
+        <p><b>Familie: </b>{{kruid.Familie}}</p>
+    </div>
+    <div>
+        <md-tabs class="md-primary" md-center-tabs md-dynamic-height>
+            <md-tab label="Algemeen">
+                <md-content class="md-padding">
+                    <div class="tabBody">
+                        <div class="row">
+                            <div class="inhoudsstoffen col s5 border">
+                                <h4>Inhoudsstoffen</h4>
+                                <p>{{kruid.Inhoudsstoffen}}</p>
+                            </div>
+                            <div class="col s1"></div>
+                            <div class="aantekeningen col s6 border">
+                                <h4>Aantekeningen</h4>
+                            </div>
+                        </div>
+                        <div class="gebruikteDelen">
+                            <p><b>GebruikteDelen: </b>{{kruid.GebruikteDelen}}</p>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Eigenschappen">
+                <md-content class="md-padding">
+                    <div class="tabBody">
+                        <div class="row">
+                            <div class="eigenschappen border col s12">
+                                <h4>Eigenschappen</h4>
+                                <p>{{kruid.Eigenschappen}}</p>
+                            </div>
+                        </div>
+                        <table>
+                            <tr>
+                                <th>Smaak</th>
+                                <td>{{kruid.Smaak}}</td>
+                            </tr>
+                            <tr>
+                                <th>Dosering</th>
+                                <td>{{kruid.Dosering}}</td>
+                            </tr>
+                            <tr>
+                                <th>Thermische Werking</th>
+                                <td>{{kruid.ThermischeWerking}}</td>
+                            </tr>
+                            <tr>
+                                <th>Orgaan</th>
+                                <td>{{kruid.Orgaan}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Toepassingen">
+                <md-content class="md-padding">
+                    <div class="tabBody">
+                        <div class="toepassingen keep-styling">
+                            <p class="make-scroll" style="margin-top: -25px;">{{kruid.Toepassing}}</p>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Actie en Gebruik">
+                <md-content class="md-padding">
+                    <div class="tabBody">
+                        <div class="row">
+                            <div class="actie col s5 border keep-styling">
+                                <h4>Actie</h4>
+                                <p style="margin-top: -25px;">{{kruid.Actie}}</p>
+                            </div>
+                            <div class="col s1"></div>
+                            <div class="gebruik col s6 border keep-styling">
+                                <h4>Gebruik</h4>
+                                <p style="margin-top: -25px;">{{kruid.Gebruik}}</p style="margin-top: -25px;">
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </div>
 </div>
-<div class="basicData">
-    <p><b>Nederlands: </b>{{kruid.Nederlands}}</p>
-    <p><b>Latijns: </b>{{kruid.Latijns}}</p>
-    <p><b>Familie: </b>{{kruid.Familie}}</p>
-</div>
-<md-tabs class="md-primary" md-center-tabs>
-    <md-tab label="Algemeen">
-        <md-content class="md-padding">
-            <div class="tabBody">
-                <div class="row">
-                    <div class="inhoudsstoffen col s5 border">
-                        <h4>Inhoudsstoffen</h4>
-                        <p>{{kruid.Inhoudsstoffen}}</p>
-                    </div>
-                    <div class="col s1"></div>
-                    <div class="aantekeningen col s6 border">
-                        <h4>Aantekeningen</h4>
-                    </div>
-                </div>
-                <div class="gebruikteDelen">
-                    <p><b>GebruikteDelen: </b>{{kruid.GebruikteDelen}}</p>
-                </div>
-            </div>
-        </md-content>
-    </md-tab>
-    <md-tab label="Eigenschappen">
-        <md-content class="md-padding">
-            <div class="tabBody">
-                <div class="row">
-                    <div class="eigenschappen border col s12">
-                        <h4>Eigenschappen</h4>
-                        <p>{{kruid.Eigenschappen}}</p>
-                    </div>
-                </div>
-                <table>
-                    <tr>
-                        <th>Smaak</th>
-                        <td>{{kruid.Smaak}}</td>
-                    </tr>
-                    <tr>
-                        <th>Dosering</th>
-                        <td>{{kruid.Dosering}}</td>
-                    </tr>
-                    <tr>
-                        <th>Thermische Werking</th>
-                        <td>{{kruid.ThermischeWerking}}</td>
-                    </tr>
-                    <tr>
-                        <th>Orgaan</th>
-                        <td>{{kruid.Orgaan}}</td>
-                    </tr>
-                </table>
-            </div>
-        </md-content>
-    </md-tab>
-    <md-tab label="Toepassingen">
-        <md-content class="md-padding">
-            <div class="tabBody">
-                <div class="toepassingen keep-styling">
-                    <p class="make-scroll" style="margin-top: -25px;">{{kruid.Toepassing}}</p>
-                </div>
-            </div>
-        </md-content>
-    </md-tab>
-    <md-tab label="Actie en Gebruik">
-        <md-content class="md-padding">
-            <div class="tabBody">
-                <div class="row">
-                    <div class="actie col s5 border keep-styling">
-                        <h4>Actie</h4>
-                        <p style="margin-top: -25px;">{{kruid.Actie}}</p>
-                    </div>
-                    <div class="col s1"></div>
-                    <div class="gebruik col s6 border keep-styling">
-                        <h4>Gebruik</h4>
-                        <p style="margin-top: -25px;">{{kruid.Gebruik}}</p style="margin-top: -25px;">
-                    </div>
-                </div>
-            </div>
-        </md-content>
-    </md-tab>
-</md-tabs>

@@ -1,84 +1,148 @@
-<div class="container-fluid" ng-controller="AddPatentFormuleController">
-    <h1 class="text-center">Voeg een Patentformule toe</h1>
+<div ng-controller="AddPatentFormuleController">
+    <!-- <form novalidate ng-submit="updatePatentFormule(patentformule, patentFormuleForm)" name="patentFormuleForm"
+        style="height: 100%"> -->
+    <md-content>
+        <md-tabs md-dynamic-height md-center-tabs>
+            <md-tab label="Algemeen">
+                <md-content class="md-padding">
+                    <div class="row">
+                        <div class="">
+                            <md-input-container class="md-block">
+                                <label>Nederlands</label>
+                                <input type="text" ng-model="patentformule.Nederlands" autofocus required
+                                    patentformule-Directive name="nederlands" />
+                                <div ng-messages="patentFormuleForm.nederlands.$error">
+                                    <div ng-message="required">required.</div>
+                                    <div ng-message="Nederlands">Patentformule met de naam
+                                        {{patentformule.Nederlands}} bestaat al!</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Engels</label>
+                                <input type="text" ng-model="patentformule.Engels" required patentformule-Directive
+                                    name="engels" />
+                                <div ng-messages="patentFormuleForm.engels.$error">
+                                    <div ng-message="required">required.</div>
+                                    <div ng-message="Engels">Kruidnaam bestaat al!</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Pinjin</label>
+                                <input type="text" ng-model="patentformule.Pinjin" required patentformule-Directive
+                                    name="pinjin" />
+                                <div ng-messages="patentFormuleForm.pinjin.$error">
+                                    <div ng-message="required">required.</div>
+                                    <div ng-message="Engels">Kruidnaam bestaat al!</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Werking">
+                <md-content class="md-padding">
+                    <div class="row">
+                        <div class="werking col s6 border">
+                            <h4 class="center-align">Werking</h4>
+                            <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                <textarea aria-label="Werking" type="text" ng-model="patentformule.Werking"
+                                    rows="3"></textarea>
+                            </md-input-container>
+                        </div>
+                        <div class="col s1"></div>
+                        <div class="contraIndicatie col s5 border">
+                            <h4 class="center-align">Contra indicatie</h4>
+                            <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                <textarea aria-label="ContraIndicatie" type="text"
+                                    ng-model="patentformule.ContraIndicaties" rows="3"></textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <md-input-container class="md-block">
+                            <label>Tong</label>
+                            <input type="text" ng-model="patentformule.Tong">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Pols</label>
+                            <input type="text" ng-model="patentformule.Pols">
+                        </md-input-container>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Symptomen">
+                <md-content class="md-padding">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4>Symptoom Toevoegen</h4>
+                            <md-autocomplete md-selected-item="selectedSymptoom" ng-disabled="isDisabled"
+                                md-no-cache="noCache" md-search-text-change="searchTextChange(searchSymptoom)"
+                                md-search-text="searchSymptoom"
+                                md-selected-item-change="selectedItemChangeSymptoom(symptoom)"
+                                md-items="symptoom in querySearch(searchSymptoom, 'symptoom')"
+                                md-item-text="symptoom.Naam" md-min-length="0" placeholder="Selecteer een optie"
+                                ng-model-options=" {debounce: 200}">
+                                <md-item-template>
+                                    <span md-highlight-text="searchSymptoom"
+                                        md-highlight-flags="^i">{{symptoom.Naam}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    Geen kruiden gevonden met de naam: "{{searchSymptoom}}".
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+                        <div class="col s12">
+                            <table>
+                                <tr>
+                                    <th class="center-align">Symptoom</th>
+                                </tr>
+                                <tr ng-repeat="s in selectedSymptomen">
+                                    <td>{{s.Naam}} <md-icon ng-click="removeSymptoom()" class="customIcon"
+                                            md-svg-icon="delete:delete" aria-label="delete">
+                                        </md-icon>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
 
-    <form ng-submit="$event.preventDefault()">
-        <div class="form-group">
-            <label>Naam: <input type="text" ng-model="patentformule.Nederlands" autofocus /></label><br>
-            <label>Engels: <input type="text" ng-model="patentformule.Engels" /></label><br>
-            <label>Pinjin: <input type="text" ng-model="patentformule.Pinjin" /></label><br>
-            <label>Werking: <input type="text" ng-model="patentformule.Werking" /></label><br>
-            <label>Tong: <input type="text" ng-model="patentformule.Tong" /></label><br>
-            <label>Pols: <input type="text" ng-model="patentformule.Pols" /></label><br>
-            <label>Contra Indicaties: <input type="text" ng-model="patentformule.ContraIndicaties" /></label><br>
-        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Kruiden">
+                <md-content class="md-padding">
+                    <div class="col-5">
+                        <h1>Kruid Toevoegen</h1>
+                        <div>
+                            <md-autocomplete md-selected-item="selectedChineseKruid" ng-disabled="isDisabled"
+                                md-no-cache="noCache" md-search-text-change="searchTextChange(searchChineesKruid)"
+                                md-search-text="searchChineesKruid"
+                                md-selected-item-change="selectedItemChangeChineesKruid(chineesKruid)"
+                                md-items="chineesKruid in querySearch(searchChineesKruid, 'chineesKruid')"
+                                md-item-text="chineesKruid.Pinjin" md-min-length="0" placeholder="Selecteer een optie">
+                                <md-item-template>
+                                    <span md-highlight-text="searchChineesKruid"
+                                        md-highlight-flags="^i">{{chineesKruid.Pinjin}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    Geen Chinese kruiden gevonden met de naam: "{{searchChineesKruid}}".
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
 
-        <br>
-        <!-- Chinese Kruiden Toevoegen -->
-        <div class="form-group row">
-            <div class="col-5">
-                <h1>Kruid Toevoegen</h1>
-                <div>
-                    <md-autocomplete md-selected-item="selectedChineseKruid" ng-disabled="isDisabled"
-                        md-no-cache="noCache" md-search-text-change="searchTextChange(searchChineesKruid)"
-                        md-search-text="searchChineesKruid"
-                        md-selected-item-change="selectedItemChangeChineesKruid(chineesKruid)"
-                        md-items="chineesKruid in querySearch(searchChineesKruid, 'chineesKruid')"
-                        md-item-text="chineesKruid.Pinjin" md-min-length="0" placeholder="Selecteer een optie">
-                        <md-item-template>
-                            <span md-highlight-text="searchChineesKruid"
-                                md-highlight-flags="^i">{{chineesKruid.Pinjin}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            Geen Chinese kruiden gevonden met de naam: "{{searchChineesKruid}}".
-                        </md-not-found>
-                    </md-autocomplete>
-                </div>
-
-                <!-- Maak hier een tabel met de aangevinkte symptomen -->
-                <table>
-                    <tr>
-                        <th>Kruid</th>
-                        <th>Verhouding</th>
-                    </tr>
-                    <tr ng-repeat="k in selectedChineseKruiden">
-                        <td>{{k.Pinjin}} </td>
-                        <td><input type="text" placeholder="Voer een verhouding in"></td>
-                        <a class="btn btn-primary" ng-click="test()">Delete</a>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-2"></div>
-
-            <!-- Symptomen Toevoegen -->
-            <div class="col-5">
-                <h1>Symptoom Toevoegen</h1>
-                <md-autocomplete md-selected-item="selectedSymptoom" ng-disabled="isDisabled" md-no-cache="noCache"
-                    md-search-text-change="searchTextChange(searchSymptoom)" md-search-text="searchSymptoom"
-                    md-selected-item-change="selectedItemChangeSymptoom(symptoom)"
-                    md-items="symptoom in querySearch(searchSymptoom, 'symptoom')" md-item-text="symptoom.Naam"
-                    md-min-length="0" placeholder="Selecteer een optie" ng-model-options=" {debounce: 200}">
-                    <md-item-template>
-                        <span md-highlight-text="searchSymptoom" md-highlight-flags="^i">{{symptoom.Naam}}</span>
-                    </md-item-template>
-                    <md-not-found>
-                        Geen kruiden gevonden met de naam: "{{searchSymptoom}}".
-                    </md-not-found>
-                </md-autocomplete>
-
-                <!-- Maak hier een tabel met de aangevinkte symptomen -->
-                <table>
-                    <tr>
-                        <th>Symptoom</th>
-                    </tr>
-                    <tr ng-repeat="s in selectedSymptomen">
-                        <td>{{s.Naam}} <a class="btn btn-primary" ng-click="test()">Delete</a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <br>
-        <button class="col align-self-end btn btn-primary" ng-click="updatePatentFormule(patentformule)">
-            Sla deze patentformule op
-        </button>
-    </form>
+                        <table>
+                            <tr>
+                                <th>Kruid</th>
+                                <th>Verhouding</th>
+                            </tr>
+                            <tr ng-repeat="k in selectedChineseKruiden">
+                                <td>{{k.Pinjin}} </td>
+                                <td><input type="text" placeholder="Voer een verhouding in"></td>
+                                <a class="btn btn-primary" ng-click="test()">Delete</a>
+                            </tr>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
 </div>

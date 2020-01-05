@@ -16,11 +16,19 @@ app.controller('AddPatentFormuleController', ['$routeParams', '$scope', '$locati
         "Naam": ""
     }
 
+
     // console.log($scope.chineseKruiden);
 
     $scope.selectedChineseKruiden = [];
     $scope.selectedSymptomen = [];
 
+    $scope.removeSymptoom = function (symptoom) {
+        let position = $scope.selectedSymptomen.indexOf(symptoom)
+
+        if ($scope.selectedSymptomen.includes(symptoom)) {
+            $scope.selectedSymptomen.splice(position, 1);
+        }
+    }
     $scope.selectedItemChangeChineesKruid = function (chineesKruid) {
         if (chineesKruid != undefined) {
             if (chineesKruid.Pinjin != "" && !$scope.selectedChineseKruiden.includes(chineesKruid.Pinjin)) {

@@ -6,8 +6,8 @@
     <title>Chinese Gezondheidsleer</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="./styles.css" />
 
     <!-- materialize -->
     <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
@@ -27,31 +27,31 @@
     <!-- Toolbar -->
 
     <!-- Main Content -->
-    <div ng-controller="MainController as main" layout="column" style="height:100%;" ng-cloak>
+    <div ng-controller="MainController as main" layout="column" layout-fill style="height:100%;" ng-cloak>
         <!-- Toolbar -->
-        <nav id="titlebar" class="navbar">
-            <div id="drag-region">
-                <div id="window-title">
-                    <p class="windows-title">Chinese Gezondheidsleer</p>
+        <nav class="nav">
+            <div style="height: 64px;">
+                <div class="drag-region">
+                    <span class="windows-title">Chinese Gezondheidsleer</span>
                 </div>
-                <div id="window-controls">
-                    <div class="button" id="min-button">
-                        <span>&#xE921;</span>
-                    </div>
-                    <div class="dummy">
-                        <span>&#xE922;</span>
-                    </div>
-                    <div class="button" id="close-button">
-                        <span>&#xE8BB;</span>
-                    </div>
+            </div>
+            <div id="window-controls">
+                <div class="button" id="min-button">
+                    <span>&#xE921;</span>
+                </div>
+                <div class="dummy">
+                    <span>&#xE922;</span>
+                </div>
+                <div class="button" id="close-button">
+                    <span>&#xE8BB;</span>
                 </div>
             </div>
         </nav>
 
-        <section layout="row" flex>
+        <div layout="row" style="height: 100%;">
 
             <!-- Side nav -->
-            <md-sidenav class="sidebarnav" md-component-id="left" md-is-locked-open="true">
+            <md-sidenav md-component-id="left" layout="column" md-is-locked-open="true">
                 <header>
                     <img class="logo" src="assets/img/icon.png" />
                 </header>
@@ -65,56 +65,52 @@
             </md-sidenav>
 
             <!-- Content on screen -->
-            <md-content flex ng-view>
-                <!-- <div flex class="view-animate-container">
-                    <div class="view-animate">
-                    </div>
-                </div> -->
-                <div flex></div>
+            <md-content flex layout="column">
+                <ng-view flex>
+
+                </ng-view>
             </md-content>
 
-        </section>
-
-    </div>
+        </div>
 
 
 
-    <script src="renderer.js"></script>
+        <script src="renderer.js"></script>
 
-    <!-- Routes & Main -->
-    <script src="app/app.modules.js"></script>
-    <script src="app/app.routes.js"></script>
+        <!-- Routes & Main -->
+        <script src="app/app.modules.js"></script>
+        <script src="app/app.routes.js"></script>
 
-    <!-- Models -->
-    <script src="app/models/AddDataModel.js"></script>
-    <script src="app/models/KruidenModel.js"></script>
-    <script src="app/models/PatentFormulesModel.js"></script>
-    <script src="app/models/KruidenFormulesModel.js"></script>
-    <script src="app/models/SyndromenModel.js"></script>
-    <script src="app/models/SymptomenModel.js"></script>
-    <script src="app/models/ChineseKruidenModel.js"></script>
+        <!-- Models -->
+        <script src="app/models/AddDataModel.js"></script>
+        <script src="app/models/KruidenModel.js"></script>
+        <script src="app/models/PatentFormulesModel.js"></script>
+        <script src="app/models/KruidenFormulesModel.js"></script>
+        <script src="app/models/SyndromenModel.js"></script>
+        <script src="app/models/SymptomenModel.js"></script>
+        <script src="app/models/ChineseKruidenModel.js"></script>
 
-    <!-- Controllers -->
-    <script src="app/controllers/MainController.js"></script>
-    <script src="app/controllers/KruidenController.js"></script>
-    <script src="app/controllers/KruidenFormulesController.js"></script>
-    <script src="app/controllers/KruidenFormulesViewController.js"></script>
-    <script src="app/controllers/KruidenViewController.js"></script>
-    <script src="app/controllers/PatentFormulesController.js"></script>
-    <script src="app/controllers/PatentFormulesViewController.js"></script>
-    <script src="app/controllers/SyndromenController.js"></script>
-    <script src="app/controllers/SyndromenViewController.js"></script>
+        <!-- Controllers -->
+        <script src="app/controllers/MainController.js"></script>
+        <script src="app/controllers/KruidenController.js"></script>
+        <script src="app/controllers/KruidenFormulesController.js"></script>
+        <script src="app/controllers/KruidenFormulesViewController.js"></script>
+        <script src="app/controllers/KruidenViewController.js"></script>
+        <script src="app/controllers/PatentFormulesController.js"></script>
+        <script src="app/controllers/PatentFormulesViewController.js"></script>
+        <script src="app/controllers/SyndromenController.js"></script>
+        <script src="app/controllers/SyndromenViewController.js"></script>
 
-    <!-- Admin Controllers -->
-    <script src="app/controllers/adminControllers/AddDataController.js"></script>
-    <script src="app/controllers/adminControllers/AddKruidController.js"></script>
-    <script src="app/controllers/adminControllers/AddKruidenFormuleController.js"></script>
-    <script src="app/controllers/adminControllers/AddPatentFormuleController.js"></script>
-    <script src="app/controllers/adminControllers/AddSyndromenController.js"></script>
-    <script src="app/controllers/adminControllers/AddChineesKruidController.js"></script>
-    <script src="app/controllers/adminControllers/AddSymptoomController.js"></script>
+        <!-- Admin Controllers -->
+        <script src="app/controllers/adminControllers/AddDataController.js"></script>
+        <script src="app/controllers/adminControllers/AddKruidController.js"></script>
+        <script src="app/controllers/adminControllers/AddKruidenFormuleController.js"></script>
+        <script src="app/controllers/adminControllers/AddPatentFormuleController.js"></script>
+        <script src="app/controllers/adminControllers/AddSyndromenController.js"></script>
+        <script src="app/controllers/adminControllers/AddChineesKruidController.js"></script>
+        <script src="app/controllers/adminControllers/AddSymptoomController.js"></script>
 
-    <!-- Custom Directives -->
+        <!-- Custom Directives -->
 </body>
 
 </html>

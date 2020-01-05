@@ -39,4 +39,36 @@ class PatentFormulesModel {
             "WHERE ChineseKruidenEnPatentFormules.PatentFormuleId = ?");
         return stmt.all(id);
     }
+
+    GetPatentFormuleByNederlands(name) {
+        let stmt = db.prepare("SELECT * FROM PatentFormules WHERE Nederlands = ?")
+
+        let status = stmt.get(name);
+        if (status === undefined) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    GetPatentFormuleByEngels(name) {
+        let stmt = db.prepare("SELECT * FROM PatentFormules WHERE Engels = ?")
+
+        let status = stmt.get(name);
+        if (status === undefined) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    GetPatentFormuleByPinjin(name) {
+        let stmt = db.prepare("SELECT * FROM PatentFormules WHERE Pinjin = ?")
+
+        let status = stmt.get(name);
+        if (status === undefined) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -1,16 +1,22 @@
-<div class="input-field">
-    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
-    <label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
+<div>
+    <div>
+        <md-input-container class="md-block" style="margin-bottom: 0px;">
+            <label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
+            <input id="inputField" type="text" ng-model="search" ng-model-options="{debounce: 50}" autofocus></input>
+        </md-input-container>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Nederlandse Naam</th>
+                <th>Latijnse Naam</th>
+                <th>Thermische Waarde</th>
+            </tr>
+            <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
+                <td>{{kruid.Nederlands}}</td>
+                <td>{{kruid.Latijns}}</td>
+                <td>{{kruid.ThermischeWaarde}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
-<table>
-    <tr>
-        <th>Nederlandse Naam</th>
-        <th>Latijnse Naam</th>
-        <th>Thermische Waarde</th>
-    </tr>
-    <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
-        <td>{{kruid.Nederlands}}</td>
-        <td>{{kruid.Latijns}}</td>
-        <td>{{kruid.ThermischeWaarde}}</td>
-    </tr>
-</table>

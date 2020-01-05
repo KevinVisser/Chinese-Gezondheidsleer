@@ -1,4 +1,30 @@
-<div class="container-fluid" ng-controller="AddKruidenFormuleController">
+<div ng-controller="AddPatentFormuleController">
+    <!-- <form novalidate ng-submit="updatePatentFormule(patentformule, patentFormuleForm)" name="patentFormuleForm"
+        style="height: 100%"> -->
+    <md-content>
+        <md-tabs md-dynamic-height md-center-tabs>
+            <md-tab label="Algemeen">
+                <md-content class="md-padding">
+
+                </md-content>
+            </md-tab>
+            <md-tab label="Werking">
+                <md-content class="md-padding">
+                </md-content>
+            </md-tab>
+            <md-tab label="Symptomen">
+                <md-content class="md-padding">
+                </md-content>
+            </md-tab>
+            <md-tab label="Kruiden">
+                <md-content class="md-padding">
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
+
+<!-- <div class="container-fluid" ng-controller="AddKruidenFormuleController">
     <h1 class="text-center">Voeg een kruidenformule toe</h1>
     <form ng-submit="$event.preventDefault()">
         <div class=" form-group">
@@ -6,7 +32,8 @@
             <label>Werking: <input type="text" ng-model="kruidenformule.Werking" /></label><br>
             <label>Contra Indicaties: <input type="text" ng-model="kruidenformule.ContraIndicatie" /></label><br>
         </div>
-        <!-- Kruiden Toevoegen -->
+        
+        
         <div class="form-group row">
             <div class="col-5">
                 <h1>Kruidenformule Toevoegen</h1>
@@ -25,7 +52,7 @@
                     </md-autocomplete>
                 </div>
 
-                <!-- Maak hier een tabel met de aangevinkte symptomen -->
+                
                 <table>
                     <tr>
                         <th>Kruid</th>
@@ -37,7 +64,7 @@
             </div>
             <div class="col-2"></div>
 
-            <!-- Symptomen Toevoegen -->
+            
             <div class="col-5">
                 <h1>Symptoom Toevoegen</h1>
                 <md-autocomplete md-selected-item="selectedSymptoom" ng-disabled="isDisabled" md-no-cache="noCache"
@@ -53,7 +80,7 @@
                     </md-not-found>
                 </md-autocomplete>
 
-                <!-- Maak hier een tabel met de aangevinkte symptomen -->
+                
                 <table>
                     <tr>
                         <th>Symptoom</th>
@@ -69,4 +96,4 @@
             Sla deze kruidenformule op
         </button>
     </form>
-</div>
+</div> -->

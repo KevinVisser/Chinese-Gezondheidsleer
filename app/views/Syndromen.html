@@ -1,18 +1,18 @@
 <div class="input-field">
     <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
     <label for="inputField">Zoek op syndroom, tong, pols of symptoom</label>
+    <table>
+        <tr>
+            <th>Syndroom</th>
+            <th>Tong</th>
+            <th>Pols</th>
+            <th>Symptoom</th>
+        </tr>
+        <tr ng-repeat="s in syndromen | filter:search" ng-click="GoToView(s.Id)">
+            <td>{{s.Naam}}</td>
+            <td>{{s.Tong}}</td>
+            <td>{{s.Pols}}</td>
+            <td>{{s.Symptoom}}</td>
+        </tr>
+    </table>
 </div>
-<table>
-    <tr>
-        <th>Syndroom</th>
-        <th>Tong</th>
-        <th>Pols</th>
-       <th>Symptoom</th>
-    </tr>
-    <tr ng-repeat="s in syndromen | filter:search" ng-click="GoToView(s.Id)">
-        <td>{{s.Naam}}</td>
-        <td>{{s.Tong}}</td>
-        <td>{{s.Pols}}</td>
-        <td>{{s.Symptoom}}</td>
-    </tr>
-</table>

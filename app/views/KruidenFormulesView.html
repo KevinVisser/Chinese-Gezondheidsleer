@@ -1,46 +1,50 @@
-<div class="input-field">
-    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(Kruiden)"></input>
-    <label for="inputField">Zoek op kruidenformule, kruidnaam(nederlands of latijns) of op symptoom</label>
-</div>
-<div class="basicData">
-    <p><b>Kruidenformule: </b>{{kruidenFormules.Naam}}</p>
-</div>
-<div class="tabBody">
-    <div class="row" style="margin-left: 5px; padding-right: 5px;">
-        <div class="syndroom keep-styling col s6 border">
-            <h4>Syndroom / Indicaties</h4>
-            <p>{{kruidenFormules.Syndroom}}</p>
-        </div>
-        <div class="col s1"></div>
-        <div class="aantekeningen col s5 border">
-            <h4>Aantekeningen</h4>
-            <p class="make-scroll"></p>
-        </div>
+<div>
+    <div class="input-field">
+        <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}"
+            ng-click="GoToView(Kruiden)"></input>
+        <label for="inputField">Zoek op kruidenformule, kruidnaam(nederlands of latijns) of op symptoom</label>
     </div>
-    <div class="row">
-        <div class="ingrediënten col s4">
-            <p><b>Ingrediënten:</b></p>
-            <table>
+    <div class="basicData">
+        <p><b>Kruidenformule: </b>{{kruidenFormules.Naam}}</p>
+    </div>
+    <div class="tabBody">
+        <div class="row" style="margin-left: 5px; padding-right: 5px;">
+            <div class="syndroom keep-styling col s6 border">
+                <h4>Syndroom / Indicaties</h4>
+                <p>{{kruidenFormules.Syndroom}}</p>
+            </div>
+            <div class="col s1"></div>
+            <div class="aantekeningen col s5 border">
+                <h4>Aantekeningen</h4>
+                <p class="make-scroll"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="ingrediënten col s4">
+                <p><b>Ingrediënten:</b></p>
+                <table>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Verhouding</th>
+                    </tr>
+                    <tr ng-repeat="kruiden in kruiden">
+                        <td>{{kruiden.Nederlands}}</td>
+                        <td>{{kruiden.Verhouding}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col s1"></div>
+            <table class="col s7">
                 <tr>
-                    <th>Naam</th>
-                    <th>Verhouding</th>
+                    <th>Contra Indicatie</th>
+                    <td>{{kruidenFormules.ContraIndicatie}}</td>
                 </tr>
-                <tr ng-repeat="kruiden in kruiden">
-                    <td>{{kruiden.Nederlands}}</td>
-                    <td>{{kruiden.Verhouding}}</td>
+                <tr>
+                    <th>Werking</th>
+                    <td>{{kruidenFormules.Werking}}</td>
                 </tr>
             </table>
         </div>
-        <div class="col s1"></div>
-        <table class="col s7">
-            <tr>
-                <th>Contra Indicatie</th>
-                <td>{{kruidenFormules.ContraIndicatie}}</td>
-            </tr>
-            <tr>
-                <th>Werking</th>
-                <td>{{kruidenFormules.Werking}}</td>
-            </tr>
-        </table>
     </div>
+
 </div>
