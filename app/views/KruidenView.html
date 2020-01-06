@@ -1,4 +1,3 @@
-<!-- <input id="kruidId" type="hidden" value="{{kruid.Id}}"> -->
 <div class="input-field">
     <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(Kruiden)"></input>
     <label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
@@ -20,8 +19,8 @@
                     <div class="col s1"></div>
                     <div class="aantekeningen col s6 border">
                         <h4>Aantekeningen</h4>
-                        <textarea id="aantekeningText">{{kruid.message}}</textarea>
-                        <button ng-click="smessage()">Opslaan</button>
+                        <textarea id="aantekening" >{{kruid.message}}</textarea>
+                        <md-button class="md-raised md-primary col s6 offset-s3" ng-click="smessage()">Opslaan</md-button>
                     </div>
                 </div>
                 <div class="gebruikteDelen">

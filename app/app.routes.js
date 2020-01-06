@@ -38,7 +38,12 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             templateUrl: './app/views/SyndromenView.html',
             controller: 'SyndromenViewController',
         })
-        .when('/Kruiden/Edit/:KruidId', {
-            //Krijgt een edit pagina met een variabele edit=true,
+        .when('/ChineseKruiden', {
+            templateUrl: './app/views/ChineseKruiden.html',
+            controller: 'ChineseKruidenController',
+        })
+        .when('/ChineseKruiden/:ChineesKruidId', {
+            templateUrl: './app/views/ChineseKruidenView.html',
+            controller: 'ChineseKruidenViewController',
         })
 }])

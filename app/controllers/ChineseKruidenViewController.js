@@ -1,14 +1,12 @@
-var app = angular.module('KruidenFormulesViewController', ['ngRoute', 'myAppRouter'])
+var app = angular.module('ChineseKruidenViewController', ['ngRoute', 'myAppRouter']);
 
-app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    $scope.KruidenFormulesModel = new KruidenFormulesModel();
-    
-    $scope.kruidenFormules = $scope.KruidenFormulesModel.GetSpecificData($routeParams.KruidenFormuleId);
-    
-    $scope.kruiden = $scope.KruidenFormulesModel.GetKruidData($routeParams.KruidenFormuleId);
-    
-    var dir = "assets/aantekeningen/Kruidenformule/";
-    var bestand = $routeParams.KruidenFormuleId + ".txt";
+app.controller('ChineseKruidenViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+    this.KruidenModel = new ChineseKruidenModel();
+
+    $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.ChineesKruidId);
+
+    var dir = "assets/aantekeningen/ChineseKruiden/";
+    var bestand = $routeParams.ChineesKruidId + ".txt";
     
     $scope.smessage = function () {
         var aantekening = document.getElementById("aantekening").value;
@@ -33,11 +31,11 @@ app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$loc
         if (err) {
             console.log("rf: ", err);
         } else {
-            $scope.kruiden.message = contents;
+            $scope.kruid.message = contents;
         }
     });
 
     $scope.GoToView = function () {
-        $location.path('/KruidenFormules')
+        $location.path('/ChineseKruiden')
     }
 }]);

@@ -136,6 +136,7 @@ body {
     left: 0;
     background-color: #1A2933;
     overflow-x: hidden;
+    user-select: none;
 }
 
 .logo {
@@ -247,7 +248,8 @@ md-tabs {
 }
 
 .aantekeningen {
-    height: 300px;
+    /* height: 320px; */
+    height: 100%;
 }
 
 .tablePos {
@@ -261,4 +263,11 @@ md-tabs {
     right: 0px;
     background-color: white;
     height: 30px;
+}
+
+#aantekening {
+    height: 219px;
+    margin: 0px;
+    width: 382px;
+    resize: none;
 }

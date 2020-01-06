@@ -18,7 +18,9 @@ var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', [
     'AddSyndromenController',
     'AddSymptoomController',
     'AddChineesKruidController',
-    'SyndromenViewController'
+    'SyndromenViewController',
+    'ChineseKruidenController',
+    'ChineseKruidenViewController'
 ]);
 
 ChineseGezondheidsleer.directive('kruidDirective', function ($q, $timeout) {
