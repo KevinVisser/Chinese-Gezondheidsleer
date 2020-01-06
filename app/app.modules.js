@@ -24,6 +24,7 @@ var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', [
 ChineseGezondheidsleer.config(function ($mdIconProvider) {
     $mdIconProvider
         .iconSet('delete', './assets/icons/delete.svg', 24)
+        .iconSet('edit', './assets/icons/edit.svg', 24)
 });
 
 ChineseGezondheidsleer.directive('kruidDirective', function ($q, $timeout) {
@@ -69,6 +70,7 @@ ChineseGezondheidsleer.directive('kruidDirective', function ($q, $timeout) {
         }
     }
 });
+
 ChineseGezondheidsleer.directive('patentformuleDirective', function ($q, $timeout) {
     return {
         require: 'ngModel',
@@ -118,6 +120,82 @@ ChineseGezondheidsleer.directive('patentformuleDirective', function ($q, $timeou
                 var def = $q.defer();
 
                 if (patentFormuleModel.GetPatentFormuleByPinjin(modelValue)) {
+                    def.reject();
+                } else {
+                    def.resolve();
+                }
+
+                return def.promise;
+            };
+        }
+    }
+});
+
+ChineseGezondheidsleer.directive('kruidenformuleDirective', function ($q, $timeout) {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            let kruidenFormuleModel = new KruidenFormulesModel();
+
+            ctrl.$asyncValidators.Naam = function (modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty model valid
+                    return $q.resolve();
+                }
+
+                var def = $q.defer();
+
+                if (kruidenFormuleModel.GetKruidenFormuleByNaam(modelValue)) {
+                    def.reject();
+                } else {
+                    def.resolve();
+                }
+
+                return def.promise;
+            };
+        }
+    }
+});
+
+ChineseGezondheidsleer.directive('chineesKruidDirective', function ($q, $timeout) {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            let model = new ChineseKruidenModel();
+            ctrl.$asyncValidators.Latijn = function (modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty model valid
+                    return $q.resolve();
+                }
+
+                var def = $q.defer();
+
+                if (model.GetKruidByLatijn(modelValue)) {
+                    def.reject();
+                } else {
+                    def.resolve();
+                }
+
+                return def.promise;
+            };
+        }
+    }
+});
+
+ChineseGezondheidsleer.directive('symptoomDirective', function ($q, $timeout) {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            let model = new SymptomenModel();
+            ctrl.$asyncValidators.Naam = function (modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty model valid
+                    return $q.resolve();
+                }
+
+                var def = $q.defer();
+
+                if (model.GetSymptoomByNaam(modelValue)) {
                     def.reject();
                 } else {
                     def.resolve();

@@ -24,4 +24,15 @@ class KruidenFormulesModel {
             "WHERE KruidenFormulesEnKruiden.KruidenFormuleId = ?");
         return stmt.all(id);
     }
+
+    GetKruidenFormuleByNaam(name) {
+        let stmt = db.prepare("SELECT * FROM KruidenFormules WHERE Naam = ?")
+
+        let status = stmt.get(name);
+        if (status === undefined) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

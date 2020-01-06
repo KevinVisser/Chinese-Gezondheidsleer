@@ -61,6 +61,7 @@ class PatentFormulesModel {
             return true;
         }
     }
+
     GetPatentFormuleByPinjin(name) {
         let stmt = db.prepare("SELECT * FROM PatentFormules WHERE Pinjin = ?")
 

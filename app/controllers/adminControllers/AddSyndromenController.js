@@ -9,6 +9,7 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
         "Werking": "",
         "Tong": "",
         "Pols": "",
+        "Hoofdsymptoom": "",
         "ContraIndicaties": ""
     }
 
@@ -20,10 +21,64 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
 
     $scope.selectedKruidenFormules = [];
     $scope.selectedPatentFormules = [];
+    $scope.selectedSymptomen = [];
+    $scope.selectedHoofdSymptomen = [];
+    $scope.selectedFormules = [];
+
+    $scope.removeSymptoom = function (symptoom) {
+        let position = $scope.selectedSymptomen.indexOf(symptoom)
+        console.log(symptoom);
+
+        if ($scope.selectedSymptomen.includes(symptoom)) {
+            $scope.selectedSymptomen.splice(position, 1);
+        }
+    }
+
+    $scope.removeHoofdSymptoom = function (hoofdSymptoom) {
+        let position = $scope.selectedHoofdSymptomen.indexOf(hoofdSymptoom)
+        console.log(symptoom);
+
+        if ($scope.selectedHoofdSymptomen.includes(hoofdSymptoom)) {
+            $scope.selectedHoofdSymptomen.splice(position, 1);
+        }
+    }
+
+    $scope.removeKruidenFormule = function (kruidenformule) {
+        let position = $scope.selectedKruidenFormules.indexOf(kruidenformule)
+
+        if ($scope.selectedKruidenFormules.includes(kruidenformule)) {
+            $scope.selectedKruidenFormules.splice(position, 1);
+        }
+    }
+
+    $scope.removePatentFormule = function (patentformule) {
+        let position = $scope.selectedPatentFormules.indexOf(patentformule)
+
+        if ($scope.selectedPatentFormules.includes(patentformule)) {
+            $scope.selectedPatentFormules.splice(position, 1);
+        }
+    }
+
+    $scope.selectedItemChangeSymptoom = function (symptoom) {
+        if (symptoom != undefined) {
+            if (symptoom.Naam != "" && !$scope.selectedSymptomen.includes(symptoom)) {
+                $scope.selectedSymptomen.push(symptoom);
+            }
+        }
+    }
+
+    $scope.selectedItemChangeHoofdSymptoom = function (hoofdSymptoom) {
+        if (hoofdSymptoom != undefined) {
+            if (hoofdSymptoom.Naam != "" && !$scope.selectedSymptomen.includes(hoofdSymptoom)) {
+
+                $scope.selectedHoofdSymptomen.push(hoofdSymptoom.Naam);
+            }
+        }
+    }
 
     $scope.selectedItemChangeKruidenFormule = function (kruidenFormule) {
         if (kruidenFormule != undefined) {
-            if (kruidenFormule.Naam != "" && !$scope.selectedKruidenFormules.includes(kruidenFormule.Naam)) {
+            if (kruidenFormule.Naam != "" && !$scope.selectedKruidenFormules.includes(kruidenFormule)) {
                 $scope.selectedKruidenFormules.push(kruidenFormule);
             }
         }
@@ -31,27 +86,38 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
 
     $scope.selectedItemChangePatentFormule = function (patentFormule) {
         if (patentFormule != undefined) {
-            if (patentFormule.Pinjin != "" && !$scope.selectedPatentFormules.includes(patentFormule.Pinjin)) {
+            if (patentFormule.Pinjin != "" && !$scope.selectedPatentFormules.includes(patentFormule)) {
                 $scope.selectedPatentFormules.push(patentFormule);
             }
         }
     }
-
-    $scope.updateSyndroom = function (patentformule) {
+    $scope.updateSyndroom = function (syndroom) {
         // gebruik selectedKruiden | selectedSymptomen
         // Eerst kruidenformule inserten in de database en het niewe id terugkrijgen
-        console.log(patentformule);
-        console.log($scope.selectedKruidenFormules);
-        console.log($scope.selectedPatentFormules);
+        // console.log(syndroom);
+        // console.log($scope.selectedKruidenFormules);
+        // console.log($scope.selectedPatentFormules);
 
-        // let id = $scope.addDataModel.InsertIntoPatentFormules(patentformule);
-        // console.log(id);
+        // $scope.selectedFormules.Patenformules = $scope.selectedPatentFormules;
+        // $scope.selectedFormules.KruidenFormules = $scope.selectedKruidenFormules;
+        // console.log($scope.selectedHoofdSymptomen);
+        // console.log($scope.selectedHoofdSymptomen.join(", "));
 
-        // // Daarna de kruidenFormuleEnKruiden vullen
-        // $scope.addDataModel.InsertIntoChineseKruidenEnPatentFormules(id, $scope.selectedChineseKruiden);
+        $scope.syndroom.Hoofdsymptoom = $scope.selectedHoofdSymptomen.join(", ")
 
-        // // Daarna de kruidenformuleEnSymptomen vullen
-        // $scope.addDataModel.InsertIntoPatentFormulesEnSymptomen(id, $scope.selectedSymptomen);
+
+        // console.log($scope.selectedFormules);
+
+        //Insert syndroom into syndromen table
+        let id = $scope.addDataModel.InsertIntoSyndromen(syndroom);
+        console.log(id);
+
+        // Daarna de ActieFormules vullen
+        $scope.addDataModel.InsertIntoActieFormules(id, $scope.selectedPatentFormules, $scope.selectedKruidenFormules);
+
+        console.log(id);
+        // Daarna de kruidenformuleEnSymptomen vullen
+        $scope.addDataModel.InsertIntoSyndromenEnSymptomen(id, $scope.selectedSymptomen);
     }
 
     $scope.querySearch = function (query, type) {
@@ -63,6 +129,10 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
                 break;
             case 'patentformule':
                 var results = query ? $scope.patentFormules.filter(createFilterFor(query, type)) : $scope.patentFormules,
+                    deferred;
+                break;
+            case 'symptoom':
+                var results = query ? $scope.symptomen.filter(createFilterFor(query, type)) : $scope.symptomen,
                     deferred;
                 break;
             default:
@@ -92,6 +162,10 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
             case 'patentformule':
                 return function filterFn(patentFormules) {
                     return (patentFormules.Pinjin.toLowerCase().indexOf(lowercaseQuery) === 0);
+                };
+            case 'symptoom':
+                return function filterFn(symptomen) {
+                    return (symptomen.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);
                 };
             default:
                 break;

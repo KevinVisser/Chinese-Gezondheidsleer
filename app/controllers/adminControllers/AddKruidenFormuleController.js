@@ -13,10 +13,25 @@ app.controller('AddKruidenFormuleController', ['$routeParams', '$scope', '$locat
     }
 
 
-
     $scope.selectedKruiden = [];
     $scope.selectedSymptomen = [];
 
+    $scope.removeSymptoom = function (symptoom) {
+        let position = $scope.selectedSymptomen.indexOf(symptoom)
+        console.log(symptoom);
+
+        if ($scope.selectedSymptomen.includes(symptoom)) {
+            $scope.selectedSymptomen.splice(position, 1);
+        }
+    }
+
+    $scope.removeKruid = function (kruid) {
+        let position = $scope.selectedKruiden.indexOf(kruid)
+
+        if ($scope.selectedKruiden.includes(kruid)) {
+            $scope.selectedKruiden.splice(position, 1);
+        }
+    }
 
     $scope.selectedItemChangeKruid = function (kruid) {
         if (kruid != undefined) {
@@ -36,7 +51,7 @@ app.controller('AddKruidenFormuleController', ['$routeParams', '$scope', '$locat
 
     $scope.updateKruidenFormule = function (kruidenformule) {
         // gebruik selectedKruiden | selectedSymptomen
-        console.log(kruidenformule);
+        console.log($scope.selectedKruiden);
         // Eerst kruidenformule inserten in de database en het niewe id terugkrijgen
 
         let id = $scope.addDataModel.InsertIntoKruidenFormules(kruidenformule);

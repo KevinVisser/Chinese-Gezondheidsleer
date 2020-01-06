@@ -1,6 +1,6 @@
 <md-content ng-cloak flex>
-    <md-tabs class="md-primary" md-center-tabs md-border-bottom md-dynamic-height>
-        <md-tab aria-label="Kruid Toevoegen" label="Kruid" ng-click="toggleForm('Kruid')">
+    <md-tabs class="md-primary" md-center-tabs md-border-bottom md-dynamic-height md-enable-disconnect>
+        <md-tab md-no-ink aria-label="Kruid Toevoegen" label="Kruid" ng-click="toggleForm('Kruid')">
             <md-content flex>
                 <div ng-include='returnChosenForm()'></div>
             </md-content>

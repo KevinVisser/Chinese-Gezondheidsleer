@@ -5,7 +5,7 @@ app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location'
 
     $scope.syndromen = $scope.SyndromenModel.GetSpecificData($routeParams.SyndroomId);
     $scope.symptomen = $scope.SyndromenModel.GetSymptoomData($routeParams.SyndroomId);
-    $scope.formules  = $scope.SyndromenModel.GetFormules($routeParams.SyndroomId);    
+    $scope.formules = $scope.SyndromenModel.GetFormules($routeParams.SyndroomId);
 
     $scope.GoToView = function (id) {
         $location.path('/Syndromen');
@@ -18,7 +18,7 @@ app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location'
 
     $scope.GoToViewKF = function (id) {
         console.log(id);
-        
+
         $location.path('/KruidenFormules/' + id);
     }
 }]);

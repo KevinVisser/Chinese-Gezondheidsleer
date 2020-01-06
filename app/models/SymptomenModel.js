@@ -26,4 +26,15 @@ class SymptomenModel {
             "WHERE ChineseKruidenEnPatentFormules.PatentFormuleId = ?");
         return stmt.all(id);
     }
+
+    GetSymptoomByNaam(name) {
+        let stmt = db.prepare("SELECT * FROM Symptomen WHERE Naam = ?")
+
+        let status = stmt.get(name);
+        if (status === undefined) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -4,7 +4,7 @@ app.controller('KruidenController', ['$routeParams', '$scope', '$location', func
     $scope.kruidenModel = new KruidenModel();
 
     $scope.kruiden = $scope.kruidenModel.GetAllData();
-    console.log(__dirname, '/assets/img/icon.png');
+
     $scope.GoToView = function (id) {
         $location.path('/Kruiden/' + id)
     }

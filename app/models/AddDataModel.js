@@ -18,10 +18,10 @@ class AddDataModel {
 
     InsertIntoKruidenFormulesEnKruiden(kruidenformuleId, selectedKruiden) {
         console.log(selectedKruiden);
-        const insert = db.prepare('INSERT INTO KruidenFormulesEnKruiden (KruidenFormuleId, KruidenId) VALUES (?, @Id)')
+        const insert = db.prepare('INSERT INTO KruidenFormulesEnKruiden (KruidenFormuleId, KruidenId, Verhouding) VALUES (?, ?, ?)')
 
         for (const obj of selectedKruiden) {
-            insert.run(kruidenformuleId, obj)
+            insert.run(kruidenformuleId, obj.Id, obj.Verhouding)
         }
     }
 
@@ -44,10 +44,10 @@ class AddDataModel {
     }
 
     InsertIntoChineseKruidenEnPatentFormules(patentformuleId, selectedChineseKruiden) {
-        const insert = db.prepare('INSERT INTO ChineseKruidenEnPatentFormules (PatentFormuleId, KruidId) VALUES (?, @Id)')
+        const insert = db.prepare('INSERT INTO ChineseKruidenEnPatentFormules (PatentFormuleId, KruidId, Verhouding) VALUES (?, ?, ?)')
 
         for (const obj of selectedChineseKruiden) {
-            insert.run(patentformuleId, obj)
+            insert.run(patentformuleId, obj.Id, obj.Verhouding)
         }
     }
 
@@ -72,6 +72,7 @@ class AddDataModel {
         const insert = db.prepare('INSERT INTO ChineseKruidenEnSymptomen (ChineesKruidId, SymptoomId) VALUES (?, @Id)')
 
         for (const obj of selectedSymptomen) {
+            console.log(obj);
             insert.run(chineesKruidId, obj)
         }
     }
@@ -82,5 +83,53 @@ class AddDataModel {
         const info = insert.run(symptoom.Naam);
 
         console.log(info.lastInsertRowid);
+    }
+
+    // Syndromen
+    InsertIntoSyndromen(syndroom) {
+        let stmt = db.prepare('INSERT INTO Syndromen (Syndroom, Hoofdsymptoom, Tong, Pols, Actie, Acupunctuurpunten) VALUES (?, ?, ?, ?, ?, ?)');
+        const info = stmt.run(syndroom.Naam, syndroom.Hoofdsymptoom, syndroom.Tong, syndroom.Pols, syndroom.Actie, syndroom.Acupunctuurpunten);
+
+        console.log(info);
+        return info.lastInsertRowid;
+    }
+
+    InsertIntoActieFormules(syndroomId, selectedPatentFormules, selectedKruidenFormules) {
+        const both = db.prepare('INSERT INTO ActieFormules (SyndroomId, PatentFormuleId, KruidenFormuleId) VALUES (?, ?, ?)');
+        const patent = db.prepare('INSERT INTO ActieFormules (SyndroomId, PatentFormuleId) VALUES (?, ?)');
+        const kruiden = db.prepare('INSERT INTO ActieFormules (SyndroomId, KruidenFormuleId) VALUES (?, ?)');
+        console.log(selectedPatentFormules.length, selectedKruidenFormules.length);
+
+        let index = 0;
+        while (selectedPatentFormules.length > index || selectedKruidenFormules.length > index) {
+            console.log(selectedPatentFormules.length > index, selectedKruidenFormules.length > index);
+            // Als er evenveel items in de array staan
+            if (selectedPatentFormules.length == selectedKruidenFormules.length || (selectedPatentFormules.length > index && selectedKruidenFormules.length > index)) {
+                console.log("Het was gelijk");
+                both.run(syndroomId, selectedPatentFormules[index].Id, selectedKruidenFormules[index].Id)
+            } else {
+                console.log(index, selectedPatentFormules.length, selectedKruidenFormules.length);
+                // Als er meer items staan in de kruidenformule array
+                if (selectedPatentFormules.length <= index && selectedKruidenFormules.length > index) {
+                    console.log("KruidenFormule is groter");
+                    kruiden.run(syndroomId, selectedKruidenFormules[index].Id)
+                }
+
+                // Als er meer items staan in de patentformule array
+                if (selectedPatentFormules.length > index && selectedKruidenFormules.length <= index) {
+                    console.log("Patentformule is groter");
+                    patent.run(syndroomId, selectedPatentFormules[index].Id)
+                }
+            }
+            index++;
+        }
+    }
+
+    InsertIntoSyndromenEnSymptomen(syndroomId, selectedSymptomen) {
+        const insert = db.prepare('INSERT INTO SyndromenEnSymptomen (syndroomId, SymptoomId) VALUES (?, @Id)');
+
+        for (const obj of selectedSymptomen) {
+            insert.run(syndroomId, obj)
+        }
     }
 }

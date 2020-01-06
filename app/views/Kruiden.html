@@ -11,11 +11,16 @@
                 <th>Nederlandse Naam</th>
                 <th>Latijnse Naam</th>
                 <th>Thermische Waarde</th>
+                <th></th>
             </tr>
             <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
                 <td>{{kruid.Nederlands}}</td>
                 <td>{{kruid.Latijns}}</td>
                 <td>{{kruid.ThermischeWaarde}}</td>
+                <td>
+                    <md-icon class="customIcon" md-svg-icon="edit:edit" aria-label="edit">
+                    </md-icon>
+                </td>
             </tr>
         </table>
     </div>

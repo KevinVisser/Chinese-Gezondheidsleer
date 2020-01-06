@@ -17,8 +17,10 @@ app.controller('AddChineesKruidController', ['$routeParams', '$scope', '$locatio
     $scope.selectedSymptomen = [];
 
     $scope.updateChineesKruid = function (chineesKruid) {
+        //Insert into chinese kruiden table
         let id = $scope.addDataModel.InsertIntoChineseKruiden(chineesKruid)
 
+        //Insert selected symptoms in symptomen table
         $scope.addDataModel.InsertIntoChineseKruidenEnSymptomen(id, $scope.selectedSymptomen);
     }
 
