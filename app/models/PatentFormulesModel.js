@@ -40,6 +40,13 @@ class PatentFormulesModel {
         return stmt.all(id);
     }
 
+    GetSymptoomData(id) {
+        let stmt = db.prepare("SELECT Symptomen.Id, Symptomen.Naam FROM Symptomen " +
+            "INNER JOIN PatentFormulesEnSymptomen ON Symptomen.Id=PatentFormulesEnSymptomen.SymptoomId " +
+            "WHERE PatentFormulesEnSymptomen.PatentFormuleId = ?");
+        return stmt.all(id);
+    }
+
     GetPatentFormuleByNederlands(name) {
         let stmt = db.prepare("SELECT * FROM PatentFormules WHERE Nederlands = ?")
 

@@ -8,4 +8,8 @@ app.controller('KruidenController', ['$routeParams', '$scope', '$location', func
     $scope.GoToView = function (id) {
         $location.path('/Kruiden/' + id)
     }
+
+    $scope.GoToEdit = function (id) {
+        $location.path('/Admin/Edit/Kruid/' + id);
+    }
 }]);

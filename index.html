@@ -61,7 +61,8 @@
                     <a href="#!KruidenFormules">KruidenFormules</a>
                     <a href="#!Syndromen">Syndromen</a>
                     <hr>
-                    <a href="#!Admin">Admin</a>
+                    <a href="#!Admin/Add">Admin</a>
+                    <a href="#!Admin/Edit/ChineesKruid/6">Chinees Kruid</a>
                 </div>
             </md-sidenav>
 
@@ -90,6 +91,7 @@
         <script src="app/models/SyndromenModel.js"></script>
         <script src="app/models/SymptomenModel.js"></script>
         <script src="app/models/ChineseKruidenModel.js"></script>
+        <script src="app/models/UpdateDataModel.js"></script>
 
         <!-- Controllers -->
         <script src="app/controllers/MainController.js"></script>
@@ -103,13 +105,21 @@
         <script src="app/controllers/SyndromenViewController.js"></script>
 
         <!-- Admin Controllers -->
-        <script src="app/controllers/adminControllers/AddDataController.js"></script>
-        <script src="app/controllers/adminControllers/AddKruidController.js"></script>
-        <script src="app/controllers/adminControllers/AddKruidenFormuleController.js"></script>
-        <script src="app/controllers/adminControllers/AddPatentFormuleController.js"></script>
-        <script src="app/controllers/adminControllers/AddSyndromenController.js"></script>
-        <script src="app/controllers/adminControllers/AddChineesKruidController.js"></script>
-        <script src="app/controllers/adminControllers/AddSymptoomController.js"></script>
+        <!-- Add -->
+        <script src="app/controllers/adminControllers/Add/AddDataController.js"></script>
+        <script src="app/controllers/adminControllers/Add/AddKruidController.js"></script>
+        <script src="app/controllers/adminControllers/Add/AddKruidenFormuleController.js"></script>
+        <script src="app/controllers/adminControllers/Add/AddPatentFormuleController.js"></script>
+        <script src="app/controllers/adminControllers/Add/AddSyndromenController.js"></script>
+        <script src="app/controllers/adminControllers/Add/AddChineesKruidController.js"></script>
+        <script src="app/controllers/adminControllers/Add/AddSymptoomController.js"></script>
+
+        <!-- Edit -->
+        <script src="app/controllers/adminControllers/Edit/EditKruidenController.js"></script>
+        <script src="app/controllers/adminControllers/Edit/EditChineseKruidenController.js"></script>
+        <script src="app/controllers/adminControllers/Edit/EditKruidenFormuleController.js"></script>
+        <script src="app/controllers/adminControllers/Edit/EditPatentFormuleController.js"></script>
+        <script src="app/controllers/adminControllers/Edit/EditSyndromenController.js"></script>
 
         <!-- Custom Directives -->
 </body>

@@ -1,43 +1,46 @@
-var app = angular.module('AddChineesKruidController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
+var app = angular.module('EditChineseKruidenController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
-app.controller('AddChineesKruidController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    // Dit moet later verwijderd worden --> Moet in de form even validation toevoegen.
-    $scope.chineesKruid = {
-        "Pinjin": "",
-        "Engels": "",
-        "Latijn": "",
-        "ThermischeWerking": "",
-        "Smaak": "",
-        "Meridianen": "",
-        "Werking": "",
-        "ContraIndicaties": "",
-        "Dosering": ""
-    }
+app.controller('EditChineseKruidenController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+    $scope.updateModel = new UpdataDataModel();
+    $scope.chineseKruidenModel = new ChineseKruidenModel();
+    $scope.symptoomModel = new SymptomenModel();
 
-    $scope.selectedSymptomen = [];
+    let chineesKruidId = $routeParams.Id;
 
-    $scope.updateChineesKruid = function (chineesKruid) {
+    $scope.chineesKruid = $scope.chineseKruidenModel.GetSpecificKruid(chineesKruidId);
+    $scope.symptomen = $scope.symptoomModel.GetAllData();
+
+    $scope.selectedSymptomen = $scope.chineseKruidenModel.GetSymptoomData(chineesKruidId);
+
+    console.log($routeParams, chineesKruidId, $scope.selectedSymptomen);
+
+    $scope.updateChineesKruid = function (chineesKruid, form) {
         //Insert into chinese kruiden table
-        let id = $scope.addDataModel.InsertIntoChineseKruiden(chineesKruid)
+        if (form.$valid) {
+            $scope.updateModel.UpdateChineseKruiden(chineesKruidId, chineesKruid)
 
-        //Insert selected symptoms in symptomen table
-        $scope.addDataModel.InsertIntoChineseKruidenEnSymptomen(id, $scope.selectedSymptomen);
-    }
-
-    $scope.selectedItemChangeSymptoom = function (symptoom) {
-        console.log(symptoom);
-        if (symptoom != undefined) {
-            if (symptoom.Naam != "" && !$scope.selectedSymptomen.includes(symptoom)) {
-                $scope.selectedSymptomen.push(symptoom);
-            }
+            //Insert selected symptoms in symptomen table
+            $scope.updateModel.UpdateChineseKruidenEnSymptomen(chineesKruidId, $scope.selectedSymptomen, $scope.chineseKruidenModel.GetSymptoomData(chineesKruidId));
+        } else {
+            console.log("Invalid");
         }
+
     }
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)
+        console.log(symptoom);
 
         if ($scope.selectedSymptomen.includes(symptoom)) {
             $scope.selectedSymptomen.splice(position, 1);
+        }
+    }
+
+    $scope.selectedItemChangeSymptoom = function (symptoom) {
+        if (symptoom != undefined) {
+            if (symptoom.Naam != "" && !$scope.selectedSymptomen.includes(symptoom.Naam)) {
+                $scope.selectedSymptomen.push(symptoom);
+            }
         }
     }
 

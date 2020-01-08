@@ -2,9 +2,24 @@ var app = angular.module('myAppRouter', ['ngRoute'])
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
-        .when('/Admin', {
-            templateUrl: './app/views/adminViews/AddData.html',
+        .when('/Admin/Add', {
+            templateUrl: './app/views/AdminViews/Add/AddData.html',
             controller: 'AddDataController',
+        })
+        .when('/Admin/Edit/Kruid/:Id', {
+            templateUrl: './app/views/AdminViews/Edit/EditKruid.html'
+        })
+        .when('/Admin/Edit/KruidenFormule/:Id', {
+            templateUrl: './app/views/AdminViews/Edit/EditKruidenFormule.html'
+        })
+        .when('/Admin/Edit/PatentFormule/:Id', {
+            templateUrl: './app/views/AdminViews/Edit/EditPatentFormule.html'
+        })
+        .when('/Admin/Edit/ChineesKruid/:Id', {
+            templateUrl: './app/views/AdminViews/Edit/EditChineesKruid.html'
+        })
+        .when('/Admin/Edit/Syndroom/:Id', {
+            templateUrl: './app/views/AdminViews/Edit/EditSyndroom.html'
         })
         .when('/Kruiden', {
             templateUrl: './app/views/Kruiden.html',
@@ -37,5 +52,13 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         .when('/Syndromen/:SyndroomId', {
             templateUrl: './app/views/SyndromenView.html',
             controller: 'SyndromenViewController',
+        })
+        .when('/ChineseKruiden', {
+            templateUrl: './app/views/ChineseKruiden.html',
+            controller: 'ChineseKruidenController',
+        })
+        .when('/ChineseKruiden/:ChineesKruidId', {
+            templateUrl: './app/views/ChineseKruidenView.html',
+            controller: 'ChineseKruidenViewController',
         })
 }])

@@ -8,4 +8,8 @@ app.controller('SyndromenController', ['$routeParams', '$scope', '$location', fu
     $scope.GoToView = function (id) {
         $location.path('/Syndromen/' + id)
     }
+
+    $scope.GoToEdit = function (id) {
+        $location.path('/Admin/Edit/Syndroom/' + id);
+    }
 }]);

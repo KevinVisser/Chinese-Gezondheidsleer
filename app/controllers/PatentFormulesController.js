@@ -10,4 +10,8 @@ app.controller('PatentFormulesController', ['$routeParams', '$scope', '$location
         console.log(id);
         $location.path('/PatentFormules/' + id)
     }
+
+    $scope.GoToEdit = function (id) {
+        $location.path('/Admin/Edit/PatentFormule/' + id);
+    }
 }]);

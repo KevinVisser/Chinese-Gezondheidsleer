@@ -52,18 +52,22 @@ app.controller('AddPatentFormuleController', ['$routeParams', '$scope', '$locati
         }
     }
 
-    $scope.updatePatentFormule = function (patentformule) {
+    $scope.updatePatentFormule = function (patentformule, form) {
+        if (form.$valid) {
+            let id = $scope.addDataModel.InsertIntoPatentFormules(patentformule);
+            console.log(id);
+
+            // Daarna de kruidenFormuleEnKruiden vullen
+            $scope.addDataModel.InsertIntoChineseKruidenEnPatentFormules(id, $scope.selectedChineseKruiden);
+
+            // Daarna de kruidenformuleEnSymptomen vullen
+            $scope.addDataModel.InsertIntoPatentFormulesEnSymptomen(id, $scope.selectedSymptomen);
+        } else {
+            console.log("Invalid");
+        }
         // gebruik selectedKruiden | selectedSymptomen
         // Eerst kruidenformule inserten in de database en het niewe id terugkrijgen
 
-        let id = $scope.addDataModel.InsertIntoPatentFormules(patentformule);
-        console.log(id);
-
-        // Daarna de kruidenFormuleEnKruiden vullen
-        $scope.addDataModel.InsertIntoChineseKruidenEnPatentFormules(id, $scope.selectedChineseKruiden);
-
-        // Daarna de kruidenformuleEnSymptomen vullen
-        $scope.addDataModel.InsertIntoPatentFormulesEnSymptomen(id, $scope.selectedSymptomen);
     }
 
     $scope.querySearch = function (query, type) {

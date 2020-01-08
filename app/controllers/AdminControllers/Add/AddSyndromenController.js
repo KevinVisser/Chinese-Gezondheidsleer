@@ -91,33 +91,25 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
             }
         }
     }
-    $scope.updateSyndroom = function (syndroom) {
-        // gebruik selectedKruiden | selectedSymptomen
-        // Eerst kruidenformule inserten in de database en het niewe id terugkrijgen
-        // console.log(syndroom);
-        // console.log($scope.selectedKruidenFormules);
-        // console.log($scope.selectedPatentFormules);
+    $scope.updateSyndroom = function (syndroom, form) {
+        if (form.$valid) {
+            $scope.syndroom.Hoofdsymptoom = $scope.selectedHoofdSymptomen.join(", ")
 
-        // $scope.selectedFormules.Patenformules = $scope.selectedPatentFormules;
-        // $scope.selectedFormules.KruidenFormules = $scope.selectedKruidenFormules;
-        // console.log($scope.selectedHoofdSymptomen);
-        // console.log($scope.selectedHoofdSymptomen.join(", "));
+            //Insert syndroom into syndromen table
+            let id = $scope.addDataModel.InsertIntoSyndromen(syndroom);
+            console.log(id);
 
-        $scope.syndroom.Hoofdsymptoom = $scope.selectedHoofdSymptomen.join(", ")
+            // Daarna de ActieFormules vullen
+            $scope.addDataModel.InsertIntoActieFormules(id, $scope.selectedPatentFormules, $scope.selectedKruidenFormules);
+
+            console.log(id);
+            // Daarna de kruidenformuleEnSymptomen vullen
+            $scope.addDataModel.InsertIntoSyndromenEnSymptomen(id, $scope.selectedSymptomen);
+        } else {
+            console.log("Invalid");
+        }
 
 
-        // console.log($scope.selectedFormules);
-
-        //Insert syndroom into syndromen table
-        let id = $scope.addDataModel.InsertIntoSyndromen(syndroom);
-        console.log(id);
-
-        // Daarna de ActieFormules vullen
-        $scope.addDataModel.InsertIntoActieFormules(id, $scope.selectedPatentFormules, $scope.selectedKruidenFormules);
-
-        console.log(id);
-        // Daarna de kruidenformuleEnSymptomen vullen
-        $scope.addDataModel.InsertIntoSyndromenEnSymptomen(id, $scope.selectedSymptomen);
     }
 
     $scope.querySearch = function (query, type) {

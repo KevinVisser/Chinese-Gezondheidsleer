@@ -8,4 +8,8 @@ app.controller('KruidenFormulesController', ['$routeParams', '$scope', '$locatio
     $scope.GoToView = function (id) {
         $location.path('/KruidenFormules/' + id)
     }
+
+    $scope.GoToEdit = function (id) {
+        $location.path('/Admin/Edit/KruidenFormule/' + id);
+    }
 }]);

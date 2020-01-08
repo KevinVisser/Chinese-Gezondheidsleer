@@ -1,20 +1,22 @@
-var app = angular.module('AddKruidenFormuleController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
+var app = angular.module('EditKruidenFormuleController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
-app.controller('AddKruidenFormuleController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    // Dit moet later verwijderd worden --> Moet in de form even validation toevoegen.
-    $scope.kruidenformule = {
-        "Naam": "",
-        "Werking": "",
-        "ContraIndicatie": ""
-    }
+app.controller('EditKruidenFormuleController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+    // Models
+    $scope.updateModel = new UpdataDataModel();
+    $scope.kruidenModel = new KruidenModel();
+    $scope.kruidenFormuleModel = new KruidenFormulesModel();
+    $scope.symptoomModel = new SymptomenModel();
 
-    $scope.symptoom = {
-        "Naam": ""
-    }
+    // Variables
+    let kruidenFormuleId = $routeParams.Id;
 
+    $scope.symptomen = $scope.symptoomModel.GetAllData();
+    $scope.kruiden = $scope.kruidenModel.GetAllData();
 
-    $scope.selectedKruiden = [];
-    $scope.selectedSymptomen = [];
+    $scope.kruidenformule = $scope.kruidenFormuleModel.GetSpecificData(kruidenFormuleId);
+
+    $scope.selectedKruiden = $scope.kruidenFormuleModel.GetKruidData(kruidenFormuleId);
+    $scope.selectedSymptomen = $scope.kruidenFormuleModel.GetSymptoomData(kruidenFormuleId);
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)
@@ -49,19 +51,18 @@ app.controller('AddKruidenFormuleController', ['$routeParams', '$scope', '$locat
         }
     }
 
-    $scope.updateKruidenFormule = function (kruidenformule) {
-        // gebruik selectedKruiden | selectedSymptomen
-        console.log($scope.selectedKruiden);
-        // Eerst kruidenformule inserten in de database en het niewe id terugkrijgen
+    $scope.updateKruidenFormule = function (kruidenformule, form) {
+        if (form.$valid) {
+            $scope.updateModel.UpdateKruidenFormule(kruidenFormuleId, kruidenformule);
 
-        let id = $scope.addDataModel.InsertIntoKruidenFormules(kruidenformule);
-        console.log(id);
+            // // Daarna de kruidenFormuleEnKruiden vullen
+            $scope.updateModel.UpdateKruidenFormulesEnKruiden(kruidenFormuleId, $scope.selectedKruiden, $scope.kruidenFormuleModel.GetKruidData(kruidenFormuleId));
 
-        // Daarna de kruidenFormuleEnKruiden vullen
-        $scope.addDataModel.InsertIntoKruidenFormulesEnKruiden(id, $scope.selectedKruiden);
-
-        // Daarna de kruidenformuleEnSymptomen vullen
-        $scope.addDataModel.InsertIntoKruidenFormulesEnSymptomen(id, $scope.selectedSymptomen);
+            // Daarna de kruidenformuleEnSymptomen vullen
+            $scope.updateModel.UpdateKruidenFormulesEnSymptomen(kruidenFormuleId, $scope.selectedSymptomen, $scope.kruidenFormuleModel.GetSymptoomData(kruidenFormuleId));
+        } else {
+            console.log("Invalid");
+        }
     }
 
     $scope.querySearch = function (query, type) {

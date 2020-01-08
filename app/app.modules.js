@@ -18,7 +18,12 @@ var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', [
     'AddSyndromenController',
     'AddSymptoomController',
     'AddChineesKruidController',
-    'SyndromenViewController'
+    'SyndromenViewController',
+    'EditKruidenController',
+    'EditChineseKruidenController',
+    'EditPatentFormuleController',
+    'EditKruidenFormuleController',
+    'EditSyndromenController'
 ]);
 
 ChineseGezondheidsleer.config(function ($mdIconProvider) {

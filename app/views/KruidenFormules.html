@@ -7,12 +7,17 @@
             <th>Kruidnaam Nederlands</th>
             <th>Kruidnaam Latijns</th>
             <th>Symptomen</th>
+            <th></th>
         </tr>
-        <tr ng-repeat="kruidenformule in kruidenFormules | filter:search" ng-click="GoToView(kruidenformule.Id)">
-            <td>{{kruidenformule.Naam}}</td>
-            <td>{{kruidenformule.Nederlands}}</td>
-            <td>{{kruidenformule.Latijns}}</td>
-            <td>{{kruidenformule.Symptomen}}</td>
+        <tr ng-repeat="kruidenformule in kruidenFormules | filter:search">
+            <td ng-click="GoToView(kruidenformule.Id)">{{kruidenformule.Naam}}</td>
+            <td ng-click="GoToView(kruidenformule.Id)">{{kruidenformule.Nederlands}}</td>
+            <td ng-click="GoToView(kruidenformule.Id)">{{kruidenformule.Latijns}}</td>
+            <td ng-click="GoToView(kruidenformule.Id)">{{kruidenformule.Symptomen}}</td>
+            <td ng-click="GoToEdit(kruidenformule.Id)">
+                <md-icon class="customIcon" md-svg-icon="edit:edit" aria-label="edit">
+                </md-icon>
+            </td>
         </tr>
     </table>
 </div>

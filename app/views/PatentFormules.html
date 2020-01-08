@@ -7,12 +7,17 @@
             <th>Engels</th>
             <th>Pinjin</th>
             <th>Symptoom</th>
+            <th></th>
         </tr>
-        <tr ng-repeat="patentformule in patentFormules | filter:search" ng-click="GoToView(patentformule.Id)">
-            <td>{{patentformule.Nederlands}}</td>
-            <td>{{patentformule.Engels}}</td>
-            <td>{{patentformule.Pinjin}}</td>
-            <td>{{patentformule.Symptomen}}</td>
+        <tr ng-repeat="patentformule in patentFormules | filter:search">
+            <td ng-click="GoToView(patentformule.Id)">{{patentformule.Nederlands}}</td>
+            <td ng-click="GoToView(patentformule.Id)">{{patentformule.Engels}}</td>
+            <td ng-click="GoToView(patentformule.Id)">{{patentformule.Pinjin}}</td>
+            <td ng-click="GoToView(patentformule.Id)">{{patentformule.Symptomen}}</td>
+            <td ng-click="GoToEdit(patentformule.Id)">
+                <md-icon class="customIcon" md-svg-icon="edit:edit" aria-label="edit">
+                </md-icon>
+            </td>
         </tr>
     </table>
 </div>
