@@ -22,12 +22,26 @@ class SyndromenModel {
         return stmt.all(id);
     }
 
+    GetPatentFormuleData(id) {
+        let stmt = db.prepare("SELECT PatentFormules.Id, PatentFormules.Pinjin FROM PatentFormules " +
+            "INNER JOIN ActieFormules ON PatentFormules.Id=ActieFormules.PatentFormuleId " +
+            "WHERE ActieFormules.SyndroomId = ?");
+        return stmt.all(id);
+    }
+
+    GetKruidenFormuleData(id) {
+        let stmt = db.prepare("SELECT KruidenFormules.Id, KruidenFormules.Naam FROM KruidenFormules " +
+            "INNER JOIN ActieFormules ON KruidenFormules.Id=ActieFormules.KruidenFormuleId " +
+            "WHERE ActieFormules.SyndroomId = ?");
+        return stmt.all(id);
+    }
+
     GetFormules(id) {
         let stmt = db.prepare("SELECT PatentFormules.Id AS patentId, PatentFormules.Pinjin, KruidenFormules.Id AS kruidId, KruidenFormules.Naam " +
-        "FROM ActieFormules " +
-        "LEFT JOIN PatentFormules ON ActieFormules.PatentFormuleId = PatentFormules.Id " +
-        "LEFT JOIN KruidenFormules ON ActieFormules.KruidenFormuleId = KruidenFormules.Id " +
-        "WHERE SyndroomId = ?");
+            "FROM ActieFormules " +
+            "LEFT JOIN PatentFormules ON ActieFormules.PatentFormuleId = PatentFormules.Id " +
+            "LEFT JOIN KruidenFormules ON ActieFormules.KruidenFormuleId = KruidenFormules.Id " +
+            "WHERE SyndroomId = ?");
         return stmt.all(id);
     }
 }

@@ -283,4 +283,98 @@ class UpdataDataModel {
     }
 
     // Syndromen
+    UpdateSyndroom(id, updatedData) {
+        let stmt = db.prepare("UPDATE Syndromen SET Syndroom=?,Hoofdsymptoom=?,Tong=?,Pols=?,Actie=?,Acupunctuurpunten=? WHERE Id=?")
+
+        stmt.run(
+            updatedData.Naam,
+            updatedData.Hoofdsymptoom,
+            updatedData.Tong,
+            updatedData.Pols,
+            updatedData.Actie,
+            updatedData.Acupunctuurpunten,
+            id
+        )
+    }
+
+    UpdateActieFormules(syndroomId, selectedPatentFormules, selectedKruidenFormules) {
+        // Eerst kijken welke kruidenformules(Nederlands) en patentformules(pinjin) allemaal verwijderd/toegevoegd zijn.
+
+        let deleteAll = db.prepare("DELETE FROM ActieFormules WHERE SyndroomId = ?");
+
+        let insertBoth = db.prepare("INSERT INTO ActieFormules (SyndroomId, PatentFormuleId, KruidenFormuleId) VALUES (?,?,?)")
+        let insertKruid = db.prepare("INSERT INTO ActieFormules (SyndroomId, KruidenFormuleId) VALUES (?,?)")
+        let insertPatent = db.prepare("INSERT INTO ActieFormules (SyndroomId, PatentFormuleId) VALUES (?,?)")
+
+        // Delete references
+        deleteAll.run(syndroomId);
+
+        console.log(selectedPatentFormules.length, selectedKruidenFormules.length);
+
+        let index = 0;
+
+        // Als er nog wat ingevuld moet worden
+        while (selectedPatentFormules.length > index || selectedKruidenFormules.length > index) {
+            if (selectedPatentFormules.length == selectedKruidenFormules.length || (selectedPatentFormules.length > index && selectedKruidenFormules.length > index)) {
+                console.log("INSERT ------- Het was gelijk");
+                insertBoth.run(syndroomId, selectedPatentFormules[index].Id, selectedKruidenFormules[index].Id)
+            } else {
+                console.log(index, selectedPatentFormules.length, selectedKruidenFormules.length);
+                // Als er meer items staan in de kruidenformule array
+                if (selectedPatentFormules.length <= index && selectedKruidenFormules.length > index) {
+                    console.log("INSERT ------- KruidenFormule is groter");
+                    insertKruid.run(syndroomId, selectedKruidenFormules[index].Id)
+                }
+
+                // Als er meer items staan in de patentformule array
+                if (selectedPatentFormules.length > index && selectedKruidenFormules.length <= index) {
+                    console.log("INSERT ------- Patentformule is groter");
+                    insertPatent.run(syndroomId, selectedPatentFormules[index].Id)
+                }
+            }
+            index++;
+        }
+    }
+
+    UpdateSyndromenEnSymptomen(syndroomId, selectedSymptomen, currentSymptomen) {
+        let add = db.prepare("INSERT INTO SyndromenEnSymptomen (SyndroomId, SymptoomId) VALUES (?,?)");
+        let del = db.prepare("DELETE FROM SyndromenEnSymptomen WHERE SyndroomId=? AND SymptoomId=?");
+
+        console.log(selectedSymptomen, currentSymptomen);
+        let found;
+
+        let toegevoegd = [];
+        let verwijderd = [];
+
+        // Zit er iets in selected wat niet in current zit dan is er wat toegevoegd.
+        selectedSymptomen.forEach(element => {
+            for (let index = 0; index < currentSymptomen.length; index++) {
+                if (element.Naam == currentSymptomen[index].Naam) {
+                    found = true;
+                    break;
+                } else {
+                    found = false;
+                }
+            }
+            if (!found) {
+                add.run(syndroomId, element.Id);
+                toegevoegd.push(element);
+            }
+        });
+
+        currentSymptomen.forEach(element => {
+            for (let index = 0; index < selectedSymptomen.length; index++) {
+                if (element.Naam == selectedSymptomen[index].Naam) {
+                    found = true;
+                    break;
+                } else {
+                    found = false;
+                }
+            }
+            if (!found) {
+                del.run(syndroomId, element.Id);
+                verwijderd.push(element);
+            }
+        });
+    }
 }

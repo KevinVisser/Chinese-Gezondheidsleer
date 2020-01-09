@@ -23,7 +23,6 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
     $scope.selectedPatentFormules = [];
     $scope.selectedSymptomen = [];
     $scope.selectedHoofdSymptomen = [];
-    $scope.selectedFormules = [];
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)

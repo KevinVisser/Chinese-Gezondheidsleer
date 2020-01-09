@@ -59,9 +59,6 @@ app.controller('EditPatentFormuleController', ['$routeParams', '$scope', '$locat
         } else {
             console.log("Invalid");
         }
-        // gebruik selectedKruiden | selectedSymptomen
-        // Eerst kruidenformule inserten in de database en het niewe id terugkrijgen
-
     }
 
     $scope.querySearch = function (query, type) {
