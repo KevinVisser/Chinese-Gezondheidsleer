@@ -6,6 +6,10 @@ app.controller('AddSymptoomController', ['$routeParams', '$scope', '$location', 
         "Naam": ""
     }
 
+    // $scope.datamodel = new AddDataModel();
+
+    $scope.symptoomData = $scope.addDataModel.GetSymptomen();
+
     $scope.updateSymptoom = function (symptoom) {
         console.log("good");
         $scope.addDataModel.InsertIntoSymptomen(symptoom);

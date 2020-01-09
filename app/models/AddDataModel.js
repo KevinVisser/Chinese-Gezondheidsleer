@@ -87,4 +87,10 @@ class AddDataModel {
 
         console.log(info.lastInsertRowid);
     }
+
+    GetSymptomen() {
+        let stmt = db.prepare("SELECT Id, Naam FROM Symptomen");
+        
+        return stmt.all();
+    }
 }

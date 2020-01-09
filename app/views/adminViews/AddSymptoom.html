@@ -4,4 +4,10 @@
 
         <input type="submit" value="Save" ng-click="updateSymptoom(symptoom)">
     </form>
+    <md-virtual-repeat-container id="vertical-container" class="row">
+        <div md-virtual-repeat="d in symptoomData | filter:search" class="repeated-item" flex>
+            <span class="col s10">{{d.Naam}}</span>
+            <span class="col s2">d</span>
+        </div>
+    </md-virtual-repeat-container>
 </div>
