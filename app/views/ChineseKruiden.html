@@ -1,19 +1,22 @@
-<div class="inputFix"></div>
-<div class="input-field inputFixedPos">
-    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
-    <label for="inputField">Zoek op kruidnaam(pinjin, Engels of latijns) of op thermische waarde</label>
+<div>
+    <div class="inputFix"></div>
+    <div class="input-field inputFixedPos">
+        <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
+        <label for="inputField">Zoek op kruidnaam(pinjin, Engels of latijns) of op thermische waarde</label>
+    </div>
+    <table class="tablePos">
+        <tr>
+            <th>Pinjin</th>
+            <th>Engels</th>
+            <th>Latijns</th>
+            <th>Thermische Werking</th>
+        </tr>
+        <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
+            <td>{{kruid.Pinjin}}</td>
+            <td>{{kruid.Engels}}</td>
+            <td>{{kruid.Latijn}}</td>
+            <td>{{kruid.ThermischeWerking}}</td>
+        </tr>
+    </table>
+
 </div>
-<table class="tablePos">
-    <tr>
-        <th>Pinjin</th>
-        <th>Engels</th>
-        <th>Latijns</th>
-        <th>Thermische Werking</th>
-    </tr>
-    <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
-        <td>{{kruid.Pinjin}}</td>
-        <td>{{kruid.Engels}}</td>
-        <td>{{kruid.Latijn}}</td>
-        <td>{{kruid.ThermischeWerking}}</td>
-    </tr>
-</table>

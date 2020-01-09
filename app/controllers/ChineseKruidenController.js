@@ -5,6 +5,8 @@ app.controller('ChineseKruidenController', ['$routeParams', '$scope', '$location
 
     $scope.kruiden = $scope.kruidenModel.GetAllData();
 
+    console.log($scope.kruiden);
+
     $scope.GoToView = function (id) {
         $location.path('/ChineseKruiden/' + id)
     }
