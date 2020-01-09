@@ -1,3 +1,4 @@
+<div>
 <div class="input-field">
     <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(Kruiden)"></input>
     <label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
@@ -7,7 +8,7 @@
     <p><b>Engels: </b>{{kruid.Engels}}</p>
     <p><b>Latijns: </b>{{kruid.Latijn}}</p>
 </div>
-<md-tabs class="md-primary" md-center-tabs>
+<md-tabs class="md-primary" md-center-tabs md-dynamic-height>
     <md-tab label="Algemeen">
         <md-content class="md-padding">
             <div class="tabBody">
@@ -44,7 +45,7 @@
                     </tr>
                     <tr>
                         <th>Dosering</th>
-                        <td>{{kruid.Dosering}}}</td>
+                        <td>{{kruid.Dosering}}</td>
                     </tr>
                 </table>
             </div>
@@ -61,3 +62,4 @@
     </md-tab>
     </md-tab>
 </md-tabs>
+</div>

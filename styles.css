@@ -73,10 +73,6 @@ body {
     margin-left: 12px;
 }
 
-.ng-scope {
-    height: 100% !important;
-}
-
 #window-controls {
     display: grid;
     grid-template-columns: repeat(3, 46px);
@@ -324,3 +320,6 @@ md-virtual-repeat-container {
     padding-left: 16px; 
 }
 
+.aantekeningSp {
+    width: 318px !important;
+}
