@@ -5,6 +5,7 @@ const fs = require("fs");
 const db = require("better-sqlite3")("./resources/app.db");
 
 global.database = db;
+global.fs = fs;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -19,7 +20,7 @@ function createWindow() {
         backgroundColor: "#FFF",
         frame: false,
         resizable: false,
-        icon: path.join(__dirname, "./assets/img/icon.jpg"),
+        icon: path.join(__dirname, "./assets/img/icon.png"),
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(__dirname, "preload.js")

@@ -7,10 +7,35 @@ app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$loc
 
     $scope.kruiden = $scope.KruidenFormulesModel.GetKruidData($routeParams.KruidenFormuleId);
 
+    var dir = "assets/aantekeningen/Kruidenformule/";
+    var bestand = $routeParams.KruidenFormuleId + ".txt";
 
-    console.log($scope.kruidenFormules);
-    console.log($scope.kruiden);
+    $scope.smessage = function () {
+        var aantekening = document.getElementById("aantekening").value;
 
+        fs.readFile(bestand, function (err) {
+            try {
+                fs.writeFileSync(dir + bestand, aantekening);
+            } catch (err) {
+                console.log("wf2: ", err);
+            }
+        });
+    }
+
+    fs.readFile(dir + bestand, "UTF-8", function (err, contents) {
+        //check if dir exists        
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+        if (!fs.existsSync(dir + bestand)) {
+            fs.writeFileSync(dir + bestand, "");
+        }
+        if (err) {
+            console.log("rf: ", err);
+        } else {
+            $scope.kruiden.message = contents;
+        }
+    });
 
     $scope.GoToView = function () {
         $location.path('/KruidenFormules')

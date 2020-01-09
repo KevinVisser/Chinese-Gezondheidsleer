@@ -6,6 +6,8 @@ app.controller('AddSymptoomController', ['$routeParams', '$scope', '$location', 
         "Naam": ""
     }
 
+    $scope.symptoomData = $scope.addDataModel.GetSymptomen();
+
     $scope.updateSymptoom = function (symptoom, form) {
         if (form.$valid) {
             console.log("good");
@@ -14,6 +16,7 @@ app.controller('AddSymptoomController', ['$routeParams', '$scope', '$location', 
             console.log("Invalid");
         }
     }
+
 
     $scope.querySearch = function (query, type) {
         switch (type) {

@@ -2,7 +2,7 @@ class ChineseKruidenModel {
     constructor() { }
 
     GetAllData() {
-        let stmt = db.prepare("SELECT Id, Pinjin, Engels FROM ChineseKruiden");
+        let stmt = db.prepare("SELECT Id, Pinjin, Engels, Latijn, ThermischeWerking FROM ChineseKruiden");
         return stmt.all();
     }
 

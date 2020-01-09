@@ -1,19 +1,19 @@
-var app = angular.module('KruidenViewController', ['ngRoute', 'myAppRouter']);
+var app = angular.module('ChineseKruidenViewController', ['ngRoute', 'myAppRouter']);
 
-app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    this.KruidenModel = new KruidenModel();
+app.controller('ChineseKruidenViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+    this.KruidenModel = new ChineseKruidenModel();
 
-    $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.KruidId);
+    $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.ChineesKruidId);
 
-    var dir = "assets/aantekeningen/Kruiden/";
-    var bestand = $routeParams.KruidId + ".txt";
-
+    var dir = "assets/aantekeningen/ChineseKruiden/";
+    var bestand = $routeParams.ChineesKruidId + ".txt";
+    
     $scope.smessage = function () {
         var aantekening = document.getElementById("aantekening").value;
         
         fs.readFile(bestand, function(err) {
             try {
-                fs.writeFileSync(bestand, aantekening);
+                fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
                 console.log("wf2: ", err);
             }
@@ -33,9 +33,9 @@ app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', 
         } else {
             $scope.kruid.message = contents;
         }
-    });  
+    });
 
     $scope.GoToView = function () {
-        $location.path('/Kruiden')
+        $location.path('/ChineseKruiden')
     }
 }]);

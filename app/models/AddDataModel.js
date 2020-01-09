@@ -132,4 +132,10 @@ class AddDataModel {
             insert.run(syndroomId, obj)
         }
     }
+
+    GetSymptomen() {
+        let stmt = db.prepare("SELECT Id, Naam FROM Symptomen");
+
+        return stmt.all();
+    }
 }

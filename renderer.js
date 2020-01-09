@@ -7,6 +7,7 @@
 const remote = require("electron").remote;
 const ipcRenderer = require("electron").ipcRenderer;
 const db = remote.getGlobal("database");
+const fs = remote.getGlobal("fs");
 // const db2 = require("better-sqlite3")("./resources/app.db");
 //const stmt = db.prepare("SELECT id, Nederlands FROM Kruiden");
 
