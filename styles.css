@@ -73,9 +73,9 @@ body {
     margin-left: 12px;
 }
 
-.ng-scope {
+/* .ng-scope {
     height: 100% !important;
-}
+} */
 
 #window-controls {
     display: grid;
