@@ -14,14 +14,33 @@ class KruidenFormulesModel {
     }
 
     GetSpecificData(id) {
-        let stmt = db.prepare("SELECT Naam, Werking, Syndroom, ContraIndicatie FROM Kruidenformules WHERE Id = ?").get(id);
+        let stmt = db.prepare("SELECT * FROM Kruidenformules WHERE Id = ?").get(id);
         return stmt;
     }
 
     GetKruidData(id) {
-        let stmt = db.prepare("SELECT Kruiden.Nederlands, KruidenFormulesEnKruiden.Verhouding FROM Kruiden " +
+        let stmt = db.prepare("SELECT Kruiden.Id, Kruiden.Nederlands, KruidenFormulesEnKruiden.Verhouding FROM Kruiden " +
             "INNER JOIN KruidenFormulesEnKruiden ON Kruiden.Id=KruidenFormulesEnKruiden.KruidenId " +
             "WHERE KruidenFormulesEnKruiden.KruidenFormuleId = ?");
         return stmt.all(id);
+    }
+
+    GetSymptoomData(id) {
+        let stmt = db.prepare("SELECT Symptomen.Id, Symptomen.Naam FROM Symptomen " +
+            "INNER JOIN KruidenFormulesEnSymptomen ON Symptomen.Id=KruidenFormulesEnSymptomen.SymptoomId " +
+            "WHERE KruidenFormulesEnSymptomen.KruidenFormuleId = ?");
+
+        return stmt.all(id);
+    }
+
+    GetKruidenFormuleByNaam(name) {
+        let stmt = db.prepare("SELECT * FROM KruidenFormules WHERE Naam = ?")
+
+        let status = stmt.get(name);
+        if (status === undefined) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

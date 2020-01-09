@@ -1,0 +1,109 @@
+<div ng-controller="EditKruidenController" class="md-inline-form md-whiteframe-z1" ng-cloak>
+    <form novalidate ng-submit="updateKruid(kruid)">
+        <md-content>
+            <md-tabs class=" md-primary" md-dynamic-height md-center-tabs>
+                <md-tab label="Algemeen">
+                    <md-content class="md-padding">
+                        <div class="row">
+                            <div class="col s5">
+                                <md-input-container style="margin: 0px; margin-top: 18px;">
+                                    <label>Nederlands</label>
+                                    <input ng-disabled="true" type="text" ng-model="kruid.Nederlands" />
+                                </md-input-container>
+                                <md-input-container style="margin: 0px; margin-top: 5px;">
+                                    <label>Latijns</label>
+                                    <input ng-disabled="true" type="text" ng-model="kruid.Latijns" />
+                                </md-input-container>
+                                <md-input-container style="margin: 0px;  margin-top: 5px;">
+                                    <label>Familie</label>
+                                    <input type="text" ng-model="kruid.Familie" />
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="col s7">
+                                <label>Inhoudsstoffen</label>
+                                <textarea type="text" ng-model="kruid.Inhoudsstoffen" rows="8"></textarea>
+                            </md-input-container>
+                        </div>
+
+                        <div class="row md-padding">
+                            <md-input-container class="col s5">
+                                <label>Gebruikte Delen</label>
+                                <textarea type="text" ng-model="kruid.GebruikteDelen" rows="5"></textarea>
+                            </md-input-container>
+                            <div class="col s2"></div>
+                            <md-input-container class="col s5">
+                                <label>Let Op</label>
+                                <textarea type="text" ng-model="kruid.LetOp" rows="5"></textarea>
+                            </md-input-container>
+                        </div>
+                </md-tab>
+                <md-tab label="Eigenschappen">
+                    <md-content class="md-padding">
+                        <div class="row">
+                            <div class="col s12 eigenschappen border">
+                                <h4 class="center-align">Eigenschappen</h4>
+                                <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                    <textarea aria-label="Eigenschappen" type="text" ng-model="kruid.Eigenschappen"
+                                        rows="3"></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <md-input-container class="md-block" style="margin: 0px;  margin-top: 5px;">
+                            <label>Smaak</label>
+                            <input type="text" ng-model="kruid.Smaak" />
+                        </md-input-container>
+                        <md-input-container class="md-block" style="margin: 0px;  margin-top: 5px;">
+                            <label>Dosering</label>
+                            <input type="text" ng-model="kruid.Dosering" />
+                        </md-input-container>
+                        <md-input-container class="md-block" style="margin: 0px;  margin-top: 5px;">
+                            <label>Thermische Werking</label>
+                            <input type="text" ng-model="kruid.ThermischeWerking" />
+                        </md-input-container>
+                        <md-input-container class="md-block" style="margin: 0px;  margin-top: 5px;">
+                            <label>Orgaan</label>
+                            <input type="text" ng-model="kruid.Orgaan" />
+                        </md-input-container>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Toepassingen">
+                    <md-content style="padding-top: 15px;">
+                        <div class="row">
+                            <div class="col s12">
+                                <md-input-container class="md-block">
+                                    <label style="font-size: 22px;">Toepassingen</label>
+                                    <textarea aria-label="Toepassingen" style="margin-top: 5px;" type="text"
+                                        ng-model="kruid.Toepassing" rows="5"></textarea>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Actie en Gebruik">
+                    <md-content class="md-padding">
+                        <div class="tabBody">
+                            <div class="row">
+                                <div class="actie col s5 border keep-styling">
+                                    <h4 class="center-align">Actie</h4>
+                                    <md-input-container class="md-block" style="margin: 0px;">
+                                        <textarea aria-label="Actie" type="text" ng-model="kruid.Actie"
+                                            rows="3"></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div class="col s1"></div>
+                                <div class="gebruik col s6 border keep-styling">
+                                    <h4 class="center-align">Gebruik</h4>
+                                    <md-input-container class="md-block" style="margin: 0px;">
+                                        <textarea aria-label="Gebruik" type="text" ng-model="kruid.Gebruik"
+                                            rows="3"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+        <md-button type="submit" style="bottom: 0;">Save</md-button>
+    </form>
+</div>

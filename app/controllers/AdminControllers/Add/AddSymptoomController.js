@@ -1,33 +1,22 @@
-var app = angular.module('AddKruidController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
+var app = angular.module('AddSymptoomController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
-app.controller('AddKruidController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+app.controller('AddSymptoomController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
     // Dit moet later verwijderd worden --> Moet in de form even validation toevoegen.
-    $scope.kruid = {
-        "Nederlands": "",
-        "Latijns": "",
-        "Familie": "",
-        "Inhoudsstoffen": "",
-        "Toepassing": "",
-        "Eigenschappen": "",
-        "Actie": "",
-        "Gebruik": "",
-        "LetOp": "",
-        "Smaak": "",
-        "Dosering": "",
-        "ThermischeWaarde": "Hallo",
-        "GebruikteDelen": "",
-        "Orgaan": ""
+    $scope.symptoom = {
+        "Naam": ""
     }
 
-    $scope.updateKruid = function (kruid, form) {
+    $scope.symptoomData = $scope.addDataModel.GetSymptomen();
 
+    $scope.updateSymptoom = function (symptoom, form) {
         if (form.$valid) {
-            $scope.addDataModel.InsertIntoKruiden(kruid)
-            $scope.kruid = null;
+            console.log("good");
+            $scope.addDataModel.InsertIntoSymptomen(symptoom);
         } else {
             console.log("Invalid");
         }
     }
+
 
     $scope.querySearch = function (query, type) {
         switch (type) {

@@ -1,0 +1,301 @@
+<div ng-controller="AddSyndromenController">
+    <form novalidate ng-submit="updateSyndroom(syndroom, syndroomForm)" name="syndroomForm">
+        <md-content>
+            <md-tabs md-center-tabs>
+                <md-tab label="Algemeen">
+                    <md-content class="md-padding">
+                        <div class="row">
+                            <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                <label>Naam</label>
+                                <input type="text" ng-model="syndroom.Naam" required syndroom-Directive name="naam">
+                                <div ng-messages="syndroomForm.naam.$error">
+                                    <div ng-message="required">required</div>
+                                    <div ng-message="Naam">Syndroom met deze naam bestaat al!</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                <label>Tong</label>
+                                <input type="text" ng-model="syndroom.Tong">
+                            </md-input-container>
+                            <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                <label>Pols</label>
+                                <input type="text" ng-model="syndroom.Pols">
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Acties">
+                    <md-content class="md-padding">
+                        <div class="tabBody">
+                            <div class="row">
+                                <div class="actie col s8 offset-s2 border">
+                                    <h4 class="center-align">Actie</h4>
+                                    <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                        <textarea aria-label="Actie" type="text" ng-model="syndroom.Actie"
+                                            rows="3"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <br> <br>
+                            <div class="row">
+                                <div class="actie col s8 offset-s2 border">
+                                    <h4 class="center-align">Acupunctuurpunten</h4>
+                                    <md-input-container class="md-block" style="margin: 0px; margin-top: 18px;">
+                                        <textarea aria-label="Acupunctuurpunten" type="text"
+                                            ng-model="syndroom.Acupunctuurpunten" rows="3"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Patentformules">
+                    <md-content class="md-padding">
+                        <div class="col s12">
+                            <h4 class="center-align">Patentformule Toevoegen</h4>
+                            <md-autocomplete md-selected-item="selectedPatentFormule" ng-disabled="isDisabled"
+                                md-no-cache="noCache" md-search-text-change="searchTextChange(searchPatentFormule)"
+                                md-search-text="searchPatentFormule"
+                                md-selected-item-change="selectedItemChangePatentFormule(patentformule)"
+                                md-items="patentformule in querySearch(searchPatentFormule, 'patentformule')"
+                                md-item-text="patentformule.Pinjin" md-min-length="0" placeholder="Selecteer een optie"
+                                ng-model-options=" {debounce: 200}">
+                                <md-item-template>
+                                    <span md-highlight-text="searchPatentFormule" md-highlight-flags="^i">
+                                        {{patentformule.Pinjin}}
+                                    </span>
+                                </md-item-template>
+                                <md-not-found>
+                                    Geen kruiden gevonden met de naam: "{{searchSymptoom}}".
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+                        <div class="col s12">
+                            <table>
+                                <tr>
+                                    <th>Patentformule</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="s in selectedPatentFormules">
+                                    <td>
+                                        {{s.Pinjin}}
+                                    </td>
+                                    <td>
+                                        <md-icon ng-click="removePatentFormule(s)" class="customIcon"
+                                            md-svg-icon="delete:delete" aria-label="delete">
+                                        </md-icon>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Kruidenformules">
+                    <md-content class="md-padding">
+                        <div class="col s12">
+                            <h4 class="center-align">Kruidenformule Toevoegen</h4>
+                            <div>
+                                <md-autocomplete md-selected-item="selectedKruidenFormule" ng-disabled="isDisabled"
+                                    md-no-cache="noCache" md-search-text-change="searchTextChange(searchKruidenFormule)"
+                                    md-search-text="searchKruidenFormule"
+                                    md-selected-item-change="selectedItemChangeKruidenFormule(kruidenFormule)"
+                                    md-items="kruidenFormule in querySearch(searchKruidenFormule, 'kruidenformule')"
+                                    md-item-text="kruidenFormule.Naam" md-min-length="0"
+                                    placeholder="Selecteer een optie">
+                                    <md-item-template>
+                                        <span md-highlight-text="searchKruidenFormule" md-highlight-flags="^i">
+                                            {{kruidenFormule.Naam}}
+                                        </span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        Geen kruidenformule gevonden met de naam: "{{searchKruidenFormule}}".
+                                    </md-not-found>
+                                </md-autocomplete>
+                            </div>
+                        </div>
+
+                        <div class="col s12">
+                            <table>
+                                <tr>
+                                    <th>Kruidenformule</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="k in selectedKruidenFormules">
+                                    <td>
+                                        {{k.Naam}}
+                                    </td>
+                                    <td>
+                                        <md-icon ng-click="removeKruidenFormule(k)" class="customIcon"
+                                            md-svg-icon="delete:delete" aria-label="delete">
+                                        </md-icon>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Symptomen">
+                    <md-content class="md-padding">
+                        <div class="col s12">
+                            <h4 class="center-align">Symptoom Toevoegen</h4>
+                            <md-autocomplete md-selected-item="selectedSymptoom" ng-disabled="isDisabled"
+                                md-no-cache="noCache" md-search-text-change="searchTextChange(searchSymptoom)"
+                                md-search-text="searchSymptoom"
+                                md-selected-item-change="selectedItemChangeSymptoom(symptoom)"
+                                md-items="symptoom in querySearch(searchSymptoom, 'symptoom')"
+                                md-item-text="symptoom.Naam" md-min-length="0" placeholder="Selecteer een optie"
+                                ng-model-options=" {debounce: 200}">
+                                <md-item-template>
+                                    <span md-highlight-text="searchSymptoom"
+                                        md-highlight-flags="^i">{{symptoom.Naam}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    Geen kruiden gevonden met de naam: "{{searchSymptoom}}".
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+                        <div class="col s12">
+                            <table>
+                                <tr>
+                                    <th class="center-align">Symptoom</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="s in selectedSymptomen">
+                                    <td>
+                                        {{s.Naam}}
+                                    </td>
+                                    <td>
+                                        <md-icon ng-click="removeSymptoom(s)" class="customIcon"
+                                            md-svg-icon="delete:delete" aria-label="delete">
+                                        </md-icon>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Hoofdsymptomen">
+                    <md-content class="md-padding">
+                        <div class="col s12">
+                            <h4 class="center-align">Hoofdsymptoom Toevoegen</h4>
+                            <md-autocomplete md-selected-item="selectedHoofdSymptoom" ng-disabled="isDisabled"
+                                md-no-cache="noCache" md-search-text-change="searchTextChange(searchHoofdSymptoom)"
+                                md-search-text="searchHoofdSymptoom"
+                                md-selected-item-change="selectedItemChangeHoofdSymptoom(hoofdSymptoom)"
+                                md-items="hoofdSymptoom in querySearch(searchHoofdSymptoom, 'symptoom')"
+                                md-item-text="hoofdSymptoom.Naam" md-min-length="0" placeholder="Selecteer een optie"
+                                ng-model-options=" {debounce: 200}">
+                                <md-item-template>
+                                    <span md-highlight-text="searchHoofdSymptoom"
+                                        md-highlight-flags="^i">{{hoofdSymptoom.Naam}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    Geen kruiden gevonden met de naam: "{{searchHoofdSymptoom}}".
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+                        <div class="col s12">
+                            <table>
+                                <tr>
+                                    <th class="center-align">Hoofdsymptoom</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="s in selectedHoofdSymptomen">
+                                    <td>
+                                        {{s}}
+                                    </td>
+                                    <td>
+                                        <md-icon ng-click="removeHoofdSymptoom(s)" class="customIcon"
+                                            md-svg-icon="delete:delete" aria-label="delete">
+                                        </md-icon>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+        <md-button type="submit" style="bottom: 0;">Save</md-button>
+    </form>
+</div>
+
+<!-- <div class="container-fluid" ng-controller="AddSyndromenController">
+    <h1 class="text-center">Voeg een syndroom toe</h1>
+    <form ng-submit="$event.preventDefault()">
+        <div class=" form-group">
+            <label>Naam: <input type="text" ng-model="kruidenformule.Naam" autofocus /></label><br>
+            <label>Werking: <input type="text" ng-model="kruidenformule.Werking" /></label><br>
+            <label>Contra Indicaties: <input type="text" ng-model="kruidenformule.ContraIndicatie" /></label><br>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-5">
+                <h1>Kruidenformule Toevoegen</h1>
+                <div>
+                    <md-autocomplete md-selected-item="selectedKruidenFormule" ng-disabled="isDisabled"
+                        md-no-cache="noCache" md-search-text-change="searchTextChange(searchKruidenFormule)"
+                        md-search-text="searchKruidenFormule"
+                        md-selected-item-change="selectedItemChangeKruidenFormule(kruidenFormule)"
+                        md-items="kruidenFormule in querySearch(searchKruidenFormule, 'kruidenformule')"
+                        md-item-text="kruidenFormule.Naam" md-min-length="0" placeholder="Selecteer een optie">
+                        <md-item-template>
+                            <span md-highlight-text="searchKruidenFormule" md-highlight-flags="^i">
+                                {{kruidenFormule.Naam}}
+                            </span>
+                        </md-item-template>
+                        <md-not-found>
+                            Geen kruidenformule gevonden met de naam: "{{searchKruidenFormule}}".
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+
+                
+                <table>
+                    <tr>
+                        <th>Kruid</th>
+                    </tr>
+                    <tr ng-repeat="k in selectedKruidenFormules">
+                        <td>{{k.Naam}} <a class="btn btn-primary" ng-click="test()">Delete</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-2"></div>
+
+            
+            <div class="col-5">
+                <h1>Patentformule Toevoegen</h1>
+                <md-autocomplete md-selected-item="selectedPatentFormule" ng-disabled="isDisabled" md-no-cache="noCache"
+                    md-search-text-change="searchTextChange(searchPatentFormule)" md-search-text="searchPatentFormule"
+                    md-selected-item-change="selectedItemChangePatentFormule(patentformule)"
+                    md-items="patentformule in querySearch(searchPatentFormule, 'patentformule')"
+                    md-item-text="patentformule.Pinjin" md-min-length="0" placeholder="Selecteer een optie"
+                    ng-model-options=" {debounce: 200}">
+                    <md-item-template>
+                        <span md-highlight-text="searchPatentFormule" md-highlight-flags="^i">
+                            {{patentformule.Pinjin}}
+                        </span>
+                    </md-item-template>
+                    <md-not-found>
+                        Geen kruiden gevonden met de naam: "{{searchSymptoom}}".
+                    </md-not-found>
+                </md-autocomplete>
+
+                
+                <table>
+                    <tr>
+                        <th>Symptoom</th>
+                    </tr>
+                    <tr ng-repeat="s in selectedPatentFormules">
+                        <td>{{s.Pinjin}} <a class="btn btn-primary" ng-click="test()">Delete</a></td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <button class="col align-self-end btn btn-primary" ng-click="updateSyndroom(syndroom)">
+            Sla dit syndroom op
+        </button>
+    </form>
+</div> -->

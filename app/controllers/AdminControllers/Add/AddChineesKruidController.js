@@ -1,18 +1,49 @@
-var app = angular.module('AddSymptoomController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
+var app = angular.module('AddChineesKruidController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
-app.controller('AddSymptoomController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+app.controller('AddChineesKruidController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
     // Dit moet later verwijderd worden --> Moet in de form even validation toevoegen.
-    $scope.symptoom = {
-        "Naam": ""
+    $scope.chineesKruid = {
+        "Pinjin": "",
+        "Engels": "",
+        "Latijn": "",
+        "ThermischeWerking": "",
+        "Smaak": "",
+        "Meridianen": "",
+        "Werking": "",
+        "ContraIndicaties": "",
+        "Dosering": ""
     }
 
-    // $scope.datamodel = new AddDataModel();
+    $scope.selectedSymptomen = [];
 
-    $scope.symptoomData = $scope.addDataModel.GetSymptomen();
+    $scope.updateChineesKruid = function (chineesKruid, form) {
+        //Insert into chinese kruiden table
+        if (form.$valid) {
+            let id = $scope.addDataModel.InsertIntoChineseKruiden(chineesKruid)
 
-    $scope.updateSymptoom = function (symptoom) {
-        console.log("good");
-        $scope.addDataModel.InsertIntoSymptomen(symptoom);
+            //Insert selected symptoms in symptomen table
+            $scope.addDataModel.InsertIntoChineseKruidenEnSymptomen(id, $scope.selectedSymptomen);
+        } else {
+            console.log("Invalid");
+        }
+
+    }
+
+    $scope.selectedItemChangeSymptoom = function (symptoom) {
+        console.log(symptoom);
+        if (symptoom != undefined) {
+            if (symptoom.Naam != "" && !$scope.selectedSymptomen.includes(symptoom)) {
+                $scope.selectedSymptomen.push(symptoom);
+            }
+        }
+    }
+
+    $scope.removeSymptoom = function (symptoom) {
+        let position = $scope.selectedSymptomen.indexOf(symptoom)
+
+        if ($scope.selectedSymptomen.includes(symptoom)) {
+            $scope.selectedSymptomen.splice(position, 1);
+        }
     }
 
     $scope.querySearch = function (query, type) {

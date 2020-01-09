@@ -2,18 +2,18 @@ var app = angular.module('KruidenFormulesViewController', ['ngRoute', 'myAppRout
 
 app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
     $scope.KruidenFormulesModel = new KruidenFormulesModel();
-    
+
     $scope.kruidenFormules = $scope.KruidenFormulesModel.GetSpecificData($routeParams.KruidenFormuleId);
-    
+
     $scope.kruiden = $scope.KruidenFormulesModel.GetKruidData($routeParams.KruidenFormuleId);
-    
+
     var dir = "assets/aantekeningen/Kruidenformule/";
     var bestand = $routeParams.KruidenFormuleId + ".txt";
-    
+
     $scope.smessage = function () {
         var aantekening = document.getElementById("aantekening").value;
-        
-        fs.readFile(bestand, function(err) {
+
+        fs.readFile(bestand, function (err) {
             try {
                 fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
@@ -22,13 +22,13 @@ app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$loc
         });
     }
 
-    fs.readFile(dir+bestand, "UTF-8", function(err, contents) {
+    fs.readFile(dir + bestand, "UTF-8", function (err, contents) {
         //check if dir exists        
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir);
         }
-        if (!fs.existsSync(dir+bestand)) {
-            fs.writeFileSync(dir+bestand, "");
+        if (!fs.existsSync(dir + bestand)) {
+            fs.writeFileSync(dir + bestand, "");
         }
         if (err) {
             console.log("rf: ", err);

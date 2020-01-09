@@ -16,10 +16,25 @@ app.controller('AddPatentFormuleController', ['$routeParams', '$scope', '$locati
         "Naam": ""
     }
 
-    // console.log($scope.chineseKruiden);
-
     $scope.selectedChineseKruiden = [];
     $scope.selectedSymptomen = [];
+
+    $scope.removeSymptoom = function (symptoom) {
+        let position = $scope.selectedSymptomen.indexOf(symptoom)
+        console.log(symptoom);
+
+        if ($scope.selectedSymptomen.includes(symptoom)) {
+            $scope.selectedSymptomen.splice(position, 1);
+        }
+    }
+
+    $scope.removeKruid = function (kruid) {
+        let position = $scope.selectedChineseKruiden.indexOf(kruid)
+
+        if ($scope.selectedChineseKruiden.includes(kruid)) {
+            $scope.selectedChineseKruiden.splice(position, 1);
+        }
+    }
 
     $scope.selectedItemChangeChineesKruid = function (chineesKruid) {
         if (chineesKruid != undefined) {
@@ -37,18 +52,22 @@ app.controller('AddPatentFormuleController', ['$routeParams', '$scope', '$locati
         }
     }
 
-    $scope.updatePatentFormule = function (patentformule) {
+    $scope.updatePatentFormule = function (patentformule, form) {
+        if (form.$valid) {
+            let id = $scope.addDataModel.InsertIntoPatentFormules(patentformule);
+            console.log(id);
+
+            // Daarna de kruidenFormuleEnKruiden vullen
+            $scope.addDataModel.InsertIntoChineseKruidenEnPatentFormules(id, $scope.selectedChineseKruiden);
+
+            // Daarna de kruidenformuleEnSymptomen vullen
+            $scope.addDataModel.InsertIntoPatentFormulesEnSymptomen(id, $scope.selectedSymptomen);
+        } else {
+            console.log("Invalid");
+        }
         // gebruik selectedKruiden | selectedSymptomen
         // Eerst kruidenformule inserten in de database en het niewe id terugkrijgen
 
-        let id = $scope.addDataModel.InsertIntoPatentFormules(patentformule);
-        console.log(id);
-
-        // Daarna de kruidenFormuleEnKruiden vullen
-        $scope.addDataModel.InsertIntoChineseKruidenEnPatentFormules(id, $scope.selectedChineseKruiden);
-
-        // Daarna de kruidenformuleEnSymptomen vullen
-        $scope.addDataModel.InsertIntoPatentFormulesEnSymptomen(id, $scope.selectedSymptomen);
     }
 
     $scope.querySearch = function (query, type) {

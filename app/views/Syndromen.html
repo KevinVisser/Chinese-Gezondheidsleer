@@ -2,18 +2,23 @@
 <div class="input-field inputFixedPos">
     <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
     <label for="inputField">Zoek op syndroom, tong, pols of symptoom</label>
+    <table>
+        <tr>
+            <th>Syndroom</th>
+            <th>Tong</th>
+            <th>Pols</th>
+            <th>Symptoom</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="s in syndromen | filter:search">
+            <td ng-click="GoToView(s.Id)">{{s.Naam}}</td>
+            <td ng-click="GoToView(s.Id)">{{s.Tong}}</td>
+            <td ng-click="GoToView(s.Id)">{{s.Pols}}</td>
+            <td ng-click="GoToView(s.Id)">{{s.Symptoom}}</td>
+            <td ng-click="GoToEdit(s.Id)">
+                <md-icon class="customIcon" md-svg-icon="edit:edit" aria-label="edit">
+                </md-icon>
+            </td>
+        </tr>
+    </table>
 </div>
-<table>
-    <tr>
-        <th>Syndroom</th>
-        <th>Tong</th>
-        <th>Pols</th>
-       <th>Symptoom</th>
-    </tr>
-    <tr ng-repeat="s in syndromen | filter:search" ng-click="GoToView(s.Id)">
-        <td>{{s.Naam}}</td>
-        <td>{{s.Tong}}</td>
-        <td>{{s.Pols}}</td>
-        <td>{{s.Symptoom}}</td>
-    </tr>
-</table>

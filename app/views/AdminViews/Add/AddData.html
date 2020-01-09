@@ -1,31 +1,31 @@
 <md-content ng-cloak flex>
-    <md-tabs class="md-primary" md-center-tabs md-border-bottom md-enable-disconnect>
-        <md-tab label="Kruid" ng-click="toggleForm('Kruid')">
+    <md-tabs class="md-primary" md-center-tabs md-border-bottom md-dynamic-height md-enable-disconnect>
+        <md-tab md-no-ink aria-label="Kruid Toevoegen" label="Kruid" ng-click="toggleForm('Kruid')">
             <md-content flex>
                 <div ng-include='returnChosenForm()'></div>
             </md-content>
         </md-tab>
-        <md-tab label="Patentformule" ng-click="toggleForm('Patentformule')">
+        <md-tab aria-label="Patentformule Toevoegen" label="Patentformule" ng-click="toggleForm('Patentformule')">
             <md-content>
                 <div ng-include='returnChosenForm()'></div>
             </md-content>
         </md-tab>
-        <md-tab label="Kruidenformule" ng-click="toggleForm('Kruidenformule')">
+        <md-tab aria-label="Kruidenformule Toevoegen" label="Kruidenformule" ng-click="toggleForm('Kruidenformule')">
             <md-content>
                 <div ng-include='returnChosenForm()'></div>
             </md-content>
         </md-tab>
-        <md-tab label="Syndroom" ng-click="toggleForm('Syndroom')">
+        <md-tab aria-label="Syndroom Toevoegen" label="Syndroom" ng-click="toggleForm('Syndroom')">
             <md-content>
                 <div ng-include='returnChosenForm()'></div>
             </md-content>
         </md-tab>
-        <md-tab label="Chinees Kruid" ng-click="toggleForm('Chinees Kruid')">
+        <md-tab aria-label="Chinees Kruid Toevoegen" label="Chinees Kruid" ng-click="toggleForm('Chinees Kruid')">
             <md-content>
                 <div ng-include='returnChosenForm()'></div>
             </md-content>
         </md-tab>
-        <md-tab label="Symptoom" ng-click="toggleForm('Symptoom')">
+        <md-tab aria-label="Symptoom Toevoegen" label="Symptoom" ng-click="toggleForm('Symptoom')">
             <md-content>
                 <div ng-include='returnChosenForm()'></div>
             </md-content>

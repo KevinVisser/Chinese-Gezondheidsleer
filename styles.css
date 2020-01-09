@@ -26,14 +26,20 @@ body {
     overflow-y: hidden;
 }
 
+.nav {
+    background-color: #1A2933;
+}
+
 #titlebar {
     display: block;
+    height: 60px;
     background-color: #1A2933;
     height: 50px;
 }
 
-#drag-region {
+.drag-region {
     -webkit-app-region: drag;
+    height: 64px;
     -webkit-user-select: none;
     height: 50px;
 }
@@ -47,6 +53,8 @@ body {
     grid-column: 1;
     display: flex;
     align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: 8px;
     overflow-x: hidden;
     font-family: "Segoe UI", sans-serif;
@@ -56,11 +64,17 @@ body {
 .windows-title {
     overflow: hidden;
     font-size: 30px;
+    margin-left: 8px;
+    margin-top: 0px;
     color: white;
 }
 
 .maximized #window-title {
     margin-left: 12px;
+}
+
+.ng-scope {
+    height: 100% !important;
 }
 
 #window-controls {
@@ -145,7 +159,7 @@ body {
 }
 
 /* The navigation menu links */
-.sidebarnav a {
+md-sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
@@ -154,7 +168,7 @@ body {
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidebarnav a:hover {
+md-sidenav a:hover {
     color: #f1f1f1;
 }
 
@@ -180,8 +194,17 @@ md-content .ext-content {
     width: auto;
 }
 
-md-tabs {
-    height: 600px; 
+md-sidenav {
+    height: 100%;
+    /* Full-height: remove this if you want "auto" height */
+    width: 170px;
+    /* Set the width of the sidebar */
+    position: fixed;
+    /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1;
+    left: 0;
+    background-color: #1A2933;
+    overflow-x: hidden;
 }
 
 .input-field {
@@ -250,6 +273,14 @@ md-tabs {
 .aantekeningen {
     /* height: 320px; */
     height: 100%;
+}
+
+.customIcon {
+    float: right;
+}
+
+.customIcon:hover {
+    color: red;
 }
 
 .tablePos {

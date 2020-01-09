@@ -1,0 +1,23 @@
+<div ng-controller="AddSymptoomController">
+    <form novalidate ng-submit="updateSymptoom(symptoom, symptoomForm)" name="symptoomForm">
+        <md-content>
+            <md-tabs md-center-tabs>
+                <md-tab label="Algemeen">
+                    <md-content class="md-padding">
+                        <div class="row">
+                            <md-input-container class="md-block">
+                                <label>Naam</label>
+                                <input type="text" ng-model="symptoom.Naam" required symptoom-Directive name="naam" />
+                                <div ng-messages="symptoomForm.naam.$error">
+                                    <div ng-message="required">required.</div>
+                                    <div ng-message="Naam">Symptoom met deze naam bestaat al!</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+        <md-button type="submit" style="bottom: 0;">Save</md-button>
+    </form>
+</div>

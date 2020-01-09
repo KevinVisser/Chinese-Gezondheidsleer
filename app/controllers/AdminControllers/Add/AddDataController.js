@@ -22,13 +22,15 @@ app.controller('AddDataController', ['$routeParams', '$scope', '$location', func
 
     // Alle html code voor alle forms
     $scope.templates = [
-        { name: 'Kruid', url: './app/views/adminViews/AddKruid.html' },
-        { name: 'Patentformule', url: './app/views/adminViews/AddPatentFormule.html' },
-        { name: 'Kruidenformule', url: './app/views/adminViews/AddKruidenFormule.html' },
-        { name: 'Syndroom', url: './app/views/adminViews/AddSyndroom.html' },
-        { name: 'Symptoom', url: './app/views/adminViews/AddSymptoom.html' },
-        { name: 'Chinees Kruid', url: './app/views/adminViews/AddChineesKruid.html' }
-    ]
+        { name: 'Kruid', url: './app/views/AdminViews/Add/AddKruid.html' },
+        { name: 'Patentformule', url: './app/views/AdminViews/Add/AddPatentFormule.html' },
+        { name: 'Kruidenformule', url: './app/views/AdminViews/Add/AddKruidenFormule.html' },
+        { name: 'Syndroom', url: './app/views/AdminViews/Add/AddSyndroom.html' },
+        { name: 'Symptoom', url: './app/views/AdminViews/Add/AddSymptoom.html' },
+        { name: 'Chinees Kruid', url: './app/views/AdminViews/Add/AddChineesKruid.html' }
+    ];
+
+    console.log($routeParams);
 
     $scope.toggleForm = function (form) {
         $scope.currentForm = form;
