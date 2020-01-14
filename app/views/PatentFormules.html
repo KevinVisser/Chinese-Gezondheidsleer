@@ -1,8 +1,13 @@
-<div class="inputFix"></div>
-<div class="input-field inputFixedPos">
-    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" autofocus></input>
-    <label for="inputField">Zoek op patentnaam(nederlands,engels of pinijn) of op symptoom</label>
-    <table>
+<div>
+    <div class="inputFix"></div>
+    <div class="input-field inputFixedPos">
+        <input id="inputField1" type="text" ng-model="search.Nederlands" ng-model-options=" {debounce: 50}" autofocus></input>
+        <input id="inputField2" type="text" ng-model="search.Engels" ng-model-options=" {debounce: 50}" ></input>
+        <input id="inputField3" type="text" ng-model="search.Pinjin" ng-model-options=" {debounce: 50}" ></input>
+        <input id="inputField4" type="text" ng-model="search.Symptomen" ng-model-options=" {debounce: 50}" ></input>
+        <label for="inputField1">Zoek op patentnaam(nederlands,engels of pinijn) of op symptoom</label>
+    </div>
+    <table class="tabelPos">
         <tr>
             <th>Nederlands</th>
             <th>Engels</th>
@@ -10,7 +15,7 @@
             <th>Symptoom</th>
             <th></th>
         </tr>
-        <tr ng-repeat="patentformule in patentFormules | filter:search">
+        <tr ng-repeat="patentformule in patentFormules | split:search">
             <td ng-click="GoToView(patentformule.Id)">{{patentformule.Nederlands}}</td>
             <td ng-click="GoToView(patentformule.Id)">{{patentformule.Engels}}</td>
             <td ng-click="GoToView(patentformule.Id)">{{patentformule.Pinjin}}</td>
