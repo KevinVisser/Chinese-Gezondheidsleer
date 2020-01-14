@@ -1,65 +1,65 @@
 <div>
-<div class="input-field">
-    <input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(Kruiden)"></input>
-    <label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
-</div>
-<div class="basicData">
-    <p><b>Pinjin: </b>{{kruid.Pinjin}}</p>
-    <p><b>Engels: </b>{{kruid.Engels}}</p>
-    <p><b>Latijns: </b>{{kruid.Latijn}}</p>
-</div>
-<md-tabs class="md-primary" md-center-tabs md-dynamic-height>
-    <md-tab label="Algemeen">
-        <md-content class="md-padding">
-            <div class="tabBody">
-                <div class="row">
-                    <div class="inhoudsstoffen col s5 border">
-                        <h4>Werking</h4>
-                        <p>{{kruid.Werking}}</p>
-                    </div>
-                    <div class="col s1"></div>
-                    <div class="aantekeningen col s6 border">
-                        <h4>Aantekeningen</h4>
-                        <textarea id="aantekening" >{{kruid.message}}</textarea>
-                        <md-button class="md-raised md-primary col s6 offset-s3" ng-click="smessage()">Opslaan</md-button>
-                    </div>
-                </div>
-            </div>
-        </md-content>
-    </md-tab>
-    <md-tab label="Eigenschappen">
-        <md-content class="md-padding">
-            <div class="tabBody">
-                <table>
-                    <tr>
-                        <th>Meridianen</th>
-                        <td>{{kruid.Meridianen}}</td>
-                    </tr>
-                    <tr>
-                        <th>Smaak</th>
-                        <td>{{kruid.Smaak}}</td>
-                    </tr>
-                    <tr>
-                        <th>ThermischeWerking</th>
-                        <td>{{kruid.ThermischeWerking}}</td>
-                    </tr>
-                    <tr>
-                        <th>Dosering</th>
-                        <td>{{kruid.Dosering}}</td>
-                    </tr>
-                </table>
-            </div>
-        </md-content>
-    </md-tab>
-    <md-tab label="Contra Indicaties">
-        <md-content class="md-padding">
-            <div class="tabBody">
-                <div class="contraIndicaties keep-styling">
-                    <p class="make-scroll" style="margin-top: -25px;">{{kruid.ContraIndicaties}}</p>
-                </div>
-            </div>
-        </md-content>
-    </md-tab>
-    </md-tab>
-</md-tabs>
+	<div class="input-field">
+		<input id="inputField" type="text" ng-model="search" ng-model-options=" {debounce: 50}" ng-click="GoToView(Kruiden)"></input>
+		<label for="inputField">Zoek op kruidnaam(nederlands of latijns) of op thermische waarde</label>
+	</div>
+	<div class="basicData">
+		<p><b>Pinjin: </b>{{kruid.Pinjin}}</p>
+		<p><b>Engels: </b>{{kruid.Engels}}</p>
+		<p><b>Latijns: </b>{{kruid.Latijn}}</p>
+	</div>
+	<md-tabs class="md-primary" md-center-tabs md-dynamic-height>
+		<md-tab label="Algemeen">
+			<md-content class="md-padding">
+				<div class="tabBody">
+					<div class="row">
+						<div class="inhoudsstoffen col s5 border">
+							<h4>Werking</h4>
+							<p>{{kruid.Werking}}</p>
+						</div>
+						<div class="col s1"></div>
+						<div class="aantekeningen col s6 border">
+							<h4>Aantekeningen</h4>
+							<textarea id="aantekening" >{{kruid.message}}</textarea>
+							<md-button class="md-raised md-primary col s6 offset-s3" ng-click="smessage()">Opslaan</md-button>
+						</div>
+					</div>
+				</div>
+			</md-content>
+		</md-tab>
+		<md-tab label="Eigenschappen">
+			<md-content class="md-padding">
+				<div class="tabBody">
+					<table>
+						<tr>
+							<th>Meridianen</th>
+							<td>{{kruid.Meridianen}}</td>
+						</tr>
+						<tr>
+							<th>Smaak</th>
+							<td>{{kruid.Smaak}}</td>
+						</tr>
+						<tr>
+							<th>ThermischeWerking</th>
+							<td>{{kruid.ThermischeWerking}}</td>
+						</tr>
+						<tr>
+							<th>Dosering</th>
+							<td>{{kruid.Dosering}}</td>
+						</tr>
+					</table>
+				</div>
+			</md-content>
+		</md-tab>
+		<md-tab label="Contra Indicaties">
+			<md-content class="md-padding">
+				<div class="tabBody">
+					<div class="contraIndicaties keep-styling">
+						<p class="make-scroll" style="margin-top: -25px;">{{kruid.ContraIndicaties}}</p>
+					</div>
+				</div>
+			</md-content>
+		</md-tab>
+		</md-tab>
+	</md-tabs>
 </div>
