@@ -7,7 +7,7 @@ app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location'
     $scope.symptomen = $scope.SyndromenModel.GetSymptoomData($routeParams.SyndroomId);
     $scope.formules = $scope.SyndromenModel.GetFormules($routeParams.SyndroomId);
 
-    var dir = "assets/aantekeningen/syndroom/";
+    var dir = "./resources/Aantekeningen/syndroom/";
     var bestand = $routeParams.SyndroomId + ".txt";
 
     $scope.smessage = function () {

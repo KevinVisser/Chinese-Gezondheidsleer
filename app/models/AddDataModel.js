@@ -138,4 +138,15 @@ class AddDataModel {
 
         return stmt.all();
     }
+
+
+    // Delete
+    DeleteSymptoom(id) {
+        const del = db.prepare("DELETE FROM Symptomen WHERE Id = ?").run(id);
+    }
+
+    DeleteChineesKruid(id) {
+        const del = db.prepare("DELETE FROM ChineseKruiden WHERE Id = ?").run(id);
+    }
+
 }

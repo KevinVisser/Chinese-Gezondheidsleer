@@ -32,16 +32,14 @@ body {
 
 #titlebar {
     display: block;
-    height: 60px;
     background-color: #1A2933;
     height: 50px;
 }
 
 .drag-region {
     -webkit-app-region: drag;
-    height: 64px;
-    -webkit-user-select: none;
     height: 50px;
+    -webkit-user-select: none;
 }
 
 #titlebar #drag-region {
@@ -322,4 +320,13 @@ md-virtual-repeat-container {
 
 .aantekeningSp {
     width: 318px !important;
+}
+
+.no-border:focus {
+    outline: none;
+    border: 0;
+}
+
+.nav {
+    height: 50px;
 }

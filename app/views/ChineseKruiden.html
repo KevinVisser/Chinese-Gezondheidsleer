@@ -10,12 +10,17 @@
             <th>Engels</th>
             <th>Latijns</th>
             <th>Thermische Werking</th>
+            <th></th>
         </tr>
-        <tr ng-repeat="kruid in kruiden | filter:search" ng-click="GoToView(kruid.Id)">
-            <td>{{kruid.Pinjin}}</td>
-            <td>{{kruid.Engels}}</td>
-            <td>{{kruid.Latijn}}</td>
-            <td>{{kruid.ThermischeWerking}}</td>
+        <tr ng-repeat="kruid in kruiden | filter:search">
+            <td class="no-border" ng-click="GoToView(kruid.Id)">{{kruid.Pinjin}}</td>
+            <td class="no-border" ng-click="GoToView(kruid.Id)">{{kruid.Engels}}</td>
+            <td class="no-border" ng-click="GoToView(kruid.Id)">{{kruid.Latijn}}</td>
+            <td class="no-border" ng-click="GoToView(kruid.Id)">{{kruid.ThermischeWerking}}</td>
+            <td class="no-border" ng-click="GoToEdit(kruid.Id)">
+                <md-icon class="customIcon" md-svg-icon="edit:edit" aria-label="edit">
+                </md-icon>
+            </td>
         </tr>
     </table>
 

@@ -6,13 +6,13 @@ app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$loca
     $scope.patentformules = $scope.PatentFormulesModel.GetSpecificData($routeParams.PatentFormuleId);
     $scope.chineseKruiden = $scope.PatentFormulesModel.GetKruidData($routeParams.PatentFormuleId);
 
-    var dir = "assets/aantekeningen/Patentformule/";
+    var dir = "./resources/Aantekeningen/Patentformule/";
     var bestand = $routeParams.PatentFormuleId + ".txt";
-    
+
     $scope.smessage = function () {
         var aantekening = document.getElementById("aantekening").value;
-        
-        fs.readFile(bestand, function(err) {
+
+        fs.readFile(bestand, function (err) {
             try {
                 fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
@@ -21,13 +21,13 @@ app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$loca
         });
     }
 
-    fs.readFile(dir+bestand, "UTF-8", function(err, contents) {
+    fs.readFile(dir + bestand, "UTF-8", function (err, contents) {
         //check if dir exists        
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir);
         }
-        if (!fs.existsSync(dir+bestand)) {
-            fs.writeFileSync(dir+bestand, "");
+        if (!fs.existsSync(dir + bestand)) {
+            fs.writeFileSync(dir + bestand, "");
         }
         if (err) {
             console.log("rf: ", err);

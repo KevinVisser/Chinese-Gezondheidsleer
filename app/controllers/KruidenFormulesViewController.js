@@ -7,7 +7,7 @@ app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$loc
 
     $scope.kruiden = $scope.KruidenFormulesModel.GetKruidData($routeParams.KruidenFormuleId);
 
-    var dir = "assets/aantekeningen/Kruidenformule/";
+    var dir = "./resources/Aantekeningen/Kruidenformule/";
     var bestand = $routeParams.KruidenFormuleId + ".txt";
 
     $scope.smessage = function () {
