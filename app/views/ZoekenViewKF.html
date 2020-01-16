@@ -1,0 +1,69 @@
+<div>
+    <div ng-cloak>
+        <md-content>
+            <md-button style="position: absolute; top: 60; left: 200; z-index: 1; box-shadow: none;" class="md-raised md-primary"ng-click="GoBack()">Terug</md-button>
+            <md-tabs class="md-primary" md-center-tabs md-dynamic-height>
+                <md-tab ng-hide="data.pols == undefined" label="Werking">
+                    <md-content class="md-padding">
+                        <table>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Kruiden Nederlands</th>
+                                <th>Kruiden Latijns</th>
+                                <th>Werking</th>
+                                <th>Symptomen</th>
+                            </tr>
+                            <tr ng-repeat="w in werking" ng-click="GoToView(w.Id)">
+                                <td>{{w.Naam}}</td>
+                                <td>{{w.Nederlands}}</td>
+                                <td>{{w.Latijns}}</td>
+                                <td>{{w.Werking}}</td>
+                                <td>{{w.Symptomen}}</td>
+                            </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+                <md-tab ng-hide="data.tong == undefined" label="Ingrediënten">
+                    <md-content class="md-padding">
+                        <table>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Kruiden Nederlands</th>
+                                <th>Kruiden Latijns</th>
+                                <th>Werking</th>
+                                <th>Symptomen</th>
+                            </tr>
+                            <tr ng-repeat="i in ingredienten" ng-click="GoToView(i.Id)">
+                                <td>{{i.Naam}}</td>
+                                <td>{{i.Nederlands}}</td>
+                                <td>{{i.Latijns}}</td>
+                                <td>{{i.Werking}}</td>
+                                <td>{{i.Symptomen}}</td>
+                            </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+                <md-tab ng-hide="data.symptomen == undefined" label="Symptomen">
+                    <md-content class="md-padding">
+                        <table>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Kruiden Nederlands</th>
+                                <th>Kruiden Latijns</th>
+                                <th>Werking</th>
+                                <th>Symptomen</th>
+                            </tr>
+                            <tr ng-repeat="s in symptomen" ng-click="GoToView(s.Id)">
+                                <td>{{s.Naam}}</td>
+                                <td>{{s.Nederlands}}</td>
+                                <td>{{s.Latijns}}</td>
+                                <td>{{s.Werking}}</td>
+                                <td>{{s.Symptomen}}</td>
+                            </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

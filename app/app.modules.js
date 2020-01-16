@@ -27,7 +27,9 @@ var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', [
     'ChineseKruidenController',
     'ChineseKruidenViewController',
     'ZoekenController',
-    'ZoekenViewController'
+    'ZoekenViewController',
+    'ZoekenKFController',
+    'ZoekenViewKFController'
 ]);
 
 ChineseGezondheidsleer.config(function ($mdIconProvider) {
