@@ -1,0 +1,27 @@
+<div>
+    <md-button class="md-raised md-primary"ng-click="GoBack()">Terug</md-button>
+</div>
+<div class="row">
+        <table class="col s5">
+            <tr>
+                <td>Pols</td>
+                <td><input ng-model="data.pols" type="text"></td>
+            </tr>
+            <tr>
+                <td>Tong</td>
+                <td><input ng-model="data.tong" type="text"></td>
+            </tr>
+        </table>
+    
+        <div class="col s6 offset-s1">
+            <p>Symptomen / Indicaties</p>
+            <md-button class="md-raised md-primary" ng-hide="inputs.length == 5" ng-click="addfield()">Add field</md-button>
+            <md-button class="md-raised md-primary" ng-show="inputs.length > 1" ng-click="removefield()">Remove field</md-button>
+            <div ng-repeat="item in inputs">
+                <input ng-model="item.value"\>
+            </div>
+        </div>
+        <div class="col s3 offset-s9">
+            <md-button class="md-raised md-primary" ng-click="GoToView()">Zoeken</md-button>
+        </div>
+</div>

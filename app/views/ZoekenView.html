@@ -1,0 +1,75 @@
+<div>
+    <div ng-cloak>
+        <md-content>
+            <md-button style="position: fixed; top: 60; left: 200; z-index: 1; box-shadow: none;" class="md-raised md-primary"ng-click="GoBack()">Terug</md-button>
+            <md-tabs class="md-primary" md-center-tabs md-dynamic-height>
+                <md-tab ng-hide="data.pols == undefined" label="Pols">
+                    <md-content class="md-padding">
+                        <table>
+                            <tr>
+                                <th>Nederlands</th>
+                                <th>Engels</th>
+                                <th>Pinjin</th>
+                                <th>Pols</th>
+                                <th>Tong</th>
+                                <th>Symptomen</th>
+                            </tr>
+                            <tr ng-repeat="p in pols" ng-click="GoToView(p.Id)">
+                                <td>{{p.Nederlands}}</td>
+                                <td>{{p.Engels}}</td>
+                                <td>{{p.Pinjin}}</td>
+                                <td>{{p.Pols}}</td>
+                                <td>{{p.Tong}}</td>
+                                <td>{{p.Symptomen}}</td>
+                            </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+                <md-tab ng-hide="data.tong == undefined" label="Tong">
+                    <md-content class="md-padding">
+                        <table>
+                            <tr>
+                                <th>Nederlands</th>
+                                <th>Engels</th>
+                                <th>Pinjin</th>
+                                <th>Pols</th>
+                                <th>Tong</th>
+                                <th>Symptomen</th>
+                            </tr>
+                            <tr ng-repeat="t in tong" ng-click="GoToView(t.Id)">
+                                <td>{{t.Nederlands}}</td>
+                                <td>{{t.Engels}}</td>
+                                <td>{{t.Pinjin}}</td>
+                                <td>{{t.Pols}}</td>
+                                <td>{{t.Tong}}</td>
+                                <td>{{t.Symptomen}}</td>
+                            </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+                <md-tab ng-hide="data.symptomen == undefined" label="Symptomen">
+                    <md-content class="md-padding">
+                        <table>
+                            <tr>
+                                <th>Nederlands</th>
+                                <th>Engels</th>
+                                <th>Pinjin</th>
+                                <th>Pols</th>
+                                <th>Tong</th>
+                                <th>Symptomen</th>
+                            </tr>
+                            <tr ng-repeat="s in symptomen" ng-click="GoToView(t.Id)">
+                                <td>{{s.Nederlands}}</td>
+                                <td>{{s.Engels}}</td>
+                                <td>{{s.Pinjin}}</td>
+                                <td>{{s.Pols}}</td>
+                                <td>{{s.Tong}}</td>
+                                <td>{{s.Symptomen}}</td>
+                            </tr>
+                        </table>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

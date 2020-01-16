@@ -29,8 +29,8 @@
     <!-- Main Content -->
     <div ng-controller="MainController as main" layout="column" layout-fill style="height:100%;" ng-cloak>
         <!-- Toolbar -->
-        <nav class="nav">
-            <div style="height: 64px;">
+        <nav class="nav" style="height: 50px; line-height: inherit;">
+            <div>
                 <div class="drag-region">
                     <span class="windows-title">Chinese Gezondheidsleer</span>
                 </div>
@@ -48,7 +48,7 @@
             </div>
         </nav>
 
-        <div layout="row" style="height: 100%;">
+        <div layout="row" style="height: 100%; user-select: none;">
 
             <!-- Side nav -->
             <md-sidenav md-component-id="left" layout="column" md-is-locked-open="true">
@@ -91,6 +91,7 @@
         <script src="app/models/SymptomenModel.js"></script>
         <script src="app/models/ChineseKruidenModel.js"></script>
         <script src="app/models/UpdateDataModel.js"></script>
+        <script src="app/models/ZoekenModel.js"></script>
 
         <!-- Controllers -->
         <script src="app/controllers/MainController.js"></script>
@@ -104,6 +105,8 @@
         <script src="app/controllers/SyndromenViewController.js"></script>
         <script src="app/controllers/ChineseKruidenController.js"></script>
         <script src="app/controllers/ChineseKruidenViewController.js"></script>
+        <script src="app/controllers/ZoekenController.js"></script>
+        <script src="app/controllers/ZoekenViewController.js"></script>
 
         <!-- Admin Controllers -->
         <!-- Add -->
