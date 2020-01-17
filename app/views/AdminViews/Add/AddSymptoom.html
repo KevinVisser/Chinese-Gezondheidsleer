@@ -2,7 +2,7 @@
     <md-content>
         <md-tabs md-dynamic-height md-center-tabs>
             <md-tab label="Verwijder een symptoom">
-                <md-virtual-repeat-container style="height: 500px;" id="vertical-container" class="row">
+                <md-virtual-repeat-container id="vertical-container" class="row">
                     <div md-virtual-repeat="d in symptoomData | filter:search" class="repeated-item" flex>
                         <span class="col s10">{{d.Naam}}</span>
                         <span class="col s2">

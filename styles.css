@@ -38,8 +38,8 @@ body {
 
 .drag-region {
     -webkit-app-region: drag;
-    height: 50px;
     -webkit-user-select: none;
+    height: 50px;
 }
 
 #titlebar #drag-region {
@@ -257,7 +257,7 @@ md-sidenav {
     padding: 0px !important;
 }
 
-.basicData div div p{
+.basicData p{
     font-size: 20px;
     margin-top: 3px;
     margin-bottom: 3px;
@@ -298,8 +298,9 @@ md-sidenav {
 }
 
 #vertical-container {
-    height: 500px;
+    height: 631px;
     width: 100%;
+    border:none;
 }
 
 .repeated-item {
