@@ -61,4 +61,20 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             templateUrl: './app/views/ChineseKruidenView.html',
             controller: 'ChineseKruidenViewController',
         })
+        .when('/Zoeken', {
+            templateUrl: './app/views/Zoeken.html',
+            controller: 'ZoekenController',
+        })
+        .when('/ZoekenView/', {
+            templateUrl: './app/views/ZoekenView.html',
+            controller: 'ZoekenViewController',
+        })
+        .when('/ZoekenKF/', {
+            templateUrl: './app/views/ZoekenKF.html',
+            controller: 'ZoekenKFController',
+        })
+        .when('/ZoekenViewKF/', {
+            templateUrl: './app/views/ZoekenViewKF.html',
+            controller: 'ZoekenViewKFController',
+        })
 }])

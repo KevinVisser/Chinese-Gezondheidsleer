@@ -4,7 +4,6 @@ app.controller('PatentFormulesController', ['$routeParams', '$scope', '$location
     $scope.PatentFormulesModel = new PatentFormulesModel();
 
     $scope.patentFormules = $scope.PatentFormulesModel.GetRelevantData();
-    console.log("Hello, World");
 
     $scope.GoToView = function (id) {
         console.log(id);
