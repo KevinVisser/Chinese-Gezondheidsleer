@@ -5,7 +5,17 @@
         <label for="inputField">Zoek op kruidenformule, kruidnaam(nederlands of latijns) of op symptoom</label>
     </div>
     <div class="basicData">
-        <p><b>Kruidenformule: </b>{{kruidenFormules.Naam}}</p>
+        <div class="row" style="display: flex; flex-wrap: wrap;">
+            <div class="col s8 valign-wrapper" style="margin-left: 0px;">
+                <p><b>Kruidenformule: </b>{{kruidenFormules.Naam}}</p>
+            </div>
+            <div class="col s2 valign-wrapper">
+                <md-button class="md-raised md-primary" ng-click=" GoToEdit()">Edit</md-button>
+            </div>
+            <div class="col s2 valign-wrapper">
+                <md-button class="md-raised md-primary" ng-click=" showConfirm($event)">Delete</md-button>
+            </div>
+        </div>
     </div>
     <div class="tabBody">
         <div class="row" style="margin-left: 5px; padding-right: 5px;">

@@ -5,7 +5,11 @@
                 <md-virtual-repeat-container style="height: 500px;" id="vertical-container" class="row">
                     <div md-virtual-repeat="d in symptoomData | filter:search" class="repeated-item" flex>
                         <span class="col s10">{{d.Naam}}</span>
-                        <span class="col s2">d</span>
+                        <span class="col s2">
+                            <md-icon ng-click="showConfirm($event, d)" class="customIcon" md-svg-icon="delete:delete"
+                                aria-label="delete">
+                            </md-icon>
+                        </span>
                     </div>
                 </md-virtual-repeat-container>
             </md-tab>
@@ -29,3 +33,4 @@
         </md-tabs>
     </md-content>
 </div>
+<!-- ng-click="deleteSymptoom(d)" -->

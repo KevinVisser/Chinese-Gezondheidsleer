@@ -38,8 +38,8 @@ body {
 
 .drag-region {
     -webkit-app-region: drag;
-    -webkit-user-select: none;
     height: 50px;
+    -webkit-user-select: none;
 }
 
 #titlebar #drag-region {
@@ -257,7 +257,7 @@ md-sidenav {
     padding: 0px !important;
 }
 
-.basicData p{
+.basicData div div p{
     font-size: 20px;
     margin-top: 3px;
     margin-bottom: 3px;
@@ -320,4 +320,13 @@ md-virtual-repeat-container {
 
 .aantekeningSp {
     width: 318px !important;
+}
+
+.no-border:focus {
+    outline: none;
+    border: 0;
+}
+
+.nav {
+    height: 50px;
 }

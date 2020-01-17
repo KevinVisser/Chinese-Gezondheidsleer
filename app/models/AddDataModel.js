@@ -138,4 +138,30 @@ class AddDataModel {
 
         return stmt.all();
     }
+
+
+    // Delete
+    DeleteSymptoom(id) {
+        const del = db.prepare("DELETE FROM Symptomen WHERE Id = ?").run(id);
+    }
+
+    DeleteChineesKruid(id) {
+        const del = db.prepare("DELETE FROM ChineseKruiden WHERE Id = ?").run(id);
+    }
+
+    DeletePatentFormule(id) {
+        const del = db.prepare("DELETE FROM PatentFormules WHERE Id = ?").run(id);
+    }
+
+    DeleteKruidenFormule(id) {
+        const del = db.prepare("DELETE FROM KruidenFormules WHERE Id = ?").run(id);
+    }
+
+    DeleteKruid(id) {
+        const del = db.prepare("DELETE FROM Kruiden WHERE Id = ?").run(id);
+    }
+
+    DeleteSyndroom(id) {
+        const del = db.prepare("DELETE FROM Syndromen WHERE Id = ?").run(id);
+    }
 }

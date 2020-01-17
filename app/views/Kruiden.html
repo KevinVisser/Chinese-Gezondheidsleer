@@ -5,21 +5,21 @@
         <label for="inputField">Zoek op syndroom, tong, pols of symptoom</label>
     </div>
     <table class="tablePos">
-            <tr>
-                <th>Nederlandse Naam</th>
-                <th>Latijnse Naam</th>
-                <th>Thermische Werking</th>
-                <th></th>
-            </tr>
-            <tr ng-repeat="kruid in kruiden | filter:search">
-                <td ng-click="GoToView(kruid.Id)">{{kruid.Nederlands}}</td>
-                <td ng-click="GoToView(kruid.Id)">{{kruid.Latijns}}</td>
-                <td ng-click="GoToView(kruid.Id)">{{kruid.ThermischeWerking}}</td>
-                <td ng-click="GoToEdit(kruid.Id)">
-                    <md-icon class="customIcon" md-svg-icon="edit:edit" aria-label="edit">
-                    </md-icon>
-                </td>
-            </tr>
-        </table>
-    </div>
+        <tr>
+            <th>Nederlandse Naam</th>
+            <th>Latijnse Naam</th>
+            <th>Thermische Waarde</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="kruid in kruiden | filter:search">
+            <td ng-click="GoToView(kruid.Id)">{{kruid.Nederlands}}</td>
+            <td ng-click="GoToView(kruid.Id)">{{kruid.Latijns}}</td>
+            <td ng-click="GoToView(kruid.Id)">{{kruid.ThermischeWaarde}}</td>
+            <td ng-click="GoToEdit(kruid.Id)">
+                <md-icon class="customIcon" md-svg-icon="edit:edit" aria-label="edit">
+                </md-icon>
+            </td>
+        </tr>
+    </table>
+</div>
 </div>
