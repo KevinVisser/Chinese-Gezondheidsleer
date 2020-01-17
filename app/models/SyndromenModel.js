@@ -11,7 +11,7 @@ class SyndromenModel {
     }
 
     GetSpecificData(id) {
-        let stmt = db.prepare("SELECT Syndroom AS Naam, Hoofdsymptoom, Tong, Pols, Actie, Acupunctuurpunten FROM Syndromen WHERE Id = ?").get(id);
+        let stmt = db.prepare("SELECT Id, Syndroom AS Naam, Hoofdsymptoom, Tong, Pols, Actie, Acupunctuurpunten FROM Syndromen WHERE Id = ?").get(id);
         return stmt;
     }
 

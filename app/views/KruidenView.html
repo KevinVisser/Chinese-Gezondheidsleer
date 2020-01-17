@@ -7,10 +7,25 @@
         </md-input-container>
     </div>
     <div class="basicData">
+        <div class="row" style="display: flex; flex-wrap: wrap;">
+            <div class="col s8" style="margin-left: 0px;">
+                <p><b>Nederlands: </b>{{kruid.Nederlands}}</p>
+                <p><b>Latijns: </b>{{kruid.Latijns}}</p>
+                <p><b>Familie: </b>{{kruid.Familie}}</p>
+            </div>
+            <div class="col s2 valign-wrapper">
+                <md-button class="md-raised md-primary" ng-click=" GoToEdit()">Edit</md-button>
+            </div>
+            <div class="col s2 valign-wrapper">
+                <md-button class="md-raised md-primary" ng-click=" showConfirm($event)">Delete</md-button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="basicData">
         <p><b>Nederlands: </b>{{kruid.Nederlands}}</p>
         <p><b>Latijns: </b>{{kruid.Latijns}}</p>
         <p><b>Familie: </b>{{kruid.Familie}}</p>
-    </div>
+    </div> -->
     <div>
         <md-tabs class="md-primary" md-center-tabs md-dynamic-height>
             <md-tab label="Algemeen">

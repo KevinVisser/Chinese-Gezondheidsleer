@@ -1,7 +1,8 @@
 var app = angular.module('KruidenViewController', ['ngRoute', 'myAppRouter']);
 
-app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
     this.KruidenModel = new KruidenModel();
+    $scope.addDataModel = new AddDataModel();
 
     $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.KruidId);
 
@@ -37,5 +38,30 @@ app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', 
 
     $scope.GoToView = function () {
         $location.path('/Kruiden')
+    }
+
+    $scope.showConfirm = function (ev) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title('Weet je zeker dat je dit kruid wil verwijderen?')
+            .textContent('Dit verwijdert het kruid uit de database.')
+            .ariaLabel('Verwijder kruid')
+            .targetEvent(ev)
+            .cancel('Ja')
+            .ok('Nee');
+
+        $mdDialog.show(confirm).then(function () {
+        }, function () {
+            $scope.deleteKruid($scope.kruid)
+        });
+    };
+
+    $scope.deleteKruid = function (kruid) {
+        $scope.addDataModel.DeleteKruid(kruid.Id);
+        $location.path('/Kruiden');
+    }
+
+    $scope.GoToEdit = function () {
+        $location.path('/Admin/Edit/Kruid/' + $scope.kruid.Id)
     }
 }]);

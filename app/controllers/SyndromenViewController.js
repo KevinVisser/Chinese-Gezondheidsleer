@@ -1,7 +1,8 @@
 var app = angular.module('SyndromenViewController', ['ngRoute', 'myAppRouter'])
 
-app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
     $scope.SyndromenModel = new SyndromenModel();
+    $scope.addDataModel = new AddDataModel();
 
     $scope.syndromen = $scope.SyndromenModel.GetSpecificData($routeParams.SyndroomId);
     $scope.symptomen = $scope.SyndromenModel.GetSymptoomData($routeParams.SyndroomId);
@@ -47,5 +48,30 @@ app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location'
 
     $scope.GoToViewKF = function (id) {
         $location.path('/KruidenFormules/' + id);
+    }
+
+    $scope.showConfirm = function (ev) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title('Weet je zeker dat je dit syndroom wil verwijderen?')
+            .textContent('Dit verwijdert het syndroom uit de database.')
+            .ariaLabel('Verwijder syndroom')
+            .targetEvent(ev)
+            .cancel('Ja')
+            .ok('Nee');
+
+        $mdDialog.show(confirm).then(function () {
+        }, function () {
+            $scope.deleteSyndroom($scope.syndromen)
+        });
+    };
+
+    $scope.deleteSyndroom = function (syndroom) {
+        $scope.addDataModel.DeleteSyndroom(syndroom.Id);
+        $location.path('/Syndromen');
+    }
+
+    $scope.GoToEdit = function () {
+        $location.path('/Admin/Edit/Syndroom/' + $scope.syndromen.Id)
     }
 }]);

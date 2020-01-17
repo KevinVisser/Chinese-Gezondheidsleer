@@ -1,7 +1,8 @@
 var app = angular.module('KruidenFormulesViewController', ['ngRoute', 'myAppRouter'])
 
-app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
     $scope.KruidenFormulesModel = new KruidenFormulesModel();
+    $scope.addDataModel = new AddDataModel();
 
     $scope.kruidenFormules = $scope.KruidenFormulesModel.GetSpecificData($routeParams.KruidenFormuleId);
 
@@ -39,5 +40,30 @@ app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$loc
 
     $scope.GoToView = function () {
         $location.path('/KruidenFormules')
+    }
+
+    $scope.showConfirm = function (ev) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title('Weet je zeker dat je dit Kruidenformule wil verwijderen?')
+            .textContent('Dit verwijdert het Kruidenformule uit de database.')
+            .ariaLabel('Verwijder Kruidenformule')
+            .targetEvent(ev)
+            .cancel('Ja')
+            .ok('Nee');
+
+        $mdDialog.show(confirm).then(function () {
+        }, function () {
+            $scope.deleteKruidenFormule($scope.kruidenFormules)
+        });
+    };
+
+    $scope.deleteKruidenFormule = function (Kruidenformule) {
+        $scope.addDataModel.DeleteKruidenFormule(Kruidenformule.Id);
+        $location.path('/KruidenFormules');
+    }
+
+    $scope.GoToEdit = function () {
+        $location.path('/Admin/Edit/KruidenFormule/' + $scope.kruidenFormules.Id)
     }
 }]);

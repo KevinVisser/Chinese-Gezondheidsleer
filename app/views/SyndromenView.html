@@ -5,7 +5,17 @@
         <label for="inputField">Zoek op syndroom, tong, pols of symptoom</label>
     </div>
     <div class="basicData">
-        <p><b>Syndroom: </b>{{syndromen.Naam}}</p>
+        <div class="row" style="display: flex; flex-wrap: wrap;">
+            <div class="col s8 valign-wrapper" style="margin-left: 0px;">
+                <p><b>Syndroom: </b>{{syndromen.Naam}}</p>
+            </div>
+            <div class="col s2 valign-wrapper">
+                <md-button class="md-raised md-primary" ng-click=" GoToEdit()">Edit</md-button>
+            </div>
+            <div class="col s2 valign-wrapper">
+                <md-button class="md-raised md-primary" ng-click=" showConfirm($event)">Delete</md-button>
+            </div>
+        </div>
     </div>
     <md-tabs class="md-primary" md-dynamic-height md-center-tabs>
         <md-tab label="Algemeen">
@@ -25,7 +35,7 @@
                         </div>
                     </div>
                     <div class="col s1"></div>
-                    
+
                 </div>
                 <div class="Formule">
                     <h4>Formule</h4>

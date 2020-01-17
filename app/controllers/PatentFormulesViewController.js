@@ -1,7 +1,8 @@
 var app = angular.module('PatentFormulesViewController', ['ngRoute', 'myAppRouter'])
 
-app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
+app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
     $scope.PatentFormulesModel = new PatentFormulesModel();
+    $scope.addDataModel = new AddDataModel();
 
     $scope.patentformules = $scope.PatentFormulesModel.GetSpecificData($routeParams.PatentFormuleId);
     $scope.chineseKruiden = $scope.PatentFormulesModel.GetKruidData($routeParams.PatentFormuleId);
@@ -38,5 +39,30 @@ app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$loca
 
     $scope.GoToView = function () {
         $location.path('/PatentFormules')
+    }
+
+    $scope.showConfirm = function (ev) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title('Weet je zeker dat je dit Patentformule wil verwijderen?')
+            .textContent('Dit verwijdert het Patentformule uit de database.')
+            .ariaLabel('Verwijder Patentformule')
+            .targetEvent(ev)
+            .cancel('Ja')
+            .ok('Nee');
+
+        $mdDialog.show(confirm).then(function () {
+        }, function () {
+            $scope.deletePatentFormule($scope.patentformules)
+        });
+    };
+
+    $scope.deletePatentFormule = function (patentformule) {
+        $scope.addDataModel.DeletePatentFormule(patentformule.Id);
+        $location.path('/PatentFormules');
+    }
+
+    $scope.GoToEdit = function () {
+        $location.path('/Admin/Edit/PatentFormule/' + $scope.patentformules.Id)
     }
 }]);

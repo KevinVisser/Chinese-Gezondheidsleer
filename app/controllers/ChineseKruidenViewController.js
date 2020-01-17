@@ -2,6 +2,7 @@ var app = angular.module('ChineseKruidenViewController', ['ngRoute', 'myAppRoute
 
 app.controller('ChineseKruidenViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
     this.KruidenModel = new ChineseKruidenModel();
+    $scope.addDataModel = new AddDataModel();
 
     $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.ChineesKruidId);
 
