@@ -26,6 +26,10 @@
       "target": "nsis",
       "icon": "./assets/img/icon.png"
     },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
     "directories": {
       "buildResources": "assets"
     },
