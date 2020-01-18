@@ -5,13 +5,13 @@ app.controller('ZoekenViewController', ['$routeParams', '$scope', '$location', f
 
     $scope.data = $routeParams;
     
+    // kijkt of de waarden niet leeg zijn
     if (!($scope.data.tong == "undefined" || $scope.data.tong == undefined )) {
         $scope.tong = $scope.ZoekenModel.GetTongData($scope.data.tong);
     }
     if (!($scope.data.pols == "undefined" || $scope.data.pols == undefined)) {
         $scope.pols = $scope.ZoekenModel.GetPolsData($scope.data.pols);
     }
-
     if ($routeParams.symptomen != "") {
         $scope.symptomen = $scope.ZoekenModel.GetSymptoomData($routeParams.symptomen);
     }

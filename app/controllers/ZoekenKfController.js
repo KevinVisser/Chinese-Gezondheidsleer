@@ -63,6 +63,7 @@ app.controller('ZoekenKFController', ['$routeParams', '$scope', '$location', fun
         var str2 = "";
         var str3 = "";
         
+        // maakt een string van de array om het mee te sturen naar de volgende view
         $scope.inputs1.forEach(element => {
             if (element.value == null) {} else {
                 str1 += element.value + ",";

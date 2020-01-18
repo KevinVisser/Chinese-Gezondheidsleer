@@ -4,10 +4,8 @@ app.controller('ZoekenViewKFController', ['$routeParams', '$scope', '$location',
     $scope.ZoekenModel = new ZoekenKFModel();
 
     $scope.data = $routeParams;
-
-    console.log($scope.data);
     
-    
+    //kijkt of de array niet leeg is
     if ($routeParams.werking != "") {
         $scope.werking = $scope.ZoekenModel.GetWerkingData($routeParams.werking);
     }
@@ -16,12 +14,7 @@ app.controller('ZoekenViewKFController', ['$routeParams', '$scope', '$location',
     }
     if ($routeParams.symptomen != "") {
         $scope.symptomen = $scope.ZoekenModel.GetSymptoomData($routeParams.symptomen);
-    }
-
-    console.log($scope.werking);
-    console.log($scope.ingredienten);
-    console.log($scope.symptomen);
-    
+    }    
     
     $scope.GoBack = function () {
         $location.path('/ZoekenKF');

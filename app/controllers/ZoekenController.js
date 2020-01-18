@@ -22,6 +22,7 @@ app.controller('ZoekenController', ['$routeParams', '$scope', '$location', funct
 
     $scope.GoToView = function () {
         var str = "";
+        // maakt een string van de array
         $scope.inputs.forEach(element => {
             if (element.value == null) {} else {
                 str += element.value + ",";
