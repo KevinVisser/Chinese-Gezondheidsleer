@@ -13,12 +13,6 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
         "ContraIndicaties": ""
     }
 
-    // $scope.symptoom = {
-    //     "Naam": ""
-    // }
-
-    // console.log($scope.chineseKruiden);
-
     $scope.selectedKruidenFormules = [];
     $scope.selectedPatentFormules = [];
     $scope.selectedSymptomen = [];
@@ -35,7 +29,6 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
 
     $scope.removeHoofdSymptoom = function (hoofdSymptoom) {
         let position = $scope.selectedHoofdSymptomen.indexOf(hoofdSymptoom)
-        console.log(symptoom);
 
         if ($scope.selectedHoofdSymptomen.includes(hoofdSymptoom)) {
             $scope.selectedHoofdSymptomen.splice(position, 1);
@@ -106,60 +99,6 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
             $scope.addDataModel.InsertIntoSyndromenEnSymptomen(id, $scope.selectedSymptomen);
         } else {
             console.log("Invalid");
-        }
-
-
-    }
-
-    $scope.querySearch = function (query, type) {
-        console.log(type);
-        switch (type) {
-            case 'kruidenformule':
-                var results = query ? $scope.kruidenFormules.filter(createFilterFor(query, type)) : $scope.kruidenFormules,
-                    deferred;
-                break;
-            case 'patentformule':
-                var results = query ? $scope.patentFormules.filter(createFilterFor(query, type)) : $scope.patentFormules,
-                    deferred;
-                break;
-            case 'symptoom':
-                var results = query ? $scope.symptomen.filter(createFilterFor(query, type)) : $scope.symptomen,
-                    deferred;
-                break;
-            default:
-                break;
-        }
-        if (self.simulateQuery) {
-            deferred = $q.defer();
-            $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
-            return deferred.promise;
-        } else {
-            return results;
-        }
-    };
-
-    function createFilterFor(query, type) {
-        var lowercaseQuery = query.toLowerCase();
-
-        console.log(lowercaseQuery);
-
-        switch (type) {
-            case 'kruidenformule':
-
-                console.log("hallo");
-                return function filterFn(kruidenFormules) {
-                    return (kruidenFormules.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);
-                };
-            case 'patentformule':
-                return function filterFn(patentFormules) {
-                    return (patentFormules.Pinjin.toLowerCase().indexOf(lowercaseQuery) === 0);
-                };
-            case 'symptoom':
-                return function filterFn(symptomen) {
-                    return (symptomen.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);
-                };
-            default:
-                break;
         }
     }
 }]);

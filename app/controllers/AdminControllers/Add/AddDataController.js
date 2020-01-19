@@ -1,21 +1,21 @@
 var app = angular.module('AddDataController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
 app.controller('AddDataController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    $scope.addDataModel = new AddDataModel();
-    $scope.kruidenModel = new KruidenModel();
-    $scope.patentFormuleModel = new PatentFormulesModel();
-    $scope.kruidenFormuleModel = new KruidenFormulesModel();
-    $scope.syndroomModel = new SyndromenModel();
-    $scope.symptoomModel = new SymptomenModel();
-    $scope.chineseKruidenModel = new ChineseKruidenModel();
+    // $scope.addDataModel = new AddDataModel();
+    // $scope.kruidenModel = new KruidenModel();
+    // $scope.patentFormuleModel = new PatentFormulesModel();
+    // $scope.kruidenFormuleModel = new KruidenFormulesModel();
+    // $scope.syndroomModel = new SyndromenModel();
+    // $scope.symptoomModel = new SymptomenModel();
+    // $scope.chineseKruidenModel = new ChineseKruidenModel();
 
-    $scope.syndromen = $scope.syndroomModel.GetRelevantData();
-    $scope.kruiden = $scope.kruidenModel.GetAllData();
-    $scope.chineseKruiden = $scope.chineseKruidenModel.GetAllData();
-    $scope.symptomen = $scope.symptoomModel.GetAllData();
+    // $scope.syndromen = $scope.syndroomModel.GetRelevantData();
+    // $scope.kruiden = $scope.kruidenModel.GetAllData();
+    // $scope.chineseKruiden = $scope.chineseKruidenModel.GetAllData();
+    // $scope.symptomen = $scope.symptoomModel.GetAllData();
 
-    $scope.kruidenFormules = $scope.kruidenFormuleModel.GetRelevantData();
-    $scope.patentFormules = $scope.patentFormuleModel.GetRelevantData();
+    // $scope.kruidenFormules = $scope.kruidenFormuleModel.GetRelevantData();
+    // $scope.patentFormules = $scope.patentFormuleModel.GetRelevantData();
 
     this.params = $routeParams;
     $scope.currentForm = "Kruid";

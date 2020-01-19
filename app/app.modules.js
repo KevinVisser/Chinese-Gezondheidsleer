@@ -32,6 +32,7 @@ var ChineseGezondheidsleer = angular.module('ChineseGezondheidsleer', [
     'ZoekenViewKFController'
 ]);
 
+// Configuratie voor de icons
 ChineseGezondheidsleer.config(function ($mdIconProvider) {
     $mdIconProvider
         .iconSet('delete', './assets/icons/delete.svg', 24)

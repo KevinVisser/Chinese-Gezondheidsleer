@@ -1,12 +1,6 @@
 var app = angular.module('EditKruidenFormuleController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
 app.controller('EditKruidenFormuleController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    // Models
-    $scope.updateModel = new UpdataDataModel();
-    $scope.kruidenModel = new KruidenModel();
-    $scope.kruidenFormuleModel = new KruidenFormulesModel();
-    $scope.symptoomModel = new SymptomenModel();
-
     // Variables
     let kruidenFormuleId = $routeParams.Id;
 
@@ -36,19 +30,34 @@ app.controller('EditKruidenFormuleController', ['$routeParams', '$scope', '$loca
     }
 
     $scope.selectedItemChangeKruid = function (kruid) {
-        if (kruid != undefined) {
-            if (kruid.Nederlands != "" && !$scope.selectedKruiden.includes(kruid.Nederlands)) {
-                $scope.selectedKruiden.push(kruid);
+        let add = true;
+        if (kruid != undefined && kruid.Naam != "") {
+            for (let index = 0; index < $scope.selectedKruiden.length; index++) {
+                if (kruid.Nederlands == $scope.selectedKruiden[index].Nederlands) {
+                    add = false;
+                    break;
+                }
+            }
+            if (add) {
+                $scope.selectedKruiden.push(kruid)
             }
         }
     }
 
     $scope.selectedItemChangeSymptoom = function (symptoom) {
-        if (symptoom != undefined) {
-            if (symptoom.Naam != "" && !$scope.selectedSymptomen.includes(symptoom.Naam)) {
-                $scope.selectedSymptomen.push(symptoom);
+        let add = true;
+        if (symptoom != undefined && symptoom.Naam != "") {
+            for (let index = 0; index < $scope.selectedSymptomen.length; index++) {
+                if (symptoom.Naam == $scope.selectedSymptomen[index].Naam) {
+                    add = false;
+                    break;
+                }
+            }
+            if (add) {
+                $scope.selectedSymptomen.push(symptoom)
             }
         }
+
     }
 
     $scope.updateKruidenFormule = function (kruidenformule, form) {
@@ -62,47 +71,6 @@ app.controller('EditKruidenFormuleController', ['$routeParams', '$scope', '$loca
             $scope.updateModel.UpdateKruidenFormulesEnSymptomen(kruidenFormuleId, $scope.selectedSymptomen, $scope.kruidenFormuleModel.GetSymptoomData(kruidenFormuleId));
         } else {
             console.log("Invalid");
-        }
-    }
-
-    $scope.querySearch = function (query, type) {
-        switch (type) {
-            case 'kruid':
-                var results = query ? $scope.kruiden.filter(createFilterFor(query, type)) : $scope.kruiden,
-                    deferred;
-                break;
-            case 'symptoom':
-                var results = query ? $scope.symptomen.filter(createFilterFor(query, type)) : $scope.symptomen,
-                    deferred;
-                break;
-            default:
-                break;
-        }
-        if (self.simulateQuery) {
-            deferred = $q.defer();
-            $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
-            return deferred.promise;
-        } else {
-            return results;
-        }
-    };
-
-    function createFilterFor(query, type) {
-        var lowercaseQuery = query.toLowerCase();
-
-        // console.log(lowercaseQuery);
-        switch (type) {
-            case 'kruid':
-                return function filterFn(kruiden) {
-                    return (kruiden.Nederlands.toLowerCase().indexOf(lowercaseQuery) === 0);
-                };
-            // console.log(kruiden);
-            case 'symptoom':
-                return function filterFn(symptomen) {
-                    return (symptomen.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);
-                };
-            default:
-                break;
         }
     }
 }]);

@@ -1,5 +1,6 @@
 var app = angular.module('myAppRouter', ['ngRoute'])
 
+// Alle routes die de applicatie heeft.
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/Admin/Add', {

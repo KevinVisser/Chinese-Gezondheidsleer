@@ -1,11 +1,6 @@
 var app = angular.module('EditPatentFormuleController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
 app.controller('EditPatentFormuleController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    $scope.updateModel = new UpdataDataModel();
-    $scope.chineseKruidenModel = new ChineseKruidenModel();
-    $scope.patentFormuleModel = new PatentFormulesModel();
-    $scope.symptoomModel = new SymptomenModel();
-
     let patentFormuleId = $routeParams.Id;
 
     $scope.chineseKruiden = $scope.chineseKruidenModel.GetAllData();
@@ -34,17 +29,32 @@ app.controller('EditPatentFormuleController', ['$routeParams', '$scope', '$locat
     }
 
     $scope.selectedItemChangeChineesKruid = function (chineesKruid) {
-        if (chineesKruid != undefined) {
-            if (chineesKruid.Pinjin != "" && !$scope.selectedChineseKruiden.includes(chineesKruid.Pinjin)) {
-                $scope.selectedChineseKruiden.push(chineesKruid);
+        let add = true;
+        if (chineesKruid != undefined && chineesKruid.Pinjin != "") {
+            for (let index = 0; index < $scope.selectedChineseKruiden.length; index++) {
+                if (chineesKruid.Pinjin == $scope.selectedChineseKruiden[index].Pinjin) {
+                    add = false;
+                    console.log("False");
+                    break;
+                }
+            }
+            if (add) {
+                $scope.selectedChineseKruiden.push(chineesKruid)
             }
         }
     }
 
     $scope.selectedItemChangeSymptoom = function (symptoom) {
-        if (symptoom != undefined) {
-            if (symptoom.Naam != "" && !$scope.selectedSymptomen.includes(symptoom.Naam)) {
-                $scope.selectedSymptomen.push(symptoom);
+        let add = true;
+        if (symptoom != undefined && symptoom.Naam != "") {
+            for (let index = 0; index < $scope.selectedSymptomen.length; index++) {
+                if (symptoom.Naam == $scope.selectedSymptomen[index].Naam) {
+                    add = false;
+                    break;
+                }
+            }
+            if (add) {
+                $scope.selectedSymptomen.push(symptoom)
             }
         }
     }
@@ -61,42 +71,42 @@ app.controller('EditPatentFormuleController', ['$routeParams', '$scope', '$locat
         }
     }
 
-    $scope.querySearch = function (query, type) {
-        console.log("hello");
-        switch (type) {
-            case 'chineesKruid':
-                var results = query ? $scope.chineseKruiden.filter(createFilterFor(query, type)) : $scope.chineseKruiden,
-                    deferred;
-                break;
-            case 'symptoom':
-                var results = query ? $scope.symptomen.filter(createFilterFor(query, type)) : $scope.symptomen,
-                    deferred;
-                break;
-            default:
-                break;
-        }
-        if (self.simulateQuery) {
-            deferred = $q.defer();
-            $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
-            return deferred.promise;
-        } else {
-            return results;
-        }
-    };
+    // $scope.querySearch = function (query, type) {
+    //     console.log("hello");
+    //     switch (type) {
+    //         case 'chineesKruid':
+    //             var results = query ? $scope.chineseKruiden.filter(createFilterFor(query, type)) : $scope.chineseKruiden,
+    //                 deferred;
+    //             break;
+    //         case 'symptoom':
+    //             var results = query ? $scope.symptomen.filter(createFilterFor(query, type)) : $scope.symptomen,
+    //                 deferred;
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    //     if (self.simulateQuery) {
+    //         deferred = $q.defer();
+    //         $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
+    //         return deferred.promise;
+    //     } else {
+    //         return results;
+    //     }
+    // };
 
-    function createFilterFor(query, type) {
-        var lowercaseQuery = query.toLowerCase();
-        switch (type) {
-            case 'chineesKruid':
-                return function filterFn(chineseKruiden) {
-                    return (chineseKruiden.Pinjin.toLowerCase().indexOf(lowercaseQuery) === 0);
-                };
-            case 'symptoom':
-                return function filterFn(symptomen) {
-                    return (symptomen.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);
-                };
-            default:
-                break;
-        }
-    }
+    // function createFilterFor(query, type) {
+    //     var lowercaseQuery = query.toLowerCase();
+    //     switch (type) {
+    //         case 'chineesKruid':
+    //             return function filterFn(chineseKruiden) {
+    //                 return (chineseKruiden.Pinjin.toLowerCase().indexOf(lowercaseQuery) === 0);
+    //             };
+    //         case 'symptoom':
+    //             return function filterFn(symptomen) {
+    //                 return (symptomen.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);
+    //             };
+    //         default:
+    //             break;
+    //     }
+    // }
 }]);

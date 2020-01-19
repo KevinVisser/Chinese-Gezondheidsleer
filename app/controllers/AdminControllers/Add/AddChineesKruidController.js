@@ -1,7 +1,6 @@
 var app = angular.module('AddChineesKruidController', ['ngRoute', 'myAppRouter', 'ngMaterial'])
 
 app.controller('AddChineesKruidController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    // Dit moet later verwijderd worden --> Moet in de form even validation toevoegen.
     $scope.chineesKruid = {
         "Pinjin": "",
         "Engels": "",
