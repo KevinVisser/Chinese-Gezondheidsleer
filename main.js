@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, globalShortcut } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const db = require("better-sqlite3")("./resources/app.db");
@@ -28,6 +28,14 @@ function createWindow() {
     });
     // and load the index.html of the app.
     mainWindow.loadFile("index.html");
+
+    globalShortcut.register('F11', () => {
+        // Do Nothing
+    })
+
+    globalShortcut.register('Ctrl+Shift+I', () => {
+        // Do Nothing
+    })
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
