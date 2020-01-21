@@ -1,11 +1,9 @@
 var app = angular.module('PatentFormulesViewController', ['ngRoute', 'myAppRouter'])
 
 app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
-    $scope.PatentFormulesModel = new PatentFormulesModel();
-    $scope.addDataModel = new AddDataModel();
 
-    $scope.patentformules = $scope.PatentFormulesModel.GetSpecificData($routeParams.PatentFormuleId);
-    $scope.chineseKruiden = $scope.PatentFormulesModel.GetKruidData($routeParams.PatentFormuleId);
+    $scope.patentformules = $scope.patentFormuleModel.GetSpecificData($routeParams.PatentFormuleId);
+    $scope.chineseKruiden = $scope.patentFormuleModel.GetKruidData($routeParams.PatentFormuleId);
 
     var dir = "./resources/Aantekeningen/Patentformule/";
     var bestand = $routeParams.PatentFormuleId + ".txt";
@@ -17,7 +15,6 @@ app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$loca
             try {
                 fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
-                console.log("wf2: ", err);
             }
         });
     }
@@ -31,7 +28,6 @@ app.controller('PatentFormulesViewController', ['$routeParams', '$scope', '$loca
             fs.writeFileSync(dir + bestand, "");
         }
         if (err) {
-            console.log("rf: ", err);
         } else {
             $scope.patentformules.message = contents;
         }

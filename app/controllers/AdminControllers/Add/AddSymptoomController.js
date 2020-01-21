@@ -9,10 +9,7 @@ app.controller('AddSymptoomController', ['$routeParams', '$scope', '$location', 
 
     $scope.updateSymptoom = function (symptoom, form) {
         if (form.$valid) {
-            console.log("good");
             $scope.addDataModel.InsertIntoSymptomen(symptoom);
-        } else {
-            console.log("Invalid");
         }
     }
 
@@ -27,7 +24,6 @@ app.controller('AddSymptoomController', ['$routeParams', '$scope', '$location', 
             .ok('Nee');
 
         $mdDialog.show(confirm).then(function () {
-            console.log("je hebt", symptoom, "verwijdert");
         }, function () {
             $scope.deleteSymptoom(symptoom)
         });
@@ -43,7 +39,6 @@ app.directive('ngConfirmClick', [
     function () {
         return {
             link: function (scope, element, attr) {
-                console.log("Hello");
                 var msg = attr.ngConfirmClick || "Are you sure?";
                 var clickAction = attr.confirmedClick;
                 element.bind('click', function (event) {

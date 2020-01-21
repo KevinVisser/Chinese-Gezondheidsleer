@@ -20,7 +20,6 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)
-        console.log(symptoom);
 
         if ($scope.selectedSymptomen.includes(symptoom)) {
             $scope.selectedSymptomen.splice(position, 1);
@@ -89,16 +88,12 @@ app.controller('AddSyndromenController', ['$routeParams', '$scope', '$location',
 
             //Insert syndroom into syndromen table
             let id = $scope.addDataModel.InsertIntoSyndromen(syndroom);
-            console.log(id);
 
             // Daarna de ActieFormules vullen
             $scope.addDataModel.InsertIntoActieFormules(id, $scope.selectedPatentFormules, $scope.selectedKruidenFormules);
 
-            console.log(id);
             // Daarna de kruidenformuleEnSymptomen vullen
             $scope.addDataModel.InsertIntoSyndromenEnSymptomen(id, $scope.selectedSymptomen);
-        } else {
-            console.log("Invalid");
         }
     }
 }]);

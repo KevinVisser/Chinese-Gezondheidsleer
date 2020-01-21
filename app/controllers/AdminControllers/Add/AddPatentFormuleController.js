@@ -21,7 +21,6 @@ app.controller('AddPatentFormuleController', ['$routeParams', '$scope', '$locati
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)
-        console.log(symptoom);
 
         if ($scope.selectedSymptomen.includes(symptoom)) {
             $scope.selectedSymptomen.splice(position, 1);
@@ -55,17 +54,12 @@ app.controller('AddPatentFormuleController', ['$routeParams', '$scope', '$locati
     $scope.updatePatentFormule = function (patentformule, form) {
         if (form.$valid) {
             let id = $scope.addDataModel.InsertIntoPatentFormules(patentformule);
-            console.log(id);
 
             // Daarna de kruidenFormuleEnKruiden vullen
             $scope.addDataModel.InsertIntoChineseKruidenEnPatentFormules(id, $scope.selectedChineseKruiden);
 
             // Daarna de kruidenformuleEnSymptomen vullen
             $scope.addDataModel.InsertIntoPatentFormulesEnSymptomen(id, $scope.selectedSymptomen);
-        } else {
-            console.log("Invalid");
         }
-
     }
-
 }]);

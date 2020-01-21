@@ -25,7 +25,6 @@ app.controller('AddKruidController', ['$routeParams', '$scope', '$location', fun
             $scope.addDataModel.InsertIntoKruiden(kruid)
             $scope.kruid = null;
         } else {
-            console.log("Invalid");
         }
     }
 }]);

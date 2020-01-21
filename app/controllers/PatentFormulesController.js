@@ -1,12 +1,10 @@
 var app = angular.module('PatentFormulesController', ['ngRoute', 'myAppRouter'])
 
 app.controller('PatentFormulesController', ['$routeParams', '$scope', '$location', function ($routeParams, $scope, $location) {
-    $scope.PatentFormulesModel = new PatentFormulesModel();
 
-    $scope.patentFormules = $scope.PatentFormulesModel.GetRelevantData();
+    $scope.patentFormules = $scope.patentFormuleModel.GetRelevantData();
 
     $scope.GoToView = function (id) {
-        console.log(id);
         $location.path('/PatentFormules/' + id)
     }
 

@@ -1,12 +1,10 @@
 var app = angular.module('SyndromenViewController', ['ngRoute', 'myAppRouter'])
 
 app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
-    $scope.SyndromenModel = new SyndromenModel();
-    $scope.addDataModel = new AddDataModel();
 
-    $scope.syndromen = $scope.SyndromenModel.GetSpecificData($routeParams.SyndroomId);
-    $scope.symptomen = $scope.SyndromenModel.GetSymptoomData($routeParams.SyndroomId);
-    $scope.formules = $scope.SyndromenModel.GetFormules($routeParams.SyndroomId);
+    $scope.syndromen = $scope.syndroomModel.GetSpecificData($routeParams.SyndroomId);
+    $scope.symptomen = $scope.syndroomModel.GetSymptoomData($routeParams.SyndroomId);
+    $scope.formules = $scope.syndroomModel.GetFormules($routeParams.SyndroomId);
 
     var dir = "./resources/Aantekeningen/syndroom/";
     var bestand = $routeParams.SyndroomId + ".txt";
@@ -18,7 +16,6 @@ app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location'
             try {
                 fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
-                console.log("wf2: ", err);
             }
         });
     }
@@ -32,7 +29,6 @@ app.controller('SyndromenViewController', ['$routeParams', '$scope', '$location'
             fs.writeFileSync(dir + bestand, "");
         }
         if (err) {
-            console.log("rf: ", err);
         } else {
             $scope.syndromen.message = contents;
         }

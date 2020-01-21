@@ -13,7 +13,6 @@ app.controller('EditPatentFormuleController', ['$routeParams', '$scope', '$locat
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)
-        console.log(symptoom);
 
         if ($scope.selectedSymptomen.includes(symptoom)) {
             $scope.selectedSymptomen.splice(position, 1);
@@ -34,7 +33,6 @@ app.controller('EditPatentFormuleController', ['$routeParams', '$scope', '$locat
             for (let index = 0; index < $scope.selectedChineseKruiden.length; index++) {
                 if (chineesKruid.Pinjin == $scope.selectedChineseKruiden[index].Pinjin) {
                     add = false;
-                    console.log("False");
                     break;
                 }
             }
@@ -63,50 +61,9 @@ app.controller('EditPatentFormuleController', ['$routeParams', '$scope', '$locat
         if (form.$valid) {
             $scope.updateModel.UpdatePatentFormule(patentFormuleId, patentformule);
 
-            $scope.updateModel.UpdateChineseKruidenEnPatentFormules(patentFormuleId, $scope.selectedChineseKruiden, $scope.patentFormuleModel.GetKruidData(patentFormuleId))
+            $scope.updateModel.UpdateChineseKruidenEnPatentFormules(patentFormuleId, $scope.selectedChineseKruiden)
 
-            $scope.updateModel.UpdatePatentFormulesEnSymptomen(patentFormuleId, $scope.selectedSymptomen, $scope.patentFormuleModel.GetSymptoomData(patentFormuleId));
-        } else {
-            console.log("Invalid");
+            $scope.updateModel.UpdatePatentFormulesEnSymptomen(patentFormuleId, $scope.selectedSymptomen);
         }
     }
-
-    // $scope.querySearch = function (query, type) {
-    //     console.log("hello");
-    //     switch (type) {
-    //         case 'chineesKruid':
-    //             var results = query ? $scope.chineseKruiden.filter(createFilterFor(query, type)) : $scope.chineseKruiden,
-    //                 deferred;
-    //             break;
-    //         case 'symptoom':
-    //             var results = query ? $scope.symptomen.filter(createFilterFor(query, type)) : $scope.symptomen,
-    //                 deferred;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    //     if (self.simulateQuery) {
-    //         deferred = $q.defer();
-    //         $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
-    //         return deferred.promise;
-    //     } else {
-    //         return results;
-    //     }
-    // };
-
-    // function createFilterFor(query, type) {
-    //     var lowercaseQuery = query.toLowerCase();
-    //     switch (type) {
-    //         case 'chineesKruid':
-    //             return function filterFn(chineseKruiden) {
-    //                 return (chineseKruiden.Pinjin.toLowerCase().indexOf(lowercaseQuery) === 0);
-    //             };
-    //         case 'symptoom':
-    //             return function filterFn(symptomen) {
-    //                 return (symptomen.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);
-    //             };
-    //         default:
-    //             break;
-    //     }
-    // }
 }]);

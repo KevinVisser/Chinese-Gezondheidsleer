@@ -23,13 +23,11 @@ app.controller('AddChineesKruidController', ['$routeParams', '$scope', '$locatio
             //Insert selected symptoms in symptomen table
             $scope.addDataModel.InsertIntoChineseKruidenEnSymptomen(id, $scope.selectedSymptomen);
         } else {
-            console.log("Invalid");
         }
 
     }
 
     $scope.selectedItemChangeSymptoom = function (symptoom) {
-        console.log(symptoom);
         if (symptoom != undefined) {
             if (symptoom.Naam != "" && !$scope.selectedSymptomen.includes(symptoom)) {
                 $scope.selectedSymptomen.push(symptoom);
@@ -69,14 +67,11 @@ app.controller('AddChineesKruidController', ['$routeParams', '$scope', '$locatio
 
     function createFilterFor(query, type) {
         var lowercaseQuery = query.toLowerCase();
-
-        // console.log(lowercaseQuery);
         switch (type) {
             case 'kruid':
                 return function filterFn(kruiden) {
                     return (kruiden.Nederlands.toLowerCase().indexOf(lowercaseQuery) === 0);
                 };
-            // console.log(kruiden);
             case 'symptoom':
                 return function filterFn(symptomen) {
                     return (symptomen.Naam.toLowerCase().indexOf(lowercaseQuery) === 0);

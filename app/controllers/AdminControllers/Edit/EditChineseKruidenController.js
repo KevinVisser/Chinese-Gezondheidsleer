@@ -14,16 +14,12 @@ app.controller('EditChineseKruidenController', ['$routeParams', '$scope', '$loca
             $scope.updateModel.UpdateChineseKruiden(chineesKruidId, chineesKruid)
 
             //Insert selected symptoms in symptomen table
-            $scope.updateModel.UpdateChineseKruidenEnSymptomen(chineesKruidId, $scope.selectedSymptomen, $scope.chineseKruidenModel.GetSymptoomData(chineesKruidId));
-        } else {
-            console.log("Invalid");
+            $scope.updateModel.UpdateChineseKruidenEnSymptomen(chineesKruidId, $scope.selectedSymptomen);
         }
-
     }
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)
-        console.log(symptoom);
 
         if ($scope.selectedSymptomen.includes(symptoom)) {
             $scope.selectedSymptomen.splice(position, 1);

@@ -24,12 +24,10 @@ function HandleWindowControls() {
     let win = remote.getCurrentWindow();
 
     document.getElementById("min-button").addEventListener("click", () => {
-        console.log("min-button");
         win.minimize();
     });
-    
+
     document.getElementById("close-button").addEventListener("click", () => {
-        console.log("min-button");
         win.close();
     });
 }

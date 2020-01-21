@@ -40,7 +40,6 @@ ChineseGezondheidsleer.config(function ($mdIconProvider) {
 });
 
 ChineseGezondheidsleer.directive('kruidDirective', function ($q, $timeout) {
-    console.log("Hello");
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {

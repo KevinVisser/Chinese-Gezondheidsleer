@@ -1,12 +1,9 @@
 var app = angular.module('KruidenFormulesViewController', ['ngRoute', 'myAppRouter'])
 
 app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
-    $scope.KruidenFormulesModel = new KruidenFormulesModel();
-    $scope.addDataModel = new AddDataModel();
+    $scope.kruidenFormules = $scope.kruidenFormuleModel.GetSpecificData($routeParams.KruidenFormuleId);
 
-    $scope.kruidenFormules = $scope.KruidenFormulesModel.GetSpecificData($routeParams.KruidenFormuleId);
-
-    $scope.kruiden = $scope.KruidenFormulesModel.GetKruidData($routeParams.KruidenFormuleId);
+    $scope.kruiden = $scope.kruidenFormuleModel.GetKruidData($routeParams.KruidenFormuleId);
 
     var dir = "./resources/Aantekeningen/Kruidenformule/";
     var bestand = $routeParams.KruidenFormuleId + ".txt";
@@ -18,7 +15,6 @@ app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$loc
             try {
                 fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
-                console.log("wf2: ", err);
             }
         });
     }
@@ -32,7 +28,6 @@ app.controller('KruidenFormulesViewController', ['$routeParams', '$scope', '$loc
             fs.writeFileSync(dir + bestand, "");
         }
         if (err) {
-            console.log("rf: ", err);
         } else {
             $scope.kruiden.message = contents;
         }

@@ -1,10 +1,7 @@
 var app = angular.module('KruidenViewController', ['ngRoute', 'myAppRouter']);
 
 app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', '$mdDialog', function ($routeParams, $scope, $location, $mdDialog) {
-    this.KruidenModel = new KruidenModel();
-    $scope.addDataModel = new AddDataModel();
-
-    $scope.kruid = this.KruidenModel.GetSpecificKruid($routeParams.KruidId);
+    $scope.kruid = $scope.kruidenModel.GetSpecificKruid($routeParams.KruidId);
 
     var dir = "./resources/Aantekeningen/Kruiden/";
     var bestand = $routeParams.KruidId + ".txt";
@@ -16,7 +13,6 @@ app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', 
             try {
                 fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
-                console.log("wf2: ", err);
             }
         });
     }
@@ -30,7 +26,6 @@ app.controller('KruidenViewController', ['$routeParams', '$scope', '$location', 
             fs.writeFileSync(dir + bestand, "");
         }
         if (err) {
-            console.log("rf: ", err);
         } else {
             $scope.kruid.message = contents;
         }

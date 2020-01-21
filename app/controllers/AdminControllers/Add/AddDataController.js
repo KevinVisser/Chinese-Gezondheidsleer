@@ -30,8 +30,6 @@ app.controller('AddDataController', ['$routeParams', '$scope', '$location', func
         { name: 'Chinees Kruid', url: './app/views/AdminViews/Add/AddChineesKruid.html' }
     ];
 
-    console.log($routeParams);
-
     $scope.toggleForm = function (form) {
         $scope.currentForm = form;
     }

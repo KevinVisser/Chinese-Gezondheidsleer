@@ -16,7 +16,6 @@ app.controller('ChineseKruidenViewController', ['$routeParams', '$scope', '$loca
             try {
                 fs.writeFileSync(dir + bestand, aantekening);
             } catch (err) {
-                console.log("wf2: ", err);
             }
         });
     }
@@ -30,7 +29,6 @@ app.controller('ChineseKruidenViewController', ['$routeParams', '$scope', '$loca
             fs.writeFileSync(dir + bestand, "");
         }
         if (err) {
-            console.log("rf: ", err);
         } else {
             $scope.kruid.message = contents;
         }

@@ -34,7 +34,7 @@ class PatentFormulesModel {
     }
 
     GetKruidData(id) {
-        let stmt = db.prepare("SELECT ChineseKruiden.Pinjin, ChineseKruidenEnPatentFormules.Verhouding FROM ChineseKruiden " +
+        let stmt = db.prepare("SELECT ChineseKruiden.Id, ChineseKruiden.Pinjin, ChineseKruidenEnPatentFormules.Verhouding FROM ChineseKruiden " +
             "INNER JOIN ChineseKruidenEnPatentFormules ON ChineseKruiden.Id=ChineseKruidenEnPatentFormules.KruidId " +
             "WHERE ChineseKruidenEnPatentFormules.PatentFormuleId = ?");
         return stmt.all(id);

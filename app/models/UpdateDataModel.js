@@ -36,48 +36,13 @@ class UpdataDataModel {
         )
     }
 
-    UpdateChineseKruidenEnSymptomen(chineesKruidId, selectedSymptomen, currentSymptomen) {
+    UpdateChineseKruidenEnSymptomen(chineesKruidId, selectedSymptomen) {
         let add = db.prepare("INSERT INTO ChineseKruidenEnSymptomen (ChineesKruidId, SymptoomId) VALUES (?,?)");
-        let del = db.prepare("DELETE FROM ChineseKruidenEnSymptomen WHERE ChineesKruidId=? AND SymptoomId=?");
+        let del = db.prepare("DELETE FROM ChineseKruidenEnSymptomen WHERE ChineesKruidId=?").run(chineesKruidId);
 
-        // let stmt = db.prepare("SELECT * FROM KruidenFormulesEnSymptomen WHERE SymptoomId=? AND chineesKruidId = ?")
-
-        console.log(selectedSymptomen, currentSymptomen);
-        let found;
-
-        let toegevoegd = [];
-        let verwijderd = [];
-
-        // Zit er iets in selected wat niet in current zit dan is er wat toegevoegd.
-        selectedSymptomen.forEach(element => {
-            for (let index = 0; index < currentSymptomen.length; index++) {
-                if (element.Naam == currentSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                add.run(chineesKruidId, element.Id);
-                toegevoegd.push(element);
-            }
-        });
-
-        currentSymptomen.forEach(element => {
-            for (let index = 0; index < selectedSymptomen.length; index++) {
-                if (element.Naam == selectedSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                del.run(chineesKruidId, element.Id)
-                verwijderd.push(element);
-            }
-        });
+        for (const obj of selectedSymptomen) {
+            add.run(chineesKruidId, obj.Id)
+        }
     }
 
 
@@ -93,94 +58,22 @@ class UpdataDataModel {
         )
     }
 
-    UpdateKruidenFormulesEnSymptomen(kruidenFormuleId, selectedSymptomen, currentSymptomen) {
+    UpdateKruidenFormulesEnSymptomen(kruidenFormuleId, selectedSymptomen) {
         let add = db.prepare("INSERT INTO KruidenFormulesEnSymptomen (KruidenFormuleId, SymptoomId) VALUES (?,?)");
-        let del = db.prepare("DELETE FROM KruidenFormulesEnSymptomen WHERE KruidenFormuleId=? AND SymptoomId=?");
+        db.prepare("DELETE FROM KruidenFormulesEnSymptomen WHERE KruidenFormuleId=?").run(kruidenFormuleId);
 
-        // let stmt = db.prepare("SELECT * FROM KruidenFormulesEnSymptomen WHERE SymptoomId=? AND KruidenFormuleId = ?")
-
-        console.log(selectedSymptomen, currentSymptomen);
-        let found;
-
-        let toegevoegd = [];
-        let verwijderd = [];
-
-        // Zit er iets in selected wat niet in current zit dan is er wat toegevoegd.
-        selectedSymptomen.forEach(element => {
-            for (let index = 0; index < currentSymptomen.length; index++) {
-                if (element.Naam == currentSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                add.run(kruidenFormuleId, element.Id);
-                toegevoegd.push(element);
-            }
-        });
-
-        currentSymptomen.forEach(element => {
-            for (let index = 0; index < selectedSymptomen.length; index++) {
-                if (element.Naam == selectedSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                del.run(kruidenFormuleId, element.Id)
-                verwijderd.push(element);
-            }
-        });
+        for (const obj of selectedSymptomen) {
+            add.run(kruidenFormuleId, obj.Id)
+        }
     }
 
-    UpdateKruidenFormulesEnKruiden(kruidenFormuleId, selectedKruiden, currentKruiden) {
+    UpdateKruidenFormulesEnKruiden(kruidenFormuleId, selectedKruiden) {
         let add = db.prepare("INSERT INTO KruidenFormulesEnKruiden (KruidenFormuleId, KruidenId, Verhouding) VALUES (?,?,?)");
-        let del = db.prepare("DELETE FROM KruidenFormulesEnKruiden WHERE KruidenFormuleId=? AND KruidenId=?");
+        db.prepare("DELETE FROM KruidenFormulesEnKruiden WHERE KruidenFormuleId=?").run(kruidenFormuleId);
 
-        // let stmt = db.prepare("SELECT * FROM KruidenFormulesEnSymptomen WHERE SymptoomId=? AND KruidenFormuleId = ?")
-
-        console.log(selectedKruiden, currentKruiden);
-        let found;
-
-        let toegevoegd = [];
-        let verwijderd = [];
-
-        // Zit er iets in selected wat niet in current zit dan is er wat toegevoegd.
-        selectedKruiden.forEach(element => {
-            for (let index = 0; index < currentKruiden.length; index++) {
-                if (element.Nederlands == currentKruiden[index].Nederlands) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                add.run(kruidenFormuleId, element.Id, element.Verhouding);
-                toegevoegd.push(element);
-            }
-        });
-
-        currentKruiden.forEach(element => {
-            for (let index = 0; index < selectedKruiden.length; index++) {
-                if (element.Nederlands == selectedKruiden[index].Nederlands) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                console.log(element);
-                console.log(kruidenFormuleId, element.Id);
-                del.run(kruidenFormuleId, element.Id)
-                verwijderd.push(element);
-            }
-        });
+        for (const obj of selectedKruiden) {
+            add.run(kruidenFormuleId, obj.Id, obj.Verhouding)
+        }
     }
 
     // Patentformules
@@ -196,90 +89,22 @@ class UpdataDataModel {
         )
     }
 
-    UpdatePatentFormulesEnSymptomen(patentFormuleId, selectedSymptomen, currentSymptomen) {
+    UpdatePatentFormulesEnSymptomen(patentFormuleId, selectedSymptomen) {
         let add = db.prepare("INSERT INTO PatentFormulesEnSymptomen (PatentFormuleId, SymptoomId) VALUES (?,?)");
-        let del = db.prepare("DELETE FROM PatentFormulesEnSymptomen WHERE PatentFormuleId=? AND SymptoomId=?");
+        db.prepare("DELETE FROM PatentFormulesEnSymptomen WHERE PatentFormuleId=?").run(patentFormuleId);
 
-        console.log(selectedSymptomen, currentSymptomen);
-        let found;
-
-        let toegevoegd = [];
-        let verwijderd = [];
-
-        // Zit er iets in selected wat niet in current zit dan is er wat toegevoegd.
-        selectedSymptomen.forEach(element => {
-            for (let index = 0; index < currentSymptomen.length; index++) {
-                if (element.Naam == currentSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                add.run(patentFormuleId, element.Id);
-                toegevoegd.push(element);
-            }
-        });
-
-        currentSymptomen.forEach(element => {
-            for (let index = 0; index < selectedSymptomen.length; index++) {
-                if (element.Naam == selectedSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                del.run(patentFormuleId, element.Id)
-                verwijderd.push(element);
-            }
-        });
+        for (const obj of selectedSymptomen) {
+            add.run(patentFormuleId, obj.Id)
+        }
     }
 
-    UpdateChineseKruidenEnPatentFormules(patentFormuleId, selectedKruiden, currentKruiden) {
-        let add = db.prepare("INSERT INTO ChineseKruidenEnPatentFormules (PatentFormuleId, KruidId, Verhouding) VALUES (?,?,?)");
-        let del = db.prepare("DELETE FROM ChineseKruidenEnPatentFormules WHERE PatentFormuleId=? AND KruidId=?");
+    UpdateChineseKruidenEnPatentFormules(patentFormuleId, selectedKruiden) {
+        let add = db.prepare("INSERT INTO ChineseKruidenEnPatentFormules (KruidId, PatentFormuleId, Verhouding) VALUES (?,?,?)");
+        db.prepare("DELETE FROM ChineseKruidenEnPatentFormules WHERE PatentFormuleId=?").run(patentFormuleId);
 
-        // let stmt = db.prepare("SELECT * FROM KruidenFormulesEnSymptomen WHERE SymptoomId=? AND KruidenFormuleId = ?")
-
-        console.log(selectedKruiden, currentKruiden);
-        let found;
-
-        let toegevoegd = [];
-        let verwijderd = [];
-
-        // Zit er iets in selected wat niet in current zit dan is er wat toegevoegd.
-        selectedKruiden.forEach(element => {
-            for (let index = 0; index < currentKruiden.length; index++) {
-                if (element.Nederlands == currentKruiden[index].Nederlands) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                add.run(patentFormuleId, element.Id, element.Verhouding);
-                toegevoegd.push(element);
-            }
-        });
-
-        currentKruiden.forEach(element => {
-            for (let index = 0; index < selectedKruiden.length; index++) {
-                if (element.Nederlands == selectedKruiden[index].Nederlands) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                del.run(patentFormuleId, element.Id)
-                verwijderd.push(element);
-            }
-        });
+        for (const obj of selectedKruiden) {
+            add.run(obj.Id, patentFormuleId, obj.Verhouding)
+        }
     }
 
     // Syndromen
@@ -309,26 +134,21 @@ class UpdataDataModel {
         // Delete references
         deleteAll.run(syndroomId);
 
-        console.log(selectedPatentFormules.length, selectedKruidenFormules.length);
 
         let index = 0;
 
         // Als er nog wat ingevuld moet worden
         while (selectedPatentFormules.length > index || selectedKruidenFormules.length > index) {
             if (selectedPatentFormules.length == selectedKruidenFormules.length || (selectedPatentFormules.length > index && selectedKruidenFormules.length > index)) {
-                console.log("INSERT ------- Het was gelijk");
                 insertBoth.run(syndroomId, selectedPatentFormules[index].Id, selectedKruidenFormules[index].Id)
             } else {
-                console.log(index, selectedPatentFormules.length, selectedKruidenFormules.length);
                 // Als er meer items staan in de kruidenformule array
                 if (selectedPatentFormules.length <= index && selectedKruidenFormules.length > index) {
-                    console.log("INSERT ------- KruidenFormule is groter");
                     insertKruid.run(syndroomId, selectedKruidenFormules[index].Id)
                 }
 
                 // Als er meer items staan in de patentformule array
                 if (selectedPatentFormules.length > index && selectedKruidenFormules.length <= index) {
-                    console.log("INSERT ------- Patentformule is groter");
                     insertPatent.run(syndroomId, selectedPatentFormules[index].Id)
                 }
             }
@@ -336,45 +156,12 @@ class UpdataDataModel {
         }
     }
 
-    UpdateSyndromenEnSymptomen(syndroomId, selectedSymptomen, currentSymptomen) {
+    UpdateSyndromenEnSymptomen(syndroomId, selectedSymptomen) {
         let add = db.prepare("INSERT INTO SyndromenEnSymptomen (SyndroomId, SymptoomId) VALUES (?,?)");
-        let del = db.prepare("DELETE FROM SyndromenEnSymptomen WHERE SyndroomId=? AND SymptoomId=?");
+        let del = db.prepare("DELETE FROM SyndromenEnSymptomen WHERE SyndroomId=?").run(syndroomId);
 
-        console.log(selectedSymptomen, currentSymptomen);
-        let found;
-
-        let toegevoegd = [];
-        let verwijderd = [];
-
-        // Zit er iets in selected wat niet in current zit dan is er wat toegevoegd.
-        selectedSymptomen.forEach(element => {
-            for (let index = 0; index < currentSymptomen.length; index++) {
-                if (element.Naam == currentSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                add.run(syndroomId, element.Id);
-                toegevoegd.push(element);
-            }
-        });
-
-        currentSymptomen.forEach(element => {
-            for (let index = 0; index < selectedSymptomen.length; index++) {
-                if (element.Naam == selectedSymptomen[index].Naam) {
-                    found = true;
-                    break;
-                } else {
-                    found = false;
-                }
-            }
-            if (!found) {
-                del.run(syndroomId, element.Id);
-                verwijderd.push(element);
-            }
-        });
+        for (const obj of selectedSymptomen) {
+            add.run(syndroomId, obj.Id)
+        }
     }
 }

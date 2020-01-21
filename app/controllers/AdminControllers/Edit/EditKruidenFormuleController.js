@@ -14,7 +14,6 @@ app.controller('EditKruidenFormuleController', ['$routeParams', '$scope', '$loca
 
     $scope.removeSymptoom = function (symptoom) {
         let position = $scope.selectedSymptomen.indexOf(symptoom)
-        console.log(symptoom);
 
         if ($scope.selectedSymptomen.includes(symptoom)) {
             $scope.selectedSymptomen.splice(position, 1);
@@ -65,12 +64,10 @@ app.controller('EditKruidenFormuleController', ['$routeParams', '$scope', '$loca
             $scope.updateModel.UpdateKruidenFormule(kruidenFormuleId, kruidenformule);
 
             // // Daarna de kruidenFormuleEnKruiden vullen
-            $scope.updateModel.UpdateKruidenFormulesEnKruiden(kruidenFormuleId, $scope.selectedKruiden, $scope.kruidenFormuleModel.GetKruidData(kruidenFormuleId));
+            $scope.updateModel.UpdateKruidenFormulesEnKruiden(kruidenFormuleId, $scope.selectedKruiden);
 
             // Daarna de kruidenformuleEnSymptomen vullen
-            $scope.updateModel.UpdateKruidenFormulesEnSymptomen(kruidenFormuleId, $scope.selectedSymptomen, $scope.kruidenFormuleModel.GetSymptoomData(kruidenFormuleId));
-        } else {
-            console.log("Invalid");
+            $scope.updateModel.UpdateKruidenFormulesEnSymptomen(kruidenFormuleId, $scope.selectedSymptomen);
         }
     }
 }]);
