@@ -1,6 +1,6 @@
 {
   "name": "chinese-gezondheidsleer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Programma voor de Chinese gezondheidsleer",
   "main": "main.js",
   "scripts": {

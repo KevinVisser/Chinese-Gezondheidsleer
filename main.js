@@ -36,6 +36,14 @@ function createWindow() {
     globalShortcut.register('Ctrl+Shift+I', () => {
         // Do Nothing
     })
+    
+    globalShortcut.register('Ctrl+W', () => {
+        // Do Nothing
+    })
+    
+    globalShortcut.register('Ctrl+R', () => {
+        // Do Nothing
+    })
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()

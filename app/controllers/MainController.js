@@ -7,6 +7,8 @@ app.controller('MainController', ['$route', '$routeParams', '$location', '$scope
 
     $scope.addDataModel = new AddDataModel();
     $scope.updateModel = new UpdataDataModel();
+    $scope.ZoekenModel = new ZoekenModel();
+    $scope.ZoekenKFModel = new ZoekenKFModel();
 
     $scope.kruidenModel = new KruidenModel();
     $scope.patentFormuleModel = new PatentFormulesModel();

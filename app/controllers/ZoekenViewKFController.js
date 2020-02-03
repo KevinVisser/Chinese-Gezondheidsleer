@@ -6,14 +6,18 @@ app.controller('ZoekenViewKFController', ['$routeParams', '$scope', '$location',
 
     //kijkt of de array niet leeg is
     if ($routeParams.werking != "") {
-        $scope.werking = $scope.ZoekenModel.GetWerkingData($routeParams.werking);
+        $scope.werking = $scope.ZoekenKFModel.GetWerkingData($routeParams.werking);
     }
     if ($routeParams.ingredienten != "") {
-        $scope.ingredienten = $scope.ZoekenModel.GetIngredientenData($routeParams.ingredienten);
+        $scope.ingredienten = $scope.ZoekenKFModel.GetIngredientenData($routeParams.ingredienten);
     }
     if ($routeParams.symptomen != "") {
-        $scope.symptomen = $scope.ZoekenModel.GetSymptoomData($routeParams.symptomen);
+        $scope.symptomen = $scope.ZoekenKFModel.GetSymptoomData($routeParams.symptomen);
     }
+
+    console.log($scope.werking);
+    console.log($scope.ingredienten);
+    console.log($scope.symptomen);
 
     $scope.GoBack = function () {
         $location.path('/ZoekenKF');
