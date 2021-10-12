@@ -54,7 +54,7 @@
   },
   "homepage": "https://github.com/KevinVisser/Chinese-Gezondheidsleer#readme",
   "devDependencies": {
-    "electron": "^9.4.0",
+    "electron": "^11.5.0",
     "electron-builder": "^21.2.0",
     "electron-rebuild": "^1.8.8"
   },
